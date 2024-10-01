@@ -9,18 +9,17 @@ Este proyecto es un **Simulador de Sistemas Operativos**, diseñado para emular 
 ## 👨‍💻 Desarrollado por:
 
 ### 1. Diego Sanhueza 💡
-- **Rol:** Estudiante de Ingeniería Infomatica
+Estudiante de Ingeniería Infomatica
 
 ### 2. Miguel Loaiza 🛠️
-- **Rol:** Estudiante de Ingeniería informatica
+Estudiante de Ingeniería informatica
 
 ### 3. Oscar Cifuentes 🎨
-- **Rol:** Estudiante de Ingeniería Civil Informatica
+Estudiante de Ingeniería Civil Informatica
 
 ## 🛠️ Funcionalidades
 
 - Simulación de manejo de **procesos** y **memoria**.
 - Visualización de la asignación y liberación de recursos del sistema.
 - Ejecución de procesos en **concurrencia**.
-- Interfaz gráfica intuitiva para observar el comportamiento del simulador.
 
