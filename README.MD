@@ -2,7 +2,7 @@
 
 ## 🚀 Acerca del Proyecto
 
-Este proyecto es un **Simulador de Sistemas Operativos**, diseñado para emular el comportamiento de un sistema operativo básico. A través de esta simulación, puedes explorar cómo se manejan procesos, memoria y otros recursos del sistema. Nuestro enfoque es educativo, para ayudar a estudiantes y entusiastas a entender los conceptos fundamentales detrás de los sistemas operativos.
+Este proyecto es un **Simulador de Sistemas Operativos**, diseñado para emular el comportamiento de un sistema operativo básico. A través de esta simulación, puedes explorar cómo se manejan procesos, memoria y otros recursos del sistema. Nuestro enfoque es educativo, para ayudar a estudiantes a entender los conceptos fundamentales detrás de los sistemas operativos.
 
 ---
 
