@@ -12,10 +12,12 @@ Este proyecto es un **Simulador de Sistemas Operativos**, diseñado para emular 
 Estudiante de Ingeniería Infomatica
 
 ### 2. Miguel Loaiza 🛠️
-Estudiante de Ingeniería informatica
+- Estudiante de Ingeniería informatica
+- [Miguel Loaiza](https://github.com/EhMigueh)
 
 ### 3. Oscar Cifuentes 🎨
 Estudiante de Ingeniería Civil Informatica
+- [Oscar Cifuentes](https://github.com/iBluZiiZ)
 
 ## 🛠️ Funcionalidades
 
