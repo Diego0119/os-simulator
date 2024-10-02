@@ -10,7 +10,7 @@ Este proyecto es un **Simulador de Sistemas Operativos**, diseñado para emular 
 
 ### 1. Diego Sanhueza 💡
 - Estudiante de Ingeniería Infomatica
-- [Diego Sanhueza] (https://github.com/Diego0119)
+- [Diego Sanhueza](https://github.com/Diego0119)
 
 ### 2. Miguel Loaiza 🛠️
 - Estudiante de Ingeniería informatica
