@@ -22,3 +22,5 @@ struct bloque_asignado
 };
 
 typedef struct bloque_asignado BloqueAsignado; // bloque asignado a un proceso
+
+void inicializar_memoria();
