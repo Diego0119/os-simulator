@@ -1,1 +1,10 @@
+.exec
+.vscode/
+*.out
+*.exe
+test/
+.DS_Store
 obj/
+html/
+latex/
+incs/
