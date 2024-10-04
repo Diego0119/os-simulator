@@ -11,16 +11,6 @@ struct bloque_memoria
 
 typedef struct bloque_memoria BloqueMemoria; // tamaño fijo de memoria del sistema op
 
-BloqueMemoria Memoria[TAMANO_MEMORIA]; // memoria total
-
-struct bloque_asignado
-{
-    int inicio; // indice
-    int tamaño; // porte en kb del espacio asignado
-    BloqueAsignado *siguiente;
-    BloqueAsignado *atras;
-};
-
-typedef struct bloque_asignado BloqueAsignado; // bloque asignado a un proceso
+BloqueMemoria Memoria[TAMANO_MEMORIA]; // memoria total del so
 
 void inicializar_memoria();
