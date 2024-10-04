@@ -5,7 +5,7 @@
 struct bloque_memoria
 {
     int tamaño;           // tamaño del bloque kb
-    int libre;            // 1 libre, 0 ocupado
+    int estado;           // 1 libre, 0 ocupado
     int proceso_asignado; // puede ser -1 s no tiene proceso
 };
 
