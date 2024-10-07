@@ -22,27 +22,6 @@ int main()
     {
 
         Proceso *proceso = crear_proceso(nombre_proceso, tiempo_ejecucion, memoria_solicitada);
-
-        if (proceso != NULL)
-        {
-            printf("Proceso creado: %s, Tiempo de ejecución: %d, Memoria solicitada: %d KB\n",
-                   proceso->nombre, proceso->tiempo_ejecucion, proceso->memoria_solicitada);
-        }
-        BloqueAsignado *bloque_asignado = asignar_memoria(proceso, &memoria);
-        // if (*bloque_asignado == NULL)
-        // {
-        //     printf("No se pudo asignar memoria al proceso\n");
-        // }
-        // else
-        // {
-        //     printf("Memoria asignada al proceso %s\n", proceso->nombre);
-        // }
-        printf("Proceso cargado:\n");
-        printf("Nombre: %s\n", proceso->nombre);
-        printf("Tiempo de ejecucion: %d\n", proceso->tiempo_ejecucion);
-        printf("Memoria solicitada: %d KB\n", proceso->memoria_solicitada);
-
-        free(proceso);
     }
 
     return 0;

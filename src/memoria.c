@@ -13,28 +13,74 @@ BloqueMemoria inicializar_memoria(void)
     return *memoria;
 }
 
-// se debe crear la funcion de asignar memoria
-
-BloqueAsignado *asignar_memoria(Proceso *proceso, BloqueMemoria *memoria)
+Nodo *asignar_memoria(Proceso *proceso, BloqueMemoria *memoria, Lista *lista)
 {
-    // esta funcion debera ver la memoria total del sistema op, y recorrer hasta que encuentre el espacio libre
-    // luego cuando lo encuentra, cambiar a 0 los valores de los espacios libres del array, y hacer la lista
-    // doblemente enlazada para tener en linea los procesos y trabajar con la cola
     int count = 0;
+    int start = -1;
+
     for (int i = 0; i < TAMANO_MEMORIA; i++)
     {
-        while (memoria[i].estado == 1)
+        if (memoria[i].estado == 1) // bloque libre
         {
             count++;
+            if (start == -1)
+                start = i; // inicio de bloques contiguos
+
             if (count == proceso->memoria_solicitada)
-                for (int j = 0; j < count; j++)
-                    memoria[j].estado = 0; // se coloca que la memoria esta ocupada
-            return NULL;                   // se encontro el espacio de memoria contiguo disponible
+            {
+                for (int j = start; j < start + count; j++)
+                {
+                    memoria[j].estado = 0; // estado ocupado
+                    // memoria[j].proceso_asignado = proceso->nombre;
+                }
+
+                insertar(*proceso, lista);
+                return NULL;
+            }
+        }
+        else
+        {
+            count = 0;
+            start = -1;
         }
     }
-    BloqueAsignado *nuevo_bloque = malloc(sizeof(BloqueAsignado));
-    nuevo_bloque->siguiente = NULL;
-    nuevo_bloque->atras = NULL;
-    nuevo_bloque->proceso = *proceso; // se copiaran todos los campos de proceso al struct del bloque, pero no se hara referencia a el, solo se copiaran los datos
-    return nuevo_bloque;
+
+    printf("No hay suficiente memoria disponible para el proceso.\n");
+    return NULL;
+}
+
+int esta_vacia(Lista lista)
+{
+    return lista.head == NULL;
+    // esto retornara un 1 o 0 dependiendo si esta o no vacia
+}
+
+void insertar(Proceso proceso, Lista *lista)
+{
+    Nodo *nuevo_nodo = malloc(sizeof(Nodo));
+    if (nuevo_nodo == NULL)
+    {
+        printf("Error de asignación de memoria\n");
+        return;
+    }
+    nuevo_nodo->proceso = proceso;
+    nuevo_nodo->next = NULL;
+    nuevo_nodo->prev = NULL;
+
+    if (esta_vacia(*lista))
+    {
+        lista->head = nuevo_nodo;
+    }
+    else
+    {
+
+        Nodo *tmp_nodo = lista->head;
+        while (tmp_nodo->next != NULL)
+        {
+            tmp_nodo = tmp_nodo->next;
+        }
+
+        tmp_nodo->next = nuevo_nodo;
+        nuevo_nodo->prev = tmp_nodo;
+    }
 }
