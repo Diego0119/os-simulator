@@ -14,4 +14,4 @@ typedef struct bloque_memoria BloqueMemoria; // tamaño fijo de memoria del sist
 BloqueMemoria Memoria[TAMANO_MEMORIA]; // memoria total del so
 
 void inicializar_memoria();
-BloqueAsignado asignar_memoria(Proceso *proceso, Lista *lista_procesos, BloqueMemoria *memoria);
+BloqueAsignado *asignar_memoria(Proceso *proceso, Lista *lista_procesos, BloqueMemoria *memoria);
