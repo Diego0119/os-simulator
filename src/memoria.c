@@ -2,6 +2,7 @@
 #include "./planificador.h";
 #include <stdlib.h>; // estas importaciones se deben mejorar, con algun global.h
 #include <stdio.h>;
+#include <string.h>
 
 // aca se le deberia asignar memoria al so
 void inicializar_memoria()
@@ -17,7 +18,7 @@ void inicializar_memoria()
 
 // se debe crear la funcion de asignar memoria
 
-BloqueAsignado asignar_memoria(char *nombre_proceso, int memoria_solicitada, Lista *lista_procesos, BloqueMemoria *memoria)
+BloqueAsignado asignar_memoria(Proceso *proceso, Lista *lista_procesos, BloqueMemoria *memoria)
 {
     // esta funcion debera ver la memoria total del sistema op, y recorrer hasta que encuentre el espacio libre
     // luego cuando lo encuentra, cambiar a 0 los valores de los espacios libres del array, y hacer la lista
@@ -28,11 +29,14 @@ BloqueAsignado asignar_memoria(char *nombre_proceso, int memoria_solicitada, Lis
         while (memoria[i].estado == 1)
         {
             count++;
-            if (count == memoria_solicitada)
+            if (count == proceso->memoria_solicitada)
                 for (int j = 0; j < count; j++)
                     memoria[j].estado = 0; // se coloca que la memoria esta ocupada
             return;                        // se encontro el espacio de memoria contiguo disponible
         }
-        BloqueAsignado *nuevo_bloque = malloc(sizeof(BloqueAsignado));
-        }
+    }
+    BloqueAsignado *nuevo_bloque = malloc(sizeof(BloqueAsignado));
+    nuevo_bloque->siguiente = NULL;
+    nuevo_bloque->atras = NULL;
+    nuevo_bloque->proceso = *proceso; // se copiaran todos los campos de proceso al struct del bloque, pero no se hara referencia a el, solo se copiaran los datos
 }
