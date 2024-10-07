@@ -1,7 +1,7 @@
 #define TAMANO_MEMORIA 1024 // en kb
+#include "planificador.h"
+#include "proceso.h"
 
-// sera para representar la lista de procesos en memoria
-// los bloques de memoria sera una lista enlazada, aun no se si simple o doble
 struct bloque_memoria
 {
     int tamaño;           // tamaño del bloque kb
@@ -14,3 +14,4 @@ typedef struct bloque_memoria BloqueMemoria; // tamaño fijo de memoria del sist
 BloqueMemoria Memoria[TAMANO_MEMORIA]; // memoria total del so
 
 void inicializar_memoria();
+BloqueAsignado asignar_memoria(Proceso *proceso, Lista *lista_procesos, BloqueMemoria *memoria);

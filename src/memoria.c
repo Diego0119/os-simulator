@@ -1,8 +1,4 @@
 #include "../incs/memoria.h"
-#include "./planificador.h";
-#include <stdlib.h>; // estas importaciones se deben mejorar, con algun global.h
-#include <stdio.h>;
-#include <string.h>
 
 // aca se le deberia asignar memoria al so
 void inicializar_memoria()
@@ -36,7 +32,8 @@ BloqueAsignado asignar_memoria(Proceso *proceso, Lista *lista_procesos, BloqueMe
         }
     }
     BloqueAsignado *nuevo_bloque = malloc(sizeof(BloqueAsignado));
-    nuevo_bloque->siguiente = NULL;
-    nuevo_bloque->atras = NULL;
+    nuevo_bloque->siguiente = "";
+    nuevo_bloque->atras = "";
     nuevo_bloque->proceso = *proceso; // se copiaran todos los campos de proceso al struct del bloque, pero no se hara referencia a el, solo se copiaran los datos
+    return *nuevo_bloque;
 }
