@@ -1,6 +1,5 @@
 // aca se deberian crear los procesos
-#include "proceso.h"
-
+#include "../incs/header.h"
 // aca se creara el struct proceso
 Proceso *crear_proceso(char *name, int tiempo_ejecucion, int memoria_solicitada)
 {

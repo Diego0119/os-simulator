@@ -1,4 +1,4 @@
-#include "../incs/memoria.h"
+#include "../incs/header.h";
 
 // aca se le deberia asignar memoria al so
 void inicializar_memoria()
