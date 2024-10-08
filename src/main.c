@@ -1,4 +1,4 @@
-#include "./incs/header.h"
+#include "../incs/header.h"
 #define TAMANO_MEMORIA 1024
 
 int main(void)
@@ -18,7 +18,6 @@ int main(void)
 
     while (fscanf(archivo, "%s %d %d", nombre_proceso, &tiempo_ejecucion, &memoria_solicitada) != EOF)
     {
-
         Proceso *proceso = crear_proceso(nombre_proceso, tiempo_ejecucion, memoria_solicitada);
         asignar_memoria(proceso, &memoria, Front); // se insertan los procesos del sistema operativo
     }

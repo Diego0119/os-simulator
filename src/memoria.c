@@ -18,8 +18,10 @@ Nodo *asignar_memoria(Proceso *proceso, BloqueMemoria *memoria, Nodo *Front)
     int count = 0;
     int start = -1;
 
+    // aqui hay que implementar first fit
     for (int i = 0; i < TAMANO_MEMORIA; i++)
     {
+
         if (memoria[i].estado == 1) // bloque libre
         {
             count++;

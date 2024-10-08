@@ -1,50 +1,41 @@
-#define TAMANO_MEMORIA 1024 // en kb
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 
-struct bloque_memoria
+#define TAMANO_MEMORIA 2048 // en kb
+#define MAX_PROCESOS 10
+
+typedef struct
 {
     int tamaño;           // tamaño del bloque kb
     int estado;           // 1 libre, 0 ocupado
     int proceso_asignado; // puede ser -1 s no tiene proceso
-};
-
-typedef struct bloque_memoria BloqueMemoria; // tamaño fijo de memoria del sistema op
+} BloqueMemoria;          // bloque de memoria del sistema operativo
 
 BloqueMemoria Memoria[TAMANO_MEMORIA]; // memoria total del so
 
-struct proceso
+typedef struct
 {
-    char nombre[20];
+    int pid;
     int tiempo_ejecucion;
     int memoria_solicitada; // tamaño en kb
     int estado;             // 0 nuevo, 1 listo, 2 ejecutando, 3 bloqueado, 4 finalizado
-};
+} Proceso;
 
-typedef struct proceso Proceso;
-typedef struct nodo Nodo;
-typedef struct lista Lista;
-Nodo *Front = NULL;
-Nodo *Rear = NULL;
+Proceso procesos[MAX_PROCESOS];
 
-struct lista
-{
-    Nodo *head;
-};
-
-struct nodo
+typedef struct
 {
     Proceso proceso;
     Nodo *next;
-};
+} Nodo;
 
-BloqueMemoria inicializar_memoria(void);
+Nodo *Front = NULL;
+Nodo *Rear = NULL;
 
+BloqueMemoria inicializar_memoria(void); // se deben crear bloques de memoria con tamaños distintos
 Nodo *asignar_memoria(Proceso *proceso, BloqueMemoria *memoria, Nodo *Front);
-
 Proceso *crear_proceso(char *name, int tiempo_ejecucion, int memoria_solicitada);
-void terminar_proceso(Proceso *proceso);
 int esta_vacia(Nodo *Front);
 void insertar(Proceso proceso, Nodo *Front);
 Proceso extraer(Nodo *Front, Nodo *Rear);
