@@ -1,4 +1,4 @@
-#include "../incs/header.h"
+#include "header.h"
 
 Proceso *crear_proceso(int tiempo_ejecucion, int memoria_solicitada)
 {

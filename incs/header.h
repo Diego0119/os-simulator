@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define TAMANO_MEMORIA 2048 // en kb
+#define TAMANO_MEMORIA 2048 // en kb.
 #define MAX_PROCESOS 10
 
 typedef struct

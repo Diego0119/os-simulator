@@ -1,4 +1,4 @@
-#include "../incs/header.h"
+#include "header.h"
 
 // aca se le deberia asignar memoria al so
 BloqueMemoria inicializar_memoria(void)
@@ -79,6 +79,7 @@ void insertar(Proceso proceso, Nodo *Front)
         Rear = nuevo_nodo;
     }
 }
+
 Proceso extraer(Nodo *Front, Nodo *Rear)
 {
     if (!esta_vacia(Front))

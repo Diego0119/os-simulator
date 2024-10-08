@@ -1,25 +1,26 @@
-#include "../incs/header.h"
+#include "header.h"
 
-int main(void)
+int main()
 {
+    // printf("Entro al main\n");
+
     BloqueMemoria memoria = inicializar_memoria();
 
     FILE *archivo = fopen("../entrada.txt", "r");
     if (archivo == NULL)
     {
         printf("No se pudo abrir el archivo.\n");
-        return 1;
+        exit(EXIT_FAILURE);
     }
 
-    char nombre_proceso[20];
     int tiempo_ejecucion;
     int memoria_solicitada;
 
-    while (fscanf(archivo, "%s %d %d", nombre_proceso, &tiempo_ejecucion, &memoria_solicitada) != EOF)
+    while (fscanf(archivo, "%d %d", &tiempo_ejecucion, &memoria_solicitada) != EOF)
     {
         Proceso *proceso = crear_proceso(tiempo_ejecucion, memoria_solicitada);
-        asignar_memoria(proceso, &memoria, Front); // se insertan los procesos del sistema operativo
+        asignar_memoria(proceso, &memoria, Front);
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
