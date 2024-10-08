@@ -19,8 +19,8 @@ int main(void)
     while (fscanf(archivo, "%s %d %d", nombre_proceso, &tiempo_ejecucion, &memoria_solicitada) != EOF)
     {
 
-        Proceso *procesos = crear_proceso(nombre_proceso, tiempo_ejecucion, memoria_solicitada);
-        insertar(*procesos, Front); // se insertan los procesos del sistema operativo
+        Proceso *proceso = crear_proceso(nombre_proceso, tiempo_ejecucion, memoria_solicitada);
+        asignar_memoria(proceso, &memoria, Front); // se insertan los procesos del sistema operativo
     }
 
     return 0;
