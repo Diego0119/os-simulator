@@ -65,22 +65,15 @@ void insertar(Proceso proceso, Lista *lista)
     }
     nuevo_nodo->proceso = proceso;
     nuevo_nodo->next = NULL;
-    nuevo_nodo->prev = NULL;
 
     if (esta_vacia(*lista))
     {
-        lista->head = nuevo_nodo;
+        Front = nuevo_nodo;
+        Rear = nuevo_nodo;
     }
     else
     {
-
-        Nodo *tmp_nodo = lista->head;
-        while (tmp_nodo->next != NULL)
-        {
-            tmp_nodo = tmp_nodo->next;
-        }
-
-        tmp_nodo->next = nuevo_nodo;
-        nuevo_nodo->prev = tmp_nodo;
+        Rear->next = nuevo_nodo;
+        Rear = nuevo_nodo;
     }
 }

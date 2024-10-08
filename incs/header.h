@@ -25,6 +25,8 @@ struct proceso
 typedef struct proceso Proceso;
 typedef struct nodo Nodo;
 typedef struct lista Lista;
+Nodo *Front = NULL;
+Nodo *Rear = NULL;
 
 struct lista
 {
@@ -35,19 +37,13 @@ struct nodo
 {
     Proceso proceso;
     Nodo *next;
-    Nodo *prev;
 };
 
 BloqueMemoria inicializar_memoria(void);
 
 Nodo *asignar_memoria(Proceso *proceso, BloqueMemoria *memoria);
 
-struct cola
-{
-    Nodo *front;
-    Nodo *rear;
-};
-
 Proceso *crear_proceso(char *name, int tiempo_ejecucion, int memoria_solicitada);
 void terminar_proceso(Proceso *proceso);
 int esta_vacia(Lista lista);
+void insertar(Lista lista, Proceso proceso);
