@@ -41,10 +41,10 @@ struct nodo
 
 BloqueMemoria inicializar_memoria(void);
 
-Nodo *asignar_memoria(Proceso *proceso, BloqueMemoria *memoria);
+Nodo *asignar_memoria(Proceso *proceso, BloqueMemoria *memoria, Nodo *Front);
 
 Proceso *crear_proceso(char *name, int tiempo_ejecucion, int memoria_solicitada);
 void terminar_proceso(Proceso *proceso);
-int esta_vacia(Lista lista);
-void insertar(Lista lista, Proceso proceso);
+int esta_vacia(Nodo *Front);
+void insertar(Proceso proceso, Nodo *Front);
 Proceso extraer(Nodo *Front, Nodo *Rear);

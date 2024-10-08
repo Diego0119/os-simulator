@@ -13,7 +13,7 @@ BloqueMemoria inicializar_memoria(void)
     return *memoria;
 }
 
-Nodo *asignar_memoria(Proceso *proceso, BloqueMemoria *memoria, Lista *lista)
+Nodo *asignar_memoria(Proceso *proceso, BloqueMemoria *memoria, Nodo *Front)
 {
     int count = 0;
     int start = -1;
@@ -34,7 +34,7 @@ Nodo *asignar_memoria(Proceso *proceso, BloqueMemoria *memoria, Lista *lista)
                     // memoria[j].proceso_asignado = proceso->nombre;
                 }
 
-                insertar(*proceso, lista);
+                insertar(*proceso, Front);
                 return NULL;
             }
         }
