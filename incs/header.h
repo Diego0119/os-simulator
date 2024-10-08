@@ -24,18 +24,20 @@ typedef struct
 
 Proceso procesos[MAX_PROCESOS];
 
-typedef struct
+typedef struct nodo Nodo;
+
+struct nodo
 {
     Proceso proceso;
     Nodo *next;
-} Nodo;
+};
 
 Nodo *Front = NULL;
 Nodo *Rear = NULL;
 
 BloqueMemoria inicializar_memoria(void); // se deben crear bloques de memoria con tamaños distintos
 Nodo *asignar_memoria(Proceso *proceso, BloqueMemoria *memoria, Nodo *Front);
-Proceso *crear_proceso(char *name, int tiempo_ejecucion, int memoria_solicitada);
+Proceso *crear_proceso(int tiempo_ejecucion, int memoria_solicitada);
 int esta_vacia(Nodo *Front);
 void insertar(Proceso proceso, Nodo *Front);
 Proceso extraer(Nodo *Front, Nodo *Rear);
