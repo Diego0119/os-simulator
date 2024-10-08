@@ -49,13 +49,13 @@ Nodo *asignar_memoria(Proceso *proceso, BloqueMemoria *memoria, Lista *lista)
     return NULL;
 }
 
-int esta_vacia(Lista lista)
+int esta_vacia(Nodo *Front)
 {
-    return lista.head == NULL;
+    return Front->next == NULL;
     // esto retornara un 1 o 0 dependiendo si esta o no vacia
 }
 
-void insertar(Proceso proceso, Lista *lista)
+void insertar(Proceso proceso, Nodo *Front)
 {
     Nodo *nuevo_nodo = malloc(sizeof(Nodo));
     if (nuevo_nodo == NULL)
@@ -66,7 +66,7 @@ void insertar(Proceso proceso, Lista *lista)
     nuevo_nodo->proceso = proceso;
     nuevo_nodo->next = NULL;
 
-    if (esta_vacia(*lista))
+    if (esta_vacia(Front))
     {
         Front = nuevo_nodo;
         Rear = nuevo_nodo;
@@ -75,5 +75,28 @@ void insertar(Proceso proceso, Lista *lista)
     {
         Rear->next = nuevo_nodo;
         Rear = nuevo_nodo;
+    }
+}
+Proceso extraer(Nodo *Front, Nodo *Rear)
+{
+    if (!esta_vacia(Front))
+    {
+        Proceso proceso_extraido = Front->proceso;
+        Nodo *temp_nodo = Front;
+        if (Front == Rear)
+        {
+            Front = NULL;
+            Rear = NULL;
+        }
+        else
+        {
+            Front = Front->next;
+        }
+        free(temp_nodo);
+        return proceso_extraido;
+    }
+    else
+    {
+        printf("La cola de procesos esta vacia\n");
     }
 }
