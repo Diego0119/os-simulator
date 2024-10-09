@@ -2,7 +2,6 @@
 
 int main()
 {
-
     BloqueMemoria memoria = inicializar_memoria();
 
     FILE *archivo = fopen("../entrada.txt", "r");
@@ -14,12 +13,6 @@ int main()
 
     int tiempo_ejecucion;
     int memoria_solicitada;
-
-    while (fscanf(archivo, "%d %d", &tiempo_ejecucion, &memoria_solicitada) != EOF)
-    {
-        Proceso *proceso = crear_proceso(tiempo_ejecucion, memoria_solicitada);
-        asignar_memoria(proceso, &memoria, Front);
-    }
 
     return EXIT_SUCCESS;
 }
