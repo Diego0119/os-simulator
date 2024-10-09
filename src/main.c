@@ -2,7 +2,6 @@
 
 int main()
 {
-    // printf("Entro al main\n");
 
     BloqueMemoria memoria = inicializar_memoria();
 
