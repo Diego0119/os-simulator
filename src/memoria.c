@@ -1,12 +1,30 @@
 #include "header.h"
 
 // Inicializar la memoria.
-BloqueMemoria *inicializar_memoria(int total_memoria)
+BloqueMemoria *inicializar_memoria(int total_memoria, int tamano_bloque)
 {
-    BloqueMemoria *memoria = (BloqueMemoria *)malloc(sizeof(BloqueMemoria));
-    memoria->tamano = total_memoria;            // Tamaño de la memoria.
-    memoria->estado = 1;                        // Bloque libre.
-    memoria->next = NULL;                       // No hay siguiente bloque.
+    // aca se debe calcular los bloques segun el tamaño de cada bloque
+    int num_bloques = total_memoria / tamano_bloque; // calcula la cantidad maxima de bloques que se pueden crear
+    BloqueMemoria *memoria = (BloqueMemoria *)malloc(num_bloques * sizeof(BloqueMemoria));
+
+    if (memoria == NULL)
+    {
+        fprintf(stdout, "Error al asignar memoria!\n");
+        exit(EXIT_FAILURE);
+    }
+    for (int i = 0; i < num_bloques; i++)
+    {
+        memoria[i].tamano = tamano_bloque;
+        memoria[i].estado = 1;
+        if (i < num_bloques - 1) // comprueba que haya un siguiente bloque
+        {
+            memoria[i].next = &memoria[i + 1]; // se enlaza al siguiente si es que hay siguiente
+        }
+        else
+        {
+            memoria[i].next = NULL; // el ultimo bloque de memoria del sistema operativo apunta a null
+        }
+    }
     fprintf(stdout, "Memoria inicializada.\n"); // Mensaje temporal.
     return memoria;                             // Retornar el bloque de memoria.
 }
@@ -49,9 +67,9 @@ BloqueMemoria *asignar_memoria_ff(BloqueMemoria *memoria, int tamano)
 }
 
 // EN PROCESO...
-void insertar(Proceso proceso, Nodo *Front)
+void insertar(Proceso proceso, Node *Front)
 {
-    Nodo *nuevo_nodo = malloc(sizeof(Nodo));
+    Node *nuevo_nodo = malloc(sizeof(Node));
     if (nuevo_nodo == NULL)
     {
         printf("Error de asignación de memoria\n");

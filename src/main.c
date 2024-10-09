@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
     BloqueMemoria *memoria = inicializar_memoria(total_memoria);
 
     // Planificar y ejecutar procesos.
+    leer_entrada(memoria);
 
     // Llamada función output carta gantt (?).
 

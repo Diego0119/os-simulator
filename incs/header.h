@@ -32,10 +32,11 @@ typedef struct
     struct Node *rear;  // Final de la cola.
 } Queue;
 
-BloqueMemoria *inicializar_memoria(int); // Inicializar la memoria.
-void liberar_memoria(BloqueMemoria *);   // Liberar memoria.
+BloqueMemoria *inicializar_memoria(int, int); // Inicializar la memoria.
+void liberar_memoria(BloqueMemoria *);        // Liberar memoria.
 BloqueMemoria *asignar_memoria(BloqueMemoria *memoria, int tamano);
 
 int esta_vacia(Node *Front);
 void insertar(Proceso proceso, Node *Front);
 Proceso extraer(Node *Front, Node *Rear);
+void leer_entrada(BloqueMemoria *memoria);
