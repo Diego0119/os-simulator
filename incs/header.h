@@ -37,6 +37,6 @@ void liberar_memoria(BloqueMemoria *);        // Liberar memoria.
 void *asignar_memoria(BloqueMemoria *, int, int, int);
 
 int esta_vacia(Node *Front);
-void insertar(Proceso proceso, Node *Front);
+void insertar(Proceso proceso, Node *Front, Node *Rear);
 Proceso extraer(Node *Front, Node *Rear);
 BloqueMemoria *leer_entrada(void);

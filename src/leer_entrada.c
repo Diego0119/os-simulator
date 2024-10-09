@@ -1,6 +1,6 @@
 #include "header.h"
 
-BloqueMemoria *leer_entrada()
+BloqueMemoria *leer_entrada(void)
 {
     FILE *archivo;
     int tamano_memoria, tamano_bloque;

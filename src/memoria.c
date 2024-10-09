@@ -69,7 +69,7 @@ void *asignar_memoria_ff(BloqueMemoria *memoria, int proceso_id, int tiempo_lleg
 }
 
 // EN PROCESO...
-void insertar(Proceso proceso, Node *Front)
+void insertar(Proceso proceso, Node *Front, Node *Rear)
 {
     Node *nuevo_nodo = malloc(sizeof(Node));
     if (nuevo_nodo == NULL)
@@ -77,7 +77,7 @@ void insertar(Proceso proceso, Node *Front)
         printf("Error de asignación de memoria\n");
         return;
     }
-    nuevo_nodo->proceso = proceso;
+    nuevo_nodo->proceso = &proceso;
     nuevo_nodo->next = NULL;
 
     if (esta_vacia(Front))
@@ -92,12 +92,12 @@ void insertar(Proceso proceso, Node *Front)
     }
 }
 
-Proceso extraer(Nodo *Front, Nodo *Rear)
+Proceso extraer(Node *Front, Node *Rear)
 {
     if (!esta_vacia(Front))
     {
-        Proceso proceso_extraido = Front->proceso;
-        Nodo *temp_nodo = Front;
+        Proceso proceso_extraido = *Front->proceso;
+        Node *temp_nodo = Front;
         if (Front == Rear)
         {
             Front = NULL;
