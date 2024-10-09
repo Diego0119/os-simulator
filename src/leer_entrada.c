@@ -20,7 +20,7 @@ void leer_entrada()
 
     while (fscanf(archivo, "%d %d %d", &proceso_id, &num_bloques, &memoria_solicitada) != EOF)
     {
-        // aca los procesos se iran recorriendo y se deben ir asignando
+        // aca los procesos se iran recorriendo y se deben ir asignando a la cola
     }
 
     fclose(archivo);
