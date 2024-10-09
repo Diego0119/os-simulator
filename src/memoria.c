@@ -1,62 +1,54 @@
 #include "header.h"
 
-// aca se le deberia asignar memoria al so
-BloqueMemoria inicializar_memoria(void)
+// Inicializar la memoria.
+BloqueMemoria *inicializar_memoria(int total_memoria)
 {
-    BloqueMemoria memoria[TAMANO_MEMORIA];
-    for (int i = 0; i < TAMANO_MEMORIA; i++)
-    {
-        memoria[i].tamaño = 1;            // bloques de 1 kb
-        memoria[i].estado = 1;            // 1 es bloque libre, 0 es ocupado
-        memoria[i].proceso_asignado = -1; // nigun bloque tiene procesos asignados
-    }
-    return *memoria;
+    BloqueMemoria *memoria = (BloqueMemoria *)malloc(sizeof(BloqueMemoria));
+    memoria->tamano = total_memoria;            // Tamaño de la memoria.
+    memoria->estado = 1;                        // Bloque libre.
+    memoria->next = NULL;                       // No hay siguiente bloque.
+    fprintf(stdout, "Memoria inicializada.\n"); // Mensaje temporal.
+    return memoria;                             // Retornar el bloque de memoria.
 }
 
-Nodo *asignar_memoria(Proceso *proceso, BloqueMemoria *memoria, Nodo *Front)
+// Liberar memoria.
+void liberar_memoria(BloqueMemoria *bloque)
 {
-    int count = 0;
-    int start = -1;
+    fprintf(stdout, "Memoria liberada.\n"); // Mensaje temporal.
+    bloque->estado = 1;                     // Bloque libre.
+}
 
-    // aqui hay que implementar first fit
-    for (int i = 0; i < TAMANO_MEMORIA; i++)
+// Asignar memoria.
+BloqueMemoria *asignar_memoria_ff(BloqueMemoria *memoria, int tamano)
+{
+    BloqueMemoria *actual = memoria;
+    // Recorrer la memoria.
+    while (actual != NULL)
     {
-
-        if (memoria[i].estado == 1) // bloque libre
+        // Si el bloque está libre y tiene el tamaño suficiente.
+        if (actual->estado && actual->tamano >= tamano)
         {
-            count++;
-            if (start == -1)
-                start = i; // inicio de bloques contiguos
-
-            if (count == proceso->memoria_solicitada)
+            // Partición de memoria si sobra espacio.
+            if (actual->tamano > tamano)
             {
-                for (int j = start; j < start + count; j++)
-                {
-                    memoria[j].estado = 0; // estado ocupado
-                    // memoria[j].proceso_asignado = proceso->nombre;
-                }
-
-                insertar(*proceso, Front);
-                return NULL;
+                BloqueMemoria *nuevo_bloque = (BloqueMemoria *)malloc(sizeof(BloqueMemoria));
+                nuevo_bloque->tamano = actual->tamano - tamano;
+                nuevo_bloque->estado = 1;
+                nuevo_bloque->next = actual->next;
+                actual->next = nuevo_bloque;
+                actual->tamano = tamano;
             }
+            actual->estado = 0;
+            fprintf(stdout, "Memoria asignada.\n"); // Mensaje temporal.
+            return actual;
         }
-        else
-        {
-            count = 0;
-            start = -1;
-        }
+        actual = actual->next;
     }
-
-    printf("No hay suficiente memoria disponible para el proceso.\n");
+    fprintf(stderr, "No hay suficiente memoria disponible para el proceso.\n"); // Mensaje temporal.
     return NULL;
 }
 
-int esta_vacia(Nodo *Front)
-{
-    return Front->next == NULL;
-    // esto retornara un 1 o 0 dependiendo si esta o no vacia
-}
-
+// EN PROCESO...
 void insertar(Proceso proceso, Nodo *Front)
 {
     Nodo *nuevo_nodo = malloc(sizeof(Nodo));

@@ -1,26 +1,24 @@
 #include "header.h"
 
-int main()
+int main(int argc, char *argv[])
 {
-    // printf("Entro al main\n");
-
-    BloqueMemoria memoria = inicializar_memoria();
-
-    FILE *archivo = fopen("../entrada.txt", "r");
-    if (archivo == NULL)
+    if (argc != 3 || strcmp(argv[1], "--file") != 0)
     {
-        printf("No se pudo abrir el archivo.\n");
+        fprintf(stderr, "Error de utilización. Uso: %s --file <archivo>\n", argv[0]);
         exit(EXIT_FAILURE);
     }
 
-    int tiempo_ejecucion;
-    int memoria_solicitada;
+    int total_memoria, tamano_bloque, num_procesadores;
+    char algoritmo_memoria[10], algoritmo_planificacion[10];
+    Queue *cola_lista = {NULL, NULL};
 
-    while (fscanf(archivo, "%d %d", &tiempo_ejecucion, &memoria_solicitada) != EOF)
-    {
-        Proceso *proceso = crear_proceso(tiempo_ejecucion, memoria_solicitada);
-        asignar_memoria(proceso, &memoria, Front);
-    }
+    // Llamada función lectura archivo.
+
+    BloqueMemoria *memoria = inicializar_memoria(total_memoria);
+
+    // Planificar y ejecutar procesos.
+
+    // Llamada función output carta gantt (?).
 
     return EXIT_SUCCESS;
 }
