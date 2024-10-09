@@ -1,4 +1,4 @@
-#include "../incs/header.h"
+#include "header.h"
 
 void leer_entrada()
 {
@@ -9,7 +9,7 @@ void leer_entrada()
     archivo = fopen("../entrada.txt", "r");
     if (archivo == NULL)
     {
-        printf("Error al abrir el archivo\n");
+        fprintf(stdout, "Error al abrir el archivo\n");
         exit(EXIT_FAILURE);
     }
 
