@@ -19,11 +19,11 @@ typedef struct
 } BloqueMemoria;
 
 // Estructura de un nodo.
-typedef struct Node
+typedef struct
 {
     Proceso *proceso;  // Proceso del nodo.
     struct Node *next; // Siguiente nodo.
-};
+} Node;
 
 // Estructura de una cola.
 typedef struct
@@ -36,6 +36,6 @@ BloqueMemoria *inicializar_memoria(int); // Inicializar la memoria.
 void liberar_memoria(BloqueMemoria *);   // Liberar memoria.
 BloqueMemoria *asignar_memoria(BloqueMemoria *memoria, int tamano);
 
-int esta_vacia(Nodo *Front);
-void insertar(Proceso proceso, Nodo *Front);
-Proceso extraer(Nodo *Front, Nodo *Rear);
+int esta_vacia(Node *Front);
+void insertar(Proceso proceso, Node *Front);
+Proceso extraer(Node *Front, Node *Rear);
