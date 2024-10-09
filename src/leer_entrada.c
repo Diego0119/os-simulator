@@ -1,6 +1,6 @@
 #include "header.h"
 
-void leer_entrada(BloqueMemoria *memoria)
+BloqueMemoria *leer_entrada()
 {
     FILE *archivo;
     int tamano_memoria, tamano_bloque;
@@ -20,13 +20,13 @@ void leer_entrada(BloqueMemoria *memoria)
     memoria = inicializar_memoria(tamano_memoria, tamano_bloque); // esta funcion creara la cantidad de bloques necesarias para el sistema operativo segun la entrada del txt
 
     int proceso_id,
-        num_bloques, memoria_solicitada;
+        tiempo_llegada, memoria_solicitada;
 
-    while (fscanf(archivo, "%d %d %d", &proceso_id, &num_bloques, &memoria_solicitada) != EOF)
+    while (fscanf(archivo, "%d %d %d", &proceso_id, &tiempo_llegada, &memoria_solicitada) != EOF)
     {
         // aca los procesos se iran recorriendo y se deben ir asignando a la cola, hacer el encolamiento
         // en teoria aca se asignaria la memoria a cada proceso del txt
-        // asignar_memoria(memoria)
+        asignar_memoria(memoria, proceso_id, tiempo_llegada, memoria_solicitada);
     }
 
     fclose(archivo);

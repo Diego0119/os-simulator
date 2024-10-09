@@ -37,33 +37,35 @@ void liberar_memoria(BloqueMemoria *bloque)
 }
 
 // Asignar memoria.
-BloqueMemoria *asignar_memoria_ff(BloqueMemoria *memoria, int tamano)
+// lo cambie a void porque simplemente deberia insertar un proceso en el bloque de memoria
+// otras funciones deben ser las encargadas de devolver el proceso
+void *asignar_memoria_ff(BloqueMemoria *memoria, int proceso_id, int tiempo_llegada, int memoria_solicitada)
 {
     BloqueMemoria *actual = memoria;
     // Recorrer la memoria.
     while (actual != NULL)
     {
         // Si el bloque está libre y tiene el tamaño suficiente.
-        if (actual->estado && actual->tamano >= tamano)
+        if (actual->estado && actual->tamano >= memoria_solicitada)
         {
             // Partición de memoria si sobra espacio.
-            if (actual->tamano > tamano)
+            if (actual->tamano > memoria_solicitada)
             {
                 BloqueMemoria *nuevo_bloque = (BloqueMemoria *)malloc(sizeof(BloqueMemoria));
-                nuevo_bloque->tamano = actual->tamano - tamano;
+                nuevo_bloque->tamano = actual->tamano - memoria_solicitada;
                 nuevo_bloque->estado = 1;
                 nuevo_bloque->next = actual->next;
                 actual->next = nuevo_bloque;
-                actual->tamano = tamano;
+                actual->tamano = memoria_solicitada;
             }
             actual->estado = 0;
             fprintf(stdout, "Memoria asignada.\n"); // Mensaje temporal.
-            return actual;
+            // return actual;
         }
         actual = actual->next;
     }
     fprintf(stderr, "No hay suficiente memoria disponible para el proceso.\n"); // Mensaje temporal.
-    return NULL;
+    // return NULL;
 }
 
 // EN PROCESO...

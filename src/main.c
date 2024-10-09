@@ -14,10 +14,8 @@ int main(int argc, char *argv[])
 
     // Llamada función lectura archivo.
 
-    BloqueMemoria *memoria = inicializar_memoria(total_memoria);
-
     // Planificar y ejecutar procesos.
-    leer_entrada(memoria);
+    leer_entrada();
 
     // Llamada función output carta gantt (?).
 
