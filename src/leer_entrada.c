@@ -1,10 +1,10 @@
 #include "header.h"
 
-BloqueMemoria *leer_entrada(int argc, char argv[])
+BloqueMemoria *leer_entrada(int argc, char *argv[])
 {
-    if (argc != 3 || strcmp(&argv[1], "--file") != 0)
+    if (argc != 3 || strcmp(argv[1], "--file") != 0)
     {
-        fprintf(stderr, "Error de utilización. Uso: %c --file <archivo>\n", argv[0]);
+        fprintf(stderr, "Error de utilización. Uso: %s --file <archivo>\n", argv[0]);
         exit(EXIT_FAILURE);
     }
 
@@ -13,7 +13,7 @@ BloqueMemoria *leer_entrada(int argc, char argv[])
     char algoritmo[3]; // aca se guardara first fit
     BloqueMemoria *memoria;
 
-    archivo = fopen(&argv[2], "r");
+    archivo = fopen(argv[2], "r");
     if (archivo == NULL)
     {
         fprintf(stderr, "Error al abrir el archivo\n");

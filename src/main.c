@@ -3,7 +3,7 @@
 int main(int argc, char *argv[])
 {
     BloqueMemoria *memoria;
-    memoria = leer_entrada(argc, *argv); // aca se asignara la memoria que necesita el programa
+    memoria = leer_entrada(argc, argv); // aca se asignara la memoria que necesita el programa
 
     // char algoritmo_memoria[10], algoritmo_planificacion[10];
     // Queue *cola_lista;
