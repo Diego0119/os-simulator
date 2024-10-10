@@ -24,9 +24,8 @@ BloqueMemoria *leer_entrada(int argc, char *argv[])
     fscanf(archivo, "%d %d %s", &tamano_memoria, &tamano_bloque, algoritmo);
     // aca se debe crear la particion de memoria del sistema operativo segun la cabecera del txt
     memoria = inicializar_memoria(tamano_memoria, tamano_bloque); // esta funcion creara la cantidad de bloques necesarias para el sistema operativo segun la entrada del txt
-
-    int proceso_id,
-        tiempo_llegada, memoria_solicitada;
+    imprimir_memoria(memoria);
+    int proceso_id, tiempo_llegada, memoria_solicitada;
 
     while (fscanf(archivo, "%d %d %d", &proceso_id, &tiempo_llegada, &memoria_solicitada) != EOF)
     {
@@ -34,6 +33,8 @@ BloqueMemoria *leer_entrada(int argc, char *argv[])
         // en teoria aca se asignaria la memoria a cada proceso del txt
         asignar_memoria_ff(memoria, proceso_id, tiempo_llegada, memoria_solicitada);
     }
+
+    imprimir_memoria(memoria);
 
     fclose(archivo);
     return memoria;

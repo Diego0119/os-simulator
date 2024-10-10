@@ -40,3 +40,4 @@ int esta_vacia(Node *Front);
 void insertar(Proceso proceso, Node *Front, Node *Rear);
 Proceso extraer(Node *Front, Node *Rear);
 BloqueMemoria *leer_entrada(int, char *[]);
+void imprimir_memoria(BloqueMemoria *memoria);
