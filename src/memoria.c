@@ -39,7 +39,7 @@ void liberar_memoria(BloqueMemoria *bloque)
 // Asignar memoria.
 // lo cambie a void porque simplemente deberia insertar un proceso en el bloque de memoria
 // otras funciones deben ser las encargadas de devolver el proceso
-void *asignar_memoria_ff(BloqueMemoria *memoria, int proceso_id, int tiempo_llegada, int memoria_solicitada)
+void asignar_memoria_ff(BloqueMemoria *memoria, int proceso_id, int tiempo_llegada, int memoria_solicitada)
 {
     BloqueMemoria *actual = memoria;
     // Recorrer la memoria.
@@ -114,4 +114,9 @@ Proceso extraer(Node *Front, Node *Rear)
     {
         printf("La cola de procesos esta vacia\n");
     }
+}
+
+int esta_vacia(Node *Front)
+{
+    return Front == NULL;
 }

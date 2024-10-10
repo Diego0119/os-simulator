@@ -8,6 +8,8 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
+    leer_entrada();
+
     int total_memoria, tamano_bloque, num_procesadores;
     char algoritmo_memoria[10], algoritmo_planificacion[10];
     Queue *cola_lista = {NULL, NULL};
@@ -15,7 +17,6 @@ int main(int argc, char *argv[])
     // Llamada función lectura archivo.
 
     // Planificar y ejecutar procesos.
-    leer_entrada();
 
     // Llamada función output carta gantt (?).
 

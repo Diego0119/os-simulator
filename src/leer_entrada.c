@@ -26,7 +26,7 @@ BloqueMemoria *leer_entrada(void)
     {
         // aca los procesos se iran recorriendo y se deben ir asignando a la cola, hacer el encolamiento
         // en teoria aca se asignaria la memoria a cada proceso del txt
-        asignar_memoria(memoria, proceso_id, tiempo_llegada, memoria_solicitada);
+        asignar_memoria_ff(memoria, proceso_id, tiempo_llegada, memoria_solicitada);
     }
 
     fclose(archivo);

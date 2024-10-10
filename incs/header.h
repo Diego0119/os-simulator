@@ -34,7 +34,7 @@ typedef struct
 
 BloqueMemoria *inicializar_memoria(int, int); // Inicializar la memoria.
 void liberar_memoria(BloqueMemoria *);        // Liberar memoria.
-void *asignar_memoria(BloqueMemoria *, int, int, int);
+void asignar_memoria_ff(BloqueMemoria *, int, int, int);
 
 int esta_vacia(Node *Front);
 void insertar(Proceso proceso, Node *Front, Node *Rear);
