@@ -30,4 +30,5 @@ BloqueMemoria *leer_entrada(void)
     }
 
     fclose(archivo);
+    return memoria;
 }

@@ -113,6 +113,7 @@ Proceso extraer(Node *Front, Node *Rear)
     else
     {
         printf("La cola de procesos esta vacia\n");
+        return *Front->proceso;
     }
 }
 

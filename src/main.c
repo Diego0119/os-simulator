@@ -10,9 +10,8 @@ int main(int argc, char *argv[])
 
     leer_entrada();
 
-    int total_memoria, tamano_bloque, num_procesadores;
-    char algoritmo_memoria[10], algoritmo_planificacion[10];
-    Queue *cola_lista = {NULL, NULL};
+    // char algoritmo_memoria[10], algoritmo_planificacion[10];
+    // Queue *cola_lista;
 
     // Llamada función lectura archivo.
 
