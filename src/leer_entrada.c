@@ -1,16 +1,22 @@
 #include "header.h"
 
-BloqueMemoria *leer_entrada(void)
+BloqueMemoria *leer_entrada(int argc, char argv[])
 {
+    if (argc != 3 || strcmp(&argv[1], "--file") != 0)
+    {
+        fprintf(stderr, "Error de utilización. Uso: %c --file <archivo>\n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
+
     FILE *archivo;
     int tamano_memoria, tamano_bloque;
     char algoritmo[3]; // aca se guardara first fit
     BloqueMemoria *memoria;
 
-    archivo = fopen("../entrada.txt", "r");
+    archivo = fopen(&argv[2], "r");
     if (archivo == NULL)
     {
-        fprintf(stdout, "Error al abrir el archivo\n");
+        fprintf(stderr, "Error al abrir el archivo\n");
         exit(EXIT_FAILURE);
     }
 

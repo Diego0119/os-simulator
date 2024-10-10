@@ -2,13 +2,8 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc != 3 || strcmp(argv[1], "--file") != 0)
-    {
-        fprintf(stderr, "Error de utilización. Uso: %s --file <archivo>\n", argv[0]);
-        exit(EXIT_FAILURE);
-    }
-
-    leer_entrada();
+    BloqueMemoria *memoria;
+    memoria = leer_entrada(argc, *argv); // aca se asignara la memoria que necesita el programa
 
     // char algoritmo_memoria[10], algoritmo_planificacion[10];
     // Queue *cola_lista;
