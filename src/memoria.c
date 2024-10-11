@@ -45,37 +45,22 @@ void asignar_memoria_ff(BloqueMemoria *memoria, int proceso_id, int tiempo_llega
     BloqueMemoria *actual = memoria;
     // Recorrer la memoria.
     int i = 0;
-    // printf("-----------------------------------------------------------------------\n");
-    // for (int i = 0; i < 16; i++)
-    // {
-    //     // cada bloque es de 128 kb, y se esta intentando crear un proceso de 120 kb
-    //     // por lo que si debiese dejar pero esta fallando
-    //     printf("Espacios de memoria disponibles:\n");
-    //     printf("actual[i].estado: %d \n", actual[i].estado);
-    //     printf("actual[i].tamano: %d \n", actual[i].tamano);
-    //     printf("actual[i].next: %d \n", actual[i].next);
-    // }
-    // printf("-----------------------------------------------------------------------\n");
-
     while (actual[i].next != 0)
     {
         // Si el bloque está libre y tiene el tamaño suficiente.
         if (actual[i].estado && actual[i].tamano >= memoria_solicitada)
         {
-            printf("Entro al primer if, por lo que el estado esta desocupado y el espacio de memoria es mas grande de lo que se requiere\n");
             // Partición de memoria si sobra espacio.
-            if (actual[i].tamano > memoria_solicitada)
-            {
-                printf("Entro al segundo if, por lo que el tamaño del bloque actual es mas grande que el requerido\n");
-                BloqueMemoria *nuevo_bloque = (BloqueMemoria *)malloc(sizeof(BloqueMemoria));
-                nuevo_bloque->tamano = actual->tamano - memoria_solicitada;
-                nuevo_bloque->estado = 1;
-                nuevo_bloque->next = actual->next;
-                actual->next = nuevo_bloque;
-                actual->tamano = memoria_solicitada;
-            }
+            BloqueMemoria *nuevo_bloque = (BloqueMemoria *)malloc(sizeof(BloqueMemoria));
+            nuevo_bloque->tamano = actual->tamano - memoria_solicitada;
+            nuevo_bloque->estado = 1;
+            nuevo_bloque->next = actual->next;
+            actual->next = nuevo_bloque;
+            actual->tamano = memoria_solicitada;
+
             actual[i].estado = 0;
             fprintf(stdout, "Memoria asignada.\n"); // Mensaje temporal.
+            return;
             // return actual;
         }
         actual = actual[i + 1].next;
@@ -141,10 +126,11 @@ int esta_vacia(Node *Front)
 
 void imprimir_memoria(BloqueMemoria *memoria)
 {
+    int num_bloques = 2048 / 128;
     printf("Memoria del sistema operativo:\n");
     printf("-----------------------------------------------------------------------\n");
 
-    for (int i = 0; i < 16; i++)
+    for (int i = 0; i < num_bloques; i++)
     {
         printf("memoria[i].estado: %d\n", memoria[i].estado);
         printf("memoria[i].tamano: %d\n", memoria[i].tamano);
