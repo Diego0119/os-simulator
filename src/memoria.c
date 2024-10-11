@@ -51,19 +51,25 @@ void asignar_memoria_ff(BloqueMemoria *memoria, int proceso_id, int tiempo_llega
         if (actual[i].estado && actual[i].tamano >= memoria_solicitada)
         {
             // Partición de memoria si sobra espacio.
-            BloqueMemoria *nuevo_bloque = (BloqueMemoria *)malloc(sizeof(BloqueMemoria));
-            nuevo_bloque->tamano = actual->tamano - memoria_solicitada;
-            nuevo_bloque->estado = 1;
-            nuevo_bloque->next = actual->next;
-            actual->next = nuevo_bloque;
-            actual->tamano = memoria_solicitada;
+            // BloqueMemoria *nuevo_bloque = (BloqueMemoria *)malloc(sizeof(BloqueMemoria));
+            // nuevo_bloque->tamano = actual[i].tamano - memoria_solicitada;
+            // printf("nuevo_bloque->tamano %d\n", nuevo_bloque->tamano);
+            printf("actual[i].tamano %d\n", actual[i].tamano);
+            printf("memoria solicitada %d\n", memoria_solicitada);
+            printf("memoria restante del bloque %d\n", actual[i].tamano - memoria_solicitada);
+            // nuevo_bloque->estado = 0;
+            // nuevo_bloque->next = actual[i].next;
+
+            // actual->next = nuevo_bloque;
+            // actual->tamano = memoria_solicitada;
 
             actual[i].estado = 0;
+            actual[i].tamano -= memoria_solicitada; // registra que la celda de la memoria esta ocupada
             fprintf(stdout, "Memoria asignada.\n"); // Mensaje temporal.
             return;
             // return actual;
         }
-        actual = actual[i + 1].next;
+        // actual = actual[i + 1].next;
         i++;
     }
     // fprintf(stderr, "No hay suficiente memoria disponible para el proceso.\n"); // Mensaje temporal.
@@ -132,8 +138,14 @@ void imprimir_memoria(BloqueMemoria *memoria)
 
     for (int i = 0; i < num_bloques; i++)
     {
-        printf("memoria[i].estado: %d\n", memoria[i].estado);
-        printf("memoria[i].tamano: %d\n", memoria[i].tamano);
+        if (i < num_bloques - 1)
+        {
+            printf("[estado: %d|tamano: %d|next: %d]-->[siguiente nodo]\n", memoria[i].estado, memoria[i].tamano, memoria[i].next);
+        }
+        else if (i = num_bloques - 1)
+        {
+            printf("[estado: %d|tamano: %d|next: %d]-->NULL\n", memoria[i].estado, memoria[i].tamano, memoria[i].next);
+        }
     }
     printf("-----------------------------------------------------------------------\n");
 }
