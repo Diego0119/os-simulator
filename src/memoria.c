@@ -72,15 +72,17 @@ void asignar_memoria_ff(BloqueMemoria *memoria, int proceso_id, int tiempo_llega
         if (memoria_solicitada > actual[i].tamano && actual[i].estado && actual[i].next != NULL)
         {
             float bloques_necesarios = (float)memoria_solicitada / tamano_bloque;
+            int bloques_para_calculo = (int)bloques_necesarios;
             while (bloques_necesarios > 0)
             {
                 int nueva_memoria_disponible = memoria_solicitada - tamano_bloque;
                 actual[i].estado = 0;
                 actual[i].tamano = 0;
-                actual[i].tamano = nueva_memoria_disponible;
                 bloques_necesarios--;
                 i++;
             }
+            actual[i - 1].tamano = (tamano_bloque * (bloques_para_calculo + 1)) - memoria_solicitada;
+
             return;
         }
         else
