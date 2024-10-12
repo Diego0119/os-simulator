@@ -44,6 +44,7 @@ void asignar_memoria_ff(BloqueMemoria *memoria, int proceso_id, int tiempo_llega
 {
     BloqueMemoria *actual = memoria;
     // Recorrer la memoria.
+    int tamano_bloque = memoria->tamano;
     int i = 0;
     while (actual[i].next != 0)
     {
@@ -54,9 +55,6 @@ void asignar_memoria_ff(BloqueMemoria *memoria, int proceso_id, int tiempo_llega
             // BloqueMemoria *nuevo_bloque = (BloqueMemoria *)malloc(sizeof(BloqueMemoria));
             // nuevo_bloque->tamano = actual[i].tamano - memoria_solicitada;
             // printf("nuevo_bloque->tamano %d\n", nuevo_bloque->tamano);
-            printf("actual[i].tamano %d\n", actual[i].tamano);
-            printf("memoria solicitada %d\n", memoria_solicitada);
-            printf("memoria restante del bloque %d\n", actual[i].tamano - memoria_solicitada);
             // nuevo_bloque->estado = 0;
             // nuevo_bloque->next = actual[i].next;
 
@@ -69,10 +67,30 @@ void asignar_memoria_ff(BloqueMemoria *memoria, int proceso_id, int tiempo_llega
             return;
             // return actual;
         }
+        // este if valida que si se pide memoria y se necesita ocupar mas 1 un bloque de memoria
+        // tambien valida si es que se esta en el ultimo espacio de memoria, por lo que no se puede pedir uno mas
+        if (memoria_solicitada > actual[i].tamano && actual[i].estado && actual[i].next != NULL)
+        {
+            float bloques_necesarios = (float)memoria_solicitada / tamano_bloque;
+            while (bloques_necesarios > 0)
+            {
+                int nueva_memoria_disponible = memoria_solicitada - tamano_bloque;
+                actual[i].estado = 0;
+                actual[i].tamano = 0;
+                actual[i].tamano = nueva_memoria_disponible;
+                bloques_necesarios--;
+                i++;
+            }
+            return;
+        }
+        else
+        {
+            fprintf(stderr, "No hay suficiente memoria en el sistema operativo\n");
+        }
         // actual = actual[i + 1].next;
         i++;
     }
-    // fprintf(stderr, "No hay suficiente memoria disponible para el proceso.\n"); // Mensaje temporal.
+    fprintf(stderr, "No hay suficiente memoria disponible para el proceso.\n"); // Mensaje temporal.
     // return NULL
 }
 
