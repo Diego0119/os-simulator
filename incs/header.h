@@ -57,3 +57,4 @@ void imprimir_diagrama_gantt(Gantt *, int);
 // Funciones de cola.
 void insertar(Queue *, Proceso *); // Inserta un proceso en la cola.
 Proceso *extraer(Queue *);         // Extrae un proceso de la cola.
+int esta_vacia(Node *Front);
