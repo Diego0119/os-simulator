@@ -1,7 +1,8 @@
 #include "header.h"
 
 // Inicializa la memoria de un bloque.
-BloqueMemoria *inicializar_memoria(int total_memoria)
+BloqueMemoria *inicializar_memoria(int total_memoria, int num_bloques, int tamano_bloque)
+
 {
     BloqueMemoria *memoria = (BloqueMemoria *)malloc(sizeof(BloqueMemoria)); // Reserva memoria para el bloque.
 
@@ -30,7 +31,7 @@ BloqueMemoria *inicializar_memoria(int total_memoria)
 }
 
 // Asigna memoria con el algoritmo First Fit.
-BloqueMemoria *asignar_memoria_ff(BloqueMemoria *memoria, int tamano)
+void asignar_memoria_ff(BloqueMemoria *memoria, int tamano, int memoria_solicitada)
 {
     BloqueMemoria *actual = memoria;
     // Recorrer la memoria.
@@ -91,4 +92,14 @@ void liberar_memoria(BloqueMemoria *bloque)
 {
     fprintf(stdout, "Memoria liberada.\n");
     bloque->estado = 1;
+}
+
+void imprimir_memoria(BloqueMemoria memoria, int num_bloques)
+{
+    fprintf(stdout,"Memoria del sistema operativo");
+
+    for (int i = 0; i < num_bloques; i++)
+    {
+        printf(" [%d|%d|%d]-->\n", memoria->estado );
+    }
 }

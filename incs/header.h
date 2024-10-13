@@ -41,9 +41,9 @@ typedef struct
 } Gantt;
 
 // Funciones de memoria.
-BloqueMemoria *inicializar_memoria(int);                 // Inicializa la memoria.
-BloqueMemoria *asignar_memoria_ff(BloqueMemoria *, int); // Asigna memoria con el algoritmo First Fit.
-void liberar_memoria(BloqueMemoria *);                   // Libera la memoria.
+BloqueMemoria *inicializar_memoria(int, int, int);  // Inicializa la memoria.
+void asignar_memoria_ff(BloqueMemoria *, int, int); // Asigna memoria con el algoritmo First Fit.
+void liberar_memoria(BloqueMemoria *);              // Libera la memoria.
 
 // Función de lectura de archivo.
 void leer_entrada(const char *nombre_archivo, int *memoria_total, int *tamano_bloque, char *algoritmo_memoria, int *num_nucleos, char *algoritmo_planificacion, Queue *cola_lista);
@@ -58,3 +58,4 @@ void imprimir_diagrama_gantt(Gantt *, int);
 void insertar(Queue *, Proceso *); // Inserta un proceso en la cola.
 Proceso *extraer(Queue *);         // Extrae un proceso de la cola.
 int esta_vacia(Node *Front);
+void imprimir_memoria(BloqueMemoria, int);

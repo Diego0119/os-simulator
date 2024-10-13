@@ -10,7 +10,6 @@ void insertar(Queue *cola, Proceso *proceso)
         printf("Error de asignación de memoria\n");
         return;
     }
-
     nuevo_nodo->proceso = proceso;
     nuevo_nodo->next = NULL;
 

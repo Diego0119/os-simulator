@@ -22,24 +22,27 @@ int main(int argc, char *argv[])
 
     leer_entrada(nombre_archivo, &memoria_total, &tamano_bloque, algoritmo_memoria, &num_nucleos, algoritmo_planificacion, &cola_lista);
 
-    BloqueMemoria *memoria = inicializar_memoria(memoria_total);
+    int numero_bloques = memoria_total / tamano_bloque;
+
+    BloqueMemoria *memoria = inicializar_memoria(memoria_total, numero_bloques, tamano_bloque);
+    imprimir_memoria(*memoria, numero_bloques);
 
     Gantt diagrama_gantt[100];
     int contador_gantt = 0;
 
-    // Si el algoritmo de planificación es FIFO.
-    if (strcmp(algoritmo_planificacion, "fifo") == 0)
-    {
-        exit(EXIT_FAILURE);
-        // FIFO
-    }
-    else
-    {
-        fprintf(stderr, "Algoritmo de planificación no reconocido.\n");
-        exit(EXIT_FAILURE);
-    }
+    // // Si el algoritmo de planificación es FIFO.
+    // if (strcmp(algoritmo_planificacion, "fifo") == 0)
+    // {
+    //     exit(EXIT_FAILURE);
+    //     // FIFO
+    // }
+    // else
+    // {
+    //     fprintf(stderr, "Algoritmo de planificación no reconocido.\n");
+    //     exit(EXIT_FAILURE);
+    // }
 
-    imprimir_diagrama_gantt(diagrama_gantt, contador_gantt);
+    // imprimir_diagrama_gantt(diagrama_gantt, contador_gantt);
 
     return EXIT_SUCCESS;
 }

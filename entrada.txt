@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 2048
 128
 ff
 4
 fifo
 0 5 128
-=======
-2048 128
-0 5 673
->>>>>>> feature/asignacion-memoria-a-proceso
