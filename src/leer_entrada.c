@@ -1,40 +1,30 @@
 #include "header.h"
 
-BloqueMemoria *leer_entrada(int argc, char *argv[])
+void leer_entrada(const char *nombre_archivo, int *memoria_total, int *tamano_bloque, char *algoritmo_memoria, int *num_nucleos, char *algoritmo_planificacion, Queue *cola_lista)
 {
-    if (argc != 3 || strcmp(argv[1], "--file") != 0)
-    {
-        fprintf(stderr, "Error de utilización. Uso: %s --file <archivo>\n", argv[0]);
-        exit(EXIT_FAILURE);
-    }
-
-    FILE *archivo;
-    int tamano_memoria, tamano_bloque;
-    char algoritmo[3]; // aca se guardara first fit
-    BloqueMemoria *memoria;
-
-    archivo = fopen(argv[2], "r");
-    if (archivo == NULL)
+    FILE *archivo_entrada = fopen(nombre_archivo, "r");
+    // Si no se pudo abrir el archivo.
+    if (archivo_entrada == NULL)
     {
         fprintf(stderr, "Error al abrir el archivo\n");
         exit(EXIT_FAILURE);
     }
 
-    // leer la cabecera del archivo
-    fscanf(archivo, "%d %d %s", &tamano_memoria, &tamano_bloque, algoritmo);
-    // aca se debe crear la particion de memoria del sistema operativo segun la cabecera del txt
-    memoria = inicializar_memoria(tamano_memoria, tamano_bloque); // esta funcion creara la cantidad de bloques necesarias para el sistema operativo segun la entrada del txt
+    fscanf(archivo_entrada, "%d %d %s %d %s", memoria_total, tamano_bloque, algoritmo_memoria, num_nucleos, algoritmo_planificacion);
 
-    int proceso_id,
-        tiempo_llegada, memoria_solicitada;
+    int proceso_id;
+    int tiempo_rafaga;
+    int memoria_solicitada;
 
-    while (fscanf(archivo, "%d %d %d", &proceso_id, &tiempo_llegada, &memoria_solicitada) != EOF)
+    // Leer los procesos del archivo y los asigna para luego mandarlos a la cola.
+    while (fscanf(archivo_entrada, "%d %d %d", &proceso_id, &tiempo_rafaga, &memoria_solicitada) == 3)
     {
-        // aca los procesos se iran recorriendo y se deben ir asignando a la cola, hacer el encolamiento
-        // en teoria aca se asignaria la memoria a cada proceso del txt
-        asignar_memoria_ff(memoria, proceso_id, tiempo_llegada, memoria_solicitada);
+        Proceso *nuevo_proceso = (Proceso *)malloc(sizeof(Proceso));
+        nuevo_proceso->pid = proceso_id;
+        nuevo_proceso->tiempo_rafaga = tiempo_rafaga;
+        nuevo_proceso->memoria_solicitada = memoria_solicitada;
+        fprintf(stdout, "Proceso %d leido\n", proceso_id);
+        insertar(cola_lista, nuevo_proceso);
     }
-
-    fclose(archivo);
-    return memoria;
+    fclose(archivo_entrada);
 }

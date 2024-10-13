@@ -11,7 +11,7 @@ typedef struct
 } Proceso;
 
 // Estructura de un bloque de memoria.
-typedef struct
+typedef struct BloqueMemoria
 {
     int tamano;                 // Tamaño bloque de memoria.
     int estado;                 // 1 es bloque libre, 0 es bloque ocupado.
@@ -19,24 +19,41 @@ typedef struct
 } BloqueMemoria;
 
 // Estructura de un nodo.
-typedef struct
+typedef struct Node
 {
-    Proceso *proceso;  // Proceso del nodo.
+    Proceso *proceso;  // Proceso.
     struct Node *next; // Siguiente nodo.
 } Node;
 
 // Estructura de una cola.
 typedef struct
 {
-    struct Node *front; // Frente de la cola.
-    struct Node *rear;  // Final de la cola.
+    Node *front; // Frente de la cola.
+    Node *rear;  // Final de la cola.
 } Queue;
 
-BloqueMemoria *inicializar_memoria(int, int); // Inicializar la memoria.
-void liberar_memoria(BloqueMemoria *);        // Liberar memoria.
-void asignar_memoria_ff(BloqueMemoria *, int, int, int);
+// Estructura de un bloque de Gantt.
+typedef struct
+{
+    int id;            // ID del proceso.
+    int tiempo_inicio; // Tiempo de inicio del proceso.
+    int tiempo_fin;    // Tiempo de fin del proceso.
+} Gantt;
 
-int esta_vacia(Node *Front);
-void insertar(Proceso proceso, Node *Front, Node *Rear);
-Proceso extraer(Node *Front, Node *Rear);
-BloqueMemoria *leer_entrada(int, char *[]);
+// Funciones de memoria.
+BloqueMemoria *inicializar_memoria(int);                 // Inicializa la memoria.
+BloqueMemoria *asignar_memoria_ff(BloqueMemoria *, int); // Asigna memoria con el algoritmo First Fit.
+void liberar_memoria(BloqueMemoria *);                   // Libera la memoria.
+
+// Función de lectura de archivo.
+void leer_entrada(const char *nombre_archivo, int *memoria_total, int *tamano_bloque, char *algoritmo_memoria, int *num_nucleos, char *algoritmo_planificacion, Queue *cola_lista);
+
+// Funciones de impresión en forma de diagrama de gantt.
+void imprimir_diagrama_gantt(Gantt *, int);
+
+// Funciones de planificación.
+// ACÁ VA EL PLANIFICADOR FIFO.
+
+// Funciones de cola.
+void insertar(Queue *, Proceso *); // Inserta un proceso en la cola.
+Proceso *extraer(Queue *);         // Extrae un proceso de la cola.

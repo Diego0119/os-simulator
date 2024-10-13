@@ -2,17 +2,44 @@
 
 int main(int argc, char *argv[])
 {
-    BloqueMemoria *memoria;
-    memoria = leer_entrada(argc, argv); // aca se asignara la memoria que necesita el programa
+    // Si la cantidad de argumentos no es la esperada.
+    if (argc != 3 || strcmp(argv[1], "--file") != 0)
+    {
+        fprintf(stderr, "Error de utilización. Uso: %s --file <archivo>\n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
 
-    // char algoritmo_memoria[10], algoritmo_planificacion[10];
-    // Queue *cola_lista;
+    const char *nombre_archivo = argv[2];
 
-    // Llamada función lectura archivo.
+    int memoria_total;
+    int tamano_bloque;
+    int num_nucleos;
 
-    // Planificar y ejecutar procesos.
+    char algoritmo_memoria[3];
+    char algoritmo_planificacion[3];
 
-    // Llamada función output carta gantt (?).
+    Queue cola_lista = {NULL, NULL};
+
+    leer_entrada(nombre_archivo, &memoria_total, &tamano_bloque, algoritmo_memoria, &num_nucleos, algoritmo_planificacion, &cola_lista);
+
+    BloqueMemoria *memoria = inicializar_memoria(memoria_total);
+
+    Gantt diagrama_gantt[100];
+    int contador_gantt = 0;
+
+    // Si el algoritmo de planificación es FIFO.
+    if (strcmp(algoritmo_planificacion, "fifo") == 0)
+    {
+        exit(EXIT_FAILURE);
+        // FIFO
+    }
+    else
+    {
+        fprintf(stderr, "Algoritmo de planificación no reconocido.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    imprimir_diagrama_gantt(diagrama_gantt, contador_gantt);
 
     return EXIT_SUCCESS;
 }
