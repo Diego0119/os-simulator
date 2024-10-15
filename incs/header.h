@@ -27,13 +27,15 @@ typedef struct
 } Cola;
 
 // Funciones auxiliares.
-void leer_entrada(const char *, int *, int *, char *, char *); // Leer la entrada del archivo.
-void asignar_valores_procesos(int, int, int, int);             // Asignar valores a los procesos.
+void leer_entrada(const char *, int *, int *, char *, char *, Cola *); // Leer la entrada del archivo.
+void asignar_valores_procesos(int, int, int, int, Cola *);             // Asignar valores a los procesos.
 
 // Funciones memoria.
 void inicializar_bloques_memoria(BloqueMemoria *, int, int); // Inicializar bloques de memoria.
 
 // Funciones planificador.
+void enqueue(Cola *cola, Proceso *proceso);                                                                   // Poner a la COLA un PROCESO.
+void planificador_fifo(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad_bloques, int tamano_bloque); // Planificador FIFO.
 
 // EN PROCESO...
 // BloqueMemoria *inicializar_memoria(int, int); // Inicializar la memoria.

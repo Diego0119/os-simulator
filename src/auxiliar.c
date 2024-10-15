@@ -1,6 +1,6 @@
 #include "header.h"
 
-void leer_entrada(const char *nombre_archivo, int *tamano_memoria, int *tamano_bloque, char *algoritmo_memoria, char *algoritmo_planificacion)
+void leer_entrada(const char *nombre_archivo, int *tamano_memoria, int *tamano_bloque, char *algoritmo_memoria, char *algoritmo_planificacion, Cola *cola_procesos)
 {
     // ABRIR el archivo de entrada en modo LECTURA y VERIFICAR que se abra correctamente.
     FILE *archivo_entrada = fopen(nombre_archivo, "r");
@@ -25,14 +25,14 @@ void leer_entrada(const char *nombre_archivo, int *tamano_memoria, int *tamano_b
     // LEER los PROCESOS del archivo de entrada hasta que llegue al FINAL DEL ARCHIVO.
     while (fscanf(archivo_entrada, "%d %d %d %d", &id, &tiempo_llegada, &tiempo_rafaga, &memoria_solicitada) != EOF)
     {
-        asignar_valores_proceso(id, tiempo_llegada, tiempo_rafaga, memoria_solicitada);
+        asignar_valores_proceso(id, tiempo_llegada, tiempo_rafaga, memoria_solicitada, cola_procesos);
         fprintf(stdout, "Procesos leídos CORRECTAMENTE.\n"); // MENSAJE TEMPORAL.
     }
 
     fclose(archivo_entrada); // CERRAR el archivo de entrada.
 }
 
-void asignar_valores_proceso(int id, int tiempo_llegada, int tiempo_rafaga, int memoria_solicitada)
+void asignar_valores_proceso(int id, int tiempo_llegada, int tiempo_rafaga, int memoria_solicitada, Cola *cola_procesos)
 {
     // CREAR un NUEVO PROCESO y ASIGNA la MEMORIA necesaria junto a otros VALORES.
     Proceso *nuevo_proceso = (Proceso *)malloc(sizeof(Proceso));
@@ -41,6 +41,8 @@ void asignar_valores_proceso(int id, int tiempo_llegada, int tiempo_rafaga, int 
     nuevo_proceso->tiempo_rafaga = tiempo_rafaga;
     nuevo_proceso->memoria_solicitada = memoria_solicitada;
     nuevo_proceso->next = NULL;
-
     fprintf(stdout, "Proceso %d - T. Llegada %d - T. Ráfaga %d - M. Solicitada %d\n", id, tiempo_llegada, tiempo_rafaga, memoria_solicitada); // MENSAJE TEMPORAL.
+
+    enqueue(cola_procesos, nuevo_proceso);
+    fprintf(stdout, "Proceso %d encolado CORRECTAMENTE.\n", id); // MENSAJE TEMPORAL.
 }

@@ -5,8 +5,8 @@ void inicializar_bloques_memoria(BloqueMemoria *memoria, int cantidad_bloques, i
     // INICIALIZA los bloques de memoria.
     for (int i = 0; i < cantidad_bloques; i++)
     {
-        memoria[i].tamano = tamano_bloque;
-        memoria[i].estado = 1; // 1 bloque LIBRE, 0 bloque OCUPADO.
+        memoria[i].tamano = tamano_bloque; // BLOQUE de MEMORIA de 128 KB.
+        memoria[i].estado = 1;             // 1 bloque LIBRE, 0 bloque OCUPADO.
 
         fprintf(stdout, "Bloque %d - Tamaño %d - Estado %d\n", i, memoria[i].tamano, memoria[i].estado); // MENSAJE TEMPORAL.
     }
