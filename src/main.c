@@ -24,7 +24,9 @@ int main(int argc, char *argv[])
 
     inicializar_bloques_memoria(memoria, cantidad_bloques, tamano_bloque);
     fprintf(stdout, "Memoria inicializada correctamente.\n"); // MENSAJE TEMPORAL.
-
+    asignar_memoria_procesos(cola_procesos, memoria, cantidad_bloques);
+    imprimir_memoria(memoria, cantidad_bloques);
+    // imprimir_memoria(memoria, cantidad_bloques);
     // EN PROCESO...
     // BloqueMemoria *memoria;
     // memoria = leer_entrada(argc, argv); // aca se asignara la memoria que necesita el programa

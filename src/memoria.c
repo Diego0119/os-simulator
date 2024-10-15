@@ -7,8 +7,6 @@ void inicializar_bloques_memoria(BloqueMemoria *memoria, int cantidad_bloques, i
     {
         memoria[i].tamano = tamano_bloque; // BLOQUE de MEMORIA de 128 KB.
         memoria[i].estado = 1;             // 1 bloque LIBRE, 0 bloque OCUPADO.
-
-        fprintf(stdout, "Bloque %d - Tamaño %d - Estado %d\n", i, memoria[i].tamano, memoria[i].estado); // MENSAJE TEMPORAL.
     }
     fprintf(stdout, "Bloques inicializados CORRECTAMENTE.\n"); // MENSAJE TEMPORAL.
 }
@@ -114,3 +112,60 @@ void liberar_memoria(BloqueMemoria *bloque)
     bloque->estado = 1;
 }
 */
+
+void imprimir_memoria(BloqueMemoria *memoria, int cantidad_bloques)
+{
+    printf("Memoria del sistema operativo:\n");
+    for (int i = 0; i < cantidad_bloques; i++)
+    {
+        fprintf(stdout, "Bloque %d - Tamaño %d - Estado %d\n", i, memoria[i].tamano, memoria[i].estado); // MENSAJE TEMPORAL.
+    }
+}
+
+void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bloques)
+{
+    // solo se esta extrayendo 1 proceso
+    Proceso *proceso_extraido = dequeue(&cola);
+
+    if (proceso_extraido == NULL)
+    {
+        fprintf(stdout, "No hay procesos en la cola para asignar memoria.\n");
+        return;
+    }
+
+    int tamano_proceso = proceso_extraido->memoria_solicitada;
+    int bloques_asignados = 0;
+
+    for (int i = 0; i < cantidad_bloques && tamano_proceso > 0; i++)
+    {
+        if (memoria[i].estado == 1)
+        {
+            if (memoria[i].tamano >= tamano_proceso)
+            {
+                fprintf(stdout, "El proceso encontró un bloque de memoria libre con suficiente espacio\n");
+                memoria[i].tamano -= tamano_proceso;
+                memoria[i].estado = 0;
+                tamano_proceso = 0;
+                bloques_asignados++;
+                break;
+            }
+            else
+            {
+                tamano_proceso -= memoria[i].tamano;
+                memoria[i].tamano = 0;
+                memoria[i].estado = 0;
+                bloques_asignados++;
+            }
+        }
+    }
+
+    if (tamano_proceso > 0)
+    {
+
+        fprintf(stderr, "No hay suficiente memoria disponible para asignar al proceso %d \n", proceso_extraido->pid);
+    }
+    else
+    {
+        fprintf(stdout, "Proceso %d asignado exitosamente a %d bloque(s).\n", proceso_extraido->pid, bloques_asignados);
+    }
+}

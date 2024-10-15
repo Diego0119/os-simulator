@@ -14,6 +14,37 @@ void enqueue(Cola *cola, Proceso *proceso)
     cola->rear = proceso;                                   // Se actualiza el FINAL de la COLA.
     proceso->next = NULL;                                   // Se actualiza el SIGUIENTE PROCESO.
     fprintf(stdout, "Proceso %d encolado\n", proceso->pid); // MENSAJE TEMPORAL.
+    imprimir_cola_procesos(cola);
+}
+
+Proceso *dequeue(Cola *cola)
+{
+    if (cola->front == NULL)
+    {
+        fprintf(stdout, "La cola esta vacia\n");
+        exit(EXIT_FAILURE);
+    }
+    Proceso *proceso_extraido = cola->front;
+
+    cola->front = cola->front->next;
+
+    if (cola->front == NULL)
+    {
+        cola->rear = NULL;
+    }
+
+    return proceso_extraido;
+}
+
+void imprimir_cola_procesos(Cola *cola)
+{
+    Proceso *actual = cola->front;
+    fprintf(stdout, "Cola de procesos:\n");
+    while (actual != NULL)
+    {
+        fprintf(stdout, "[PID: %d | Memoria Solicitada: %d | Next: %d]->\n", actual->pid, actual->memoria_solicitada, actual->next);
+        actual = actual->next;
+    }
 }
 
 // void planificador_fifo(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad_bloques, int tamano_bloque)
