@@ -134,7 +134,6 @@ void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bl
     }
 
     int tamano_proceso = proceso_extraido->memoria_solicitada;
-    int bloques_asignados = 0;
 
     for (int i = 0; i < cantidad_bloques && tamano_proceso > 0; i++)
     {
@@ -146,7 +145,7 @@ void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bl
                 memoria[i].tamano -= tamano_proceso;
                 memoria[i].estado = 0;
                 tamano_proceso = 0;
-                bloques_asignados++;
+
                 break;
             }
             else
@@ -154,7 +153,6 @@ void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bl
                 tamano_proceso -= memoria[i].tamano;
                 memoria[i].tamano = 0;
                 memoria[i].estado = 0;
-                bloques_asignados++;
             }
         }
     }
@@ -166,6 +164,6 @@ void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bl
     }
     else
     {
-        fprintf(stdout, "Proceso %d asignado exitosamente a %d bloque(s).\n", proceso_extraido->pid, bloques_asignados);
+        fprintf(stdout, "Proceso %d asignado exitosamente\n", proceso_extraido->pid);
     }
 }
