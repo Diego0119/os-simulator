@@ -16,8 +16,8 @@ void enqueue(Cola *cola, Proceso *proceso)
     fprintf(stdout, "Proceso %d encolado\n", proceso->pid); // MENSAJE TEMPORAL.
 }
 
-void planificador_fifo(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad_bloques, int tamano_bloque)
-{
-    Cola cola_espera = {NULL, NULL}; // COLA de procesos en ESPERA.
-    Proceso *proceso_actual = NULL;  // PROCESO actual a evaluar.
-}
+// void planificador_fifo(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad_bloques, int tamano_bloque)
+// {
+//     // Cola cola_espera = {NULL, NULL}; // COLA de procesos en ESPERA.
+//     Proceso *proceso_actual = NULL; // PROCESO actual a evaluar.
+// }
