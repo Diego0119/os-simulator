@@ -96,10 +96,10 @@ void liberar_memoria(BloqueMemoria *bloque)
 
 void imprimir_memoria(BloqueMemoria memoria, int num_bloques)
 {
-    fprintf(stdout,"Memoria del sistema operativo");
+    fprintf(stdout, "Memoria del sistema operativo\n");
 
     for (int i = 0; i < num_bloques; i++)
     {
-        printf(" [%d|%d|%d]-->\n", memoria->estado );
+        printf(" [%d|%d|%d]-->\n", memoria.estado, memoria.tamano, memoria.next);
     }
 }
