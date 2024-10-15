@@ -25,14 +25,14 @@ void leer_entrada(const char *nombre_archivo, int *tamano_memoria, int *tamano_b
     // LEER los PROCESOS del archivo de entrada hasta que llegue al FINAL DEL ARCHIVO.
     while (fscanf(archivo_entrada, "%d %d %d %d", &id, &tiempo_llegada, &tiempo_rafaga, &memoria_solicitada) != EOF)
     {
-        asignar_valores_proceso(id, tiempo_llegada, tiempo_rafaga, memoria_solicitada, cola_procesos);
+        asignar_valores_procesos(id, tiempo_llegada, tiempo_rafaga, memoria_solicitada, cola_procesos);
         fprintf(stdout, "Procesos leídos CORRECTAMENTE.\n"); // MENSAJE TEMPORAL.
     }
 
     fclose(archivo_entrada); // CERRAR el archivo de entrada.
 }
 
-void asignar_valores_proceso(int id, int tiempo_llegada, int tiempo_rafaga, int memoria_solicitada, Cola *cola_procesos)
+void asignar_valores_procesos(int id, int tiempo_llegada, int tiempo_rafaga, int memoria_solicitada, Cola *cola_procesos)
 {
     // CREAR un NUEVO PROCESO y ASIGNA la MEMORIA necesaria junto a otros VALORES.
     Proceso *nuevo_proceso = (Proceso *)malloc(sizeof(Proceso));
