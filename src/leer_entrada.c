@@ -1,3 +1,5 @@
+// EN PROCESO...
+/*
 #include "header.h"
 
 BloqueMemoria *leer_entrada(int argc, char *argv[])
@@ -38,3 +40,4 @@ BloqueMemoria *leer_entrada(int argc, char *argv[])
     fclose(archivo);
     return memoria;
 }
+*/

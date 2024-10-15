@@ -1,3 +1,5 @@
+// EN PROCESO...
+/*
 #include "header.h"
 
 // Inicializar la memoria.
@@ -121,3 +123,4 @@ int esta_vacia(Node *Front)
 {
     return Front == NULL;
 }
+*/

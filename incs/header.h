@@ -26,11 +26,17 @@ typedef struct
     Proceso *rear;  // Final de la cola.
 } Cola;
 
-BloqueMemoria *inicializar_memoria(int, int); // Inicializar la memoria.
-void liberar_memoria(BloqueMemoria *);        // Liberar memoria.
-void asignar_memoria_ff(BloqueMemoria *, int, int, int);
+// Funciones auxiliares.
+void leer_entrada(const char *, int *, int *, char *, char *); // Leer la entrada del archivo.
 
-int esta_vacia(Node *Front);
-void insertar(Proceso proceso, Node *Front, Node *Rear);
-Proceso extraer(Node *Front, Node *Rear);
-BloqueMemoria *leer_entrada(int, char *[]);
+// Funciones memoria.
+
+// Funciones planificador.
+
+// EN PROCESO...
+// BloqueMemoria *inicializar_memoria(int, int); // Inicializar la memoria.
+// void liberar_memoria(BloqueMemoria *);        // Liberar memoria.
+// void asignar_memoria_ff(BloqueMemoria *, int, int, int);
+// int esta_vacia(Node *Front);
+// void insertar(Proceso proceso, Node *Front, Node *Rear);
+// Proceso extraer(Node *Front, Node *Rear);
