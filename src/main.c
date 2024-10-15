@@ -2,47 +2,37 @@
 
 int main(int argc, char *argv[])
 {
-    // Si la cantidad de argumentos no es la esperada.
+    // Verificar argumentos para la ejecución del programa.
     if (argc != 3 || strcmp(argv[1], "--file") != 0)
     {
-        fprintf(stderr, "Error de utilización. Uso: %s --file <archivo>\n", argv[0]);
-        exit(EXIT_FAILURE);
+        printf("Error!\nUso: ./simulador --file entrada.txt\n");
+        return EXIT_FAILURE;
     }
 
-    const char *nombre_archivo = argv[2];
+    const char *nombre_archivo = argv[2]; // VARIABLE que GUARDA el NOMBRE del ARCHIVO de ENTRADA.
+    int tamano_memoria;                   // VARIABLE del tamaño de la memoria total (2048 KB).
+    int tamano_bloque;                    // VARIABLE del tamaño del bloque de memoria (128 KB).
+    char algoritmo_memoria[3];            // VARIABLE que GUARDA el algoritmo de memoria first fit (3 en caso de que se hagan los 3).
+    char algoritmo_planificacion[3];      // VARIABLE que GUARDA el algoritmo de planificación FIFO (3 en caso de que se hagan los 3).
+    Cola cola_procesos = {NULL, NULL};    // VARIABLE que GUARDA la COLA de PROCESOS.
 
-    int memoria_total;
-    int tamano_bloque;
-    int num_nucleos;
+    leer_entrada(nombre_archivo, &tamano_memoria, &tamano_bloque, algoritmo_memoria, algoritmo_planificacion, &cola_procesos);
+    fprintf(stdout, "Archivo leído correctamente.\n"); // MENSAJE TEMPORAL.
 
-    char algoritmo_memoria[3];
-    char algoritmo_planificacion[3];
+    int cantidad_bloques = tamano_memoria / tamano_bloque; // VARIABLE que GUARDA la cantidad de bloques de memoria.
+    BloqueMemoria memoria[cantidad_bloques];               // ARREGLO de BLOQUES de MEMORIA.
 
-    Queue cola_lista = {NULL, NULL};
+    inicializar_bloques_memoria(memoria, cantidad_bloques, tamano_bloque);
+    fprintf(stdout, "Memoria inicializada correctamente.\n"); // MENSAJE TEMPORAL.
 
-    leer_entrada(nombre_archivo, &memoria_total, &tamano_bloque, algoritmo_memoria, &num_nucleos, algoritmo_planificacion, &cola_lista);
-
-    int numero_bloques = memoria_total / tamano_bloque;
-
-    BloqueMemoria *memoria = inicializar_memoria(memoria_total, numero_bloques, tamano_bloque);
-    imprimir_memoria(*memoria, numero_bloques);
-
-    Gantt diagrama_gantt[100];
-    int contador_gantt = 0;
-
-    // // Si el algoritmo de planificación es FIFO.
-    // if (strcmp(algoritmo_planificacion, "fifo") == 0)
-    // {
-    //     exit(EXIT_FAILURE);
-    //     // FIFO
-    // }
-    // else
-    // {
-    //     fprintf(stderr, "Algoritmo de planificación no reconocido.\n");
-    //     exit(EXIT_FAILURE);
-    // }
-
-    // imprimir_diagrama_gantt(diagrama_gantt, contador_gantt);
+    // EN PROCESO...
+    // BloqueMemoria *memoria;
+    // memoria = leer_entrada(argc, argv); // aca se asignara la memoria que necesita el programa
+    //  char algoritmo_memoria[10], algoritmo_planificacion[10];
+    //  Queue *cola_lista;
+    //  Llamada función lectura archivo.
+    //  Planificar y ejecutar procesos.
+    //  Llamada función output carta gantt (?).
 
     return EXIT_SUCCESS;
 }

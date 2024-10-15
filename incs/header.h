@@ -2,60 +2,45 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-// Estructura de un proceso.
-typedef struct
+// Estructura de un proceso. (PASA A SER UNA LISTA PORQUE LA MEMORIA SERÁ VISTA COMO ARREGLO).
+typedef struct Proceso
 {
     int pid;                // ID del proceso.
+    int tiempo_llegada;     // Tiempo de llegada en segundos.
     int tiempo_rafaga;      // Tiempo de ejecución en segundos.
     int memoria_solicitada; // Memoria solicitada en KB.
+    struct Proceso *next;   // Siguiente proceso.
 } Proceso;
 
-// Estructura de un bloque de memoria.
-typedef struct BloqueMemoria
+// Estructura de un bloque de memoria. (PASA A SER VISTA COMO UNA MEMORIA DE ARREGLO, HECHA DE BLOQUES).
+typedef struct
 {
-    int tamano;                 // Tamaño bloque de memoria.
-    int estado;                 // 1 es bloque libre, 0 es bloque ocupado.
-    struct BloqueMemoria *next; // Siguiente bloque de memoria.
+    int tamano; // Tamaño bloque de memoria.
+    int estado; // 1 es bloque libre, 0 es bloque ocupado.
 } BloqueMemoria;
-
-// Estructura de un nodo.
-typedef struct Node
-{
-    Proceso *proceso;  // Proceso.
-    struct Node *next; // Siguiente nodo.
-} Node;
 
 // Estructura de una cola.
 typedef struct
 {
-    Node *front; // Frente de la cola.
-    Node *rear;  // Final de la cola.
-} Queue;
+    Proceso *front; // Frente de la cola.
+    Proceso *rear;  // Final de la cola.
+} Cola;
 
-// Estructura de un bloque de Gantt.
-typedef struct
-{
-    int id;            // ID del proceso.
-    int tiempo_inicio; // Tiempo de inicio del proceso.
-    int tiempo_fin;    // Tiempo de fin del proceso.
-} Gantt;
+// Funciones auxiliares.
+void leer_entrada(const char *, int *, int *, char *, char *, Cola *); // Leer la entrada del archivo.
+void asignar_valores_procesos(int, int, int, int, Cola *);             // Asignar valores a los procesos.
 
-// Funciones de memoria.
-BloqueMemoria *inicializar_memoria(int, int, int);  // Inicializa la memoria.
-void asignar_memoria_ff(BloqueMemoria *, int, int); // Asigna memoria con el algoritmo First Fit.
-void liberar_memoria(BloqueMemoria *);              // Libera la memoria.
+// Funciones memoria.
+void inicializar_bloques_memoria(BloqueMemoria *, int, int); // Inicializar bloques de memoria.
 
-// Función de lectura de archivo.
-void leer_entrada(const char *nombre_archivo, int *memoria_total, int *tamano_bloque, char *algoritmo_memoria, int *num_nucleos, char *algoritmo_planificacion, Queue *cola_lista);
+// Funciones planificador.
+void enqueue(Cola *cola, Proceso *proceso);                                                                   // Poner a la COLA un PROCESO.
+void planificador_fifo(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad_bloques, int tamano_bloque); // Planificador FIFO.
 
-// Funciones de impresión en forma de diagrama de gantt.
-void imprimir_diagrama_gantt(Gantt *, int);
-
-// Funciones de planificación.
-// ACÁ VA EL PLANIFICADOR FIFO.
-
-// Funciones de cola.
-void insertar(Queue *, Proceso *); // Inserta un proceso en la cola.
-Proceso *extraer(Queue *);         // Extrae un proceso de la cola.
-int esta_vacia(Node *Front);
-void imprimir_memoria(BloqueMemoria, int);
+// EN PROCESO...
+// BloqueMemoria *inicializar_memoria(int, int); // Inicializar la memoria.
+// void liberar_memoria(BloqueMemoria *);        // Liberar memoria.
+// void asignar_memoria_ff(BloqueMemoria *, int, int, int);
+// int esta_vacia(Node *Front);
+// void insertar(Proceso proceso, Node *Front, Node *Rear);
+// Proceso extraer(Node *Front, Node *Rear);
