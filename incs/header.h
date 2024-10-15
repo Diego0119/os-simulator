@@ -2,35 +2,29 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-// Estructura de un proceso.
-typedef struct
+// Estructura de un proceso. (PASA A SER UNA LISTA PORQUE LA MEMORIA SERÁ VISTA COMO ARREGLO).
+typedef struct Proceso
 {
     int pid;                // ID del proceso.
+    int tiempo_llegada;     // Tiempo de llegada en segundos.
     int tiempo_rafaga;      // Tiempo de ejecución en segundos.
     int memoria_solicitada; // Memoria solicitada en KB.
+    struct Proceso *next;   // Siguiente proceso.
 } Proceso;
 
-// Estructura de un bloque de memoria.
+// Estructura de un bloque de memoria. (PASA A SER VISTA COMO UNA MEMORIA DE ARREGLO, HECHA DE BLOQUES).
 typedef struct
 {
-    int tamano;                 // Tamaño bloque de memoria.
-    int estado;                 // 1 es bloque libre, 0 es bloque ocupado.
-    struct BloqueMemoria *next; // Siguiente bloque de memoria.
+    int tamano; // Tamaño bloque de memoria.
+    int estado; // 1 es bloque libre, 0 es bloque ocupado.
 } BloqueMemoria;
-
-// Estructura de un nodo.
-typedef struct
-{
-    Proceso *proceso;  // Proceso del nodo.
-    struct Node *next; // Siguiente nodo.
-} Node;
 
 // Estructura de una cola.
 typedef struct
 {
-    struct Node *front; // Frente de la cola.
-    struct Node *rear;  // Final de la cola.
-} Queue;
+    Proceso *front; // Frente de la cola.
+    Proceso *rear;  // Final de la cola.
+} Cola;
 
 BloqueMemoria *inicializar_memoria(int, int); // Inicializar la memoria.
 void liberar_memoria(BloqueMemoria *);        // Liberar memoria.
