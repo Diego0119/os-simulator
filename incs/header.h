@@ -28,8 +28,10 @@ typedef struct
 
 // Funciones auxiliares.
 void leer_entrada(const char *, int *, int *, char *, char *); // Leer la entrada del archivo.
+void asignar_valores_procesos(int, int, int, int);             // Asignar valores a los procesos.
 
 // Funciones memoria.
+void inicializar_bloques_memoria(BloqueMemoria *, int, int); // Inicializar bloques de memoria.
 
 // Funciones planificador.
 

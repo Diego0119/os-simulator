@@ -18,6 +18,12 @@ int main(int argc, char *argv[])
     leer_entrada(nombre_archivo, &tamano_memoria, &tamano_bloque, algoritmo_memoria, algoritmo_planificacion);
     fprintf(stdout, "Archivo leído correctamente.\n"); // MENSAJE TEMPORAL.
 
+    int cantidad_bloques = tamano_memoria / tamano_bloque; // VARIABLE que GUARDA la cantidad de bloques de memoria.
+    BloqueMemoria memoria[cantidad_bloques];               // ARREGLO de BLOQUES de MEMORIA.
+
+    inicializar_bloques_memoria(memoria, cantidad_bloques, tamano_bloque);
+    fprintf(stdout, "Memoria inicializada correctamente.\n"); // MENSAJE TEMPORAL.
+
     // EN PROCESO...
     // BloqueMemoria *memoria;
     // memoria = leer_entrada(argc, argv); // aca se asignara la memoria que necesita el programa
