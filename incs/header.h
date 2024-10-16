@@ -41,6 +41,7 @@ void imprimir_memoria(BloqueMemoria *memoria, int cantidad_bloques);
 void imprimir_cola_procesos(Cola *cola);
 void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bloques);
 Proceso *dequeue(Cola *cola);
+void planificador_sjf(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad_bloques);
 
 // EN PROCESO...
 // BloqueMemoria *inicializar_memoria(int, int); // Inicializar la memoria.

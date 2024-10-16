@@ -52,3 +52,8 @@ void imprimir_cola_procesos(Cola *cola)
 //     // Cola cola_espera = {NULL, NULL}; // COLA de procesos en ESPERA.
 //     Proceso *proceso_actual = NULL; // PROCESO actual a evaluar.
 // }
+
+// aca se debe implementar el planificador de short job first
+// void planificador_sjf(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad_bloques)
+// {
+// }

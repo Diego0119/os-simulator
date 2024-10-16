@@ -126,7 +126,8 @@ void imprimir_memoria(BloqueMemoria *memoria, int cantidad_bloques)
 void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bloques)
 {
     // extrae el primer proceso que entro a la cola
-    Proceso *proceso_extraido = dequeue(&cola);
+    Proceso *proceso_extraido = malloc(sizeof(Proceso));
+    proceso_extraido = dequeue(&cola);
 
     if (proceso_extraido == NULL)
     {
@@ -183,4 +184,10 @@ void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bl
     {
         fprintf(stdout, "Proceso %d asignado exitosamente\n", proceso_extraido->pid);
     }
+    free(proceso_extraido);
 }
+
+// aca se deberia implementar la funcuon que ejecuta los proceso
+// void ejecutar_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_bloques, int tamano_bloque)
+// {
+// }
