@@ -122,9 +122,10 @@ void imprimir_memoria(BloqueMemoria *memoria, int cantidad_bloques)
     }
 }
 
+// implementacion basica de un first fit
 void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bloques)
 {
-    // solo se esta extrayendo 1 proceso
+    // extrae el primer proceso que entro a la cola
     Proceso *proceso_extraido = dequeue(&cola);
 
     if (proceso_extraido == NULL)
@@ -133,12 +134,15 @@ void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bl
         return;
     }
 
+    // guarda el tamaño del proceso extraido
     int tamano_proceso = proceso_extraido->memoria_solicitada;
 
     for (int i = 0; i < cantidad_bloques && tamano_proceso > 0; i++)
     {
+        // verifica que el bloque esta libre
         if (memoria[i].estado == 1)
         {
+            // si el tamaño del bloque es mas grande que la memoria requerida por el proceso, lo asigna
             if (memoria[i].tamano >= tamano_proceso)
             {
                 fprintf(stdout, "El proceso encontró un bloque de memoria libre con suficiente espacio\n");
@@ -148,6 +152,8 @@ void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bl
 
                 break;
             }
+            // este else sirve cuando la memoria requerida por el proceso es mas grande que los bloques del sistema operativo
+            // lo que hace es ocupar tantos bloques como sean necesarios para almacenar el proceso
             else
             {
                 tamano_proceso -= memoria[i].tamano;
@@ -156,7 +162,7 @@ void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bl
             }
         }
     }
-
+    // validacion por si aun ocupando todos los bloques del sistema operativo no hay espacio
     if (tamano_proceso > 0)
     {
 
