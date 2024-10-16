@@ -149,6 +149,11 @@ void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bl
                 memoria[i].tamano -= tamano_proceso;
                 memoria[i].estado = 0;
                 tamano_proceso = 0;
+                int fragmentacion_interna = memoria[i].tamano - tamano_proceso;
+                if (fragmentacion_interna > 0)
+                {
+                    fprintf(stdout, "Fragmentacion interna: %d KB en el bloque %d\n", fragmentacion_interna, i);
+                }
 
                 break;
             }
@@ -159,9 +164,15 @@ void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bl
                 tamano_proceso -= memoria[i].tamano;
                 memoria[i].tamano = 0;
                 memoria[i].estado = 0;
+                int fragmentacion_interna = memoria[i].tamano - tamano_proceso;
+                if (fragmentacion_interna > 0)
+                {
+                    fprintf(stdout, "Fragmentacion interna: %d KB en el bloque %d\n", fragmentacion_interna, i);
+                }
             }
         }
     }
+
     // validacion por si aun ocupando todos los bloques del sistema operativo no hay espacio
     if (tamano_proceso > 0)
     {
