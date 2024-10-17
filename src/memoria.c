@@ -123,71 +123,78 @@ void imprimir_memoria(BloqueMemoria *memoria, int cantidad_bloques)
 }
 
 // implementacion basica de un first fit
-void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bloques)
+void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_bloques)
 {
-    // extrae el primer proceso que entro a la cola
-    Proceso *proceso_extraido = malloc(sizeof(Proceso));
-    proceso_extraido = dequeue(&cola);
-
-    if (proceso_extraido == NULL)
+    while (cola->front != NULL)
     {
-        fprintf(stdout, "No hay procesos en la cola para asignar memoria.\n");
-        return;
-    }
+        // extrae el primer proceso que entro a la cola
+        Proceso *proceso_extraido = malloc(sizeof(Proceso));
+        proceso_extraido = dequeue(cola);
 
-    // guarda el tamaño del proceso extraido
-    int tamano_proceso = proceso_extraido->memoria_solicitada;
-
-    for (int i = 0; i < cantidad_bloques && tamano_proceso > 0; i++)
-    {
-        // verifica que el bloque esta libre
-        if (memoria[i].estado == 1)
+        if (proceso_extraido == NULL)
         {
-            // si el tamaño del bloque es mas grande que la memoria requerida por el proceso, lo asigna
-            if (memoria[i].tamano >= tamano_proceso)
-            {
-                fprintf(stdout, "El proceso encontró un bloque de memoria libre con suficiente espacio\n");
-                memoria[i].tamano -= tamano_proceso;
-                memoria[i].estado = 0;
-                tamano_proceso = 0;
-                int fragmentacion_interna = memoria[i].tamano - tamano_proceso;
-                if (fragmentacion_interna > 0)
-                {
-                    fprintf(stdout, "Fragmentacion interna: %d KB en el bloque %d\n", fragmentacion_interna, i);
-                }
+            fprintf(stdout, "No hay procesos en la cola para asignar memoria.\n");
+            return;
+        }
+        ejecutar_proceso(proceso_extraido);
 
-                break;
-            }
-            // este else sirve cuando la memoria requerida por el proceso es mas grande que los bloques del sistema operativo
-            // lo que hace es ocupar tantos bloques como sean necesarios para almacenar el proceso
-            else
+        // guarda el tamaño del proceso extraido
+        int tamano_proceso = proceso_extraido->memoria_solicitada;
+
+        for (int i = 0; i < cantidad_bloques && tamano_proceso > 0; i++)
+        {
+            // verifica que el bloque esta libre
+            if (memoria[i].estado == 1)
             {
-                tamano_proceso -= memoria[i].tamano;
-                memoria[i].tamano = 0;
-                memoria[i].estado = 0;
-                int fragmentacion_interna = memoria[i].tamano - tamano_proceso;
-                if (fragmentacion_interna > 0)
+                // si el tamaño del bloque es mas grande que la memoria requerida por el proceso, lo asigna
+                if (memoria[i].tamano >= tamano_proceso)
                 {
-                    fprintf(stdout, "Fragmentacion interna: %d KB en el bloque %d\n", fragmentacion_interna, i);
+                    fprintf(stdout, "El proceso encontró un bloque de memoria libre con suficiente espacio\n");
+                    memoria[i].tamano -= tamano_proceso;
+                    memoria[i].estado = 0;
+                    tamano_proceso = 0;
+                    int fragmentacion_interna = memoria[i].tamano - tamano_proceso;
+                    if (fragmentacion_interna > 0)
+                    {
+                        fprintf(stdout, "Fragmentacion interna: %d KB en el bloque %d\n", fragmentacion_interna, i);
+                    }
+
+                    break;
+                }
+                // este else sirve cuando la memoria requerida por el proceso es mas grande que los bloques del sistema operativo
+                // lo que hace es ocupar tantos bloques como sean necesarios para almacenar el proceso
+                else
+                {
+                    tamano_proceso -= memoria[i].tamano;
+                    memoria[i].tamano = 0;
+                    memoria[i].estado = 0;
+                    int fragmentacion_interna = memoria[i].tamano - tamano_proceso;
+                    if (fragmentacion_interna > 0)
+                    {
+                        fprintf(stdout, "Fragmentacion interna: %d KB en el bloque %d\n", fragmentacion_interna, i);
+                    }
                 }
             }
         }
-    }
 
-    // validacion por si aun ocupando todos los bloques del sistema operativo no hay espacio
-    if (tamano_proceso > 0)
-    {
+        // validacion por si aun ocupando todos los bloques del sistema operativo no hay espacio
+        if (tamano_proceso > 0)
+        {
 
-        fprintf(stderr, "No hay suficiente memoria disponible para asignar al proceso %d \n", proceso_extraido->pid);
+            fprintf(stderr, "No hay suficiente memoria disponible para asignar al proceso %d \n", proceso_extraido->pid);
+        }
+        else
+        {
+            fprintf(stdout, "Proceso %d asignado exitosamente\n", proceso_extraido->pid);
+        }
+        free(proceso_extraido);
     }
-    else
-    {
-        fprintf(stdout, "Proceso %d asignado exitosamente\n", proceso_extraido->pid);
-    }
-    free(proceso_extraido);
 }
 
 // aca se deberia implementar la funcuon que ejecuta los proceso
-// void ejecutar_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_bloques, int tamano_bloque)
-// {
-// }
+void ejecutar_proceso(Proceso *proceso)
+{
+    fprintf(stdout, "Proceso %d en ejecución\n", proceso->pid);
+    sleep(proceso->tiempo_rafaga);
+    fprintf(stdout, "Proceso %d ejecutado\n", proceso->pid);
+}

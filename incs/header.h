@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 
 // Estructura de un proceso. (PASA A SER UNA LISTA PORQUE LA MEMORIA SERÁ VISTA COMO ARREGLO).
 typedef struct Proceso
@@ -39,9 +40,10 @@ void planificador_fifo(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad
 
 void imprimir_memoria(BloqueMemoria *memoria, int cantidad_bloques);
 void imprimir_cola_procesos(Cola *cola);
-void asignar_memoria_procesos(Cola cola, BloqueMemoria *memoria, int cantidad_bloques);
+void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_bloques);
 Proceso *dequeue(Cola *cola);
 void planificador_sjf(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad_bloques);
+void ejecutar_proceso(Proceso *proceso);
 
 // EN PROCESO...
 // BloqueMemoria *inicializar_memoria(int, int); // Inicializar la memoria.

@@ -40,9 +40,10 @@ void imprimir_cola_procesos(Cola *cola)
 {
     Proceso *actual = cola->front;
     fprintf(stdout, "Cola de procesos:\n");
+    long actual_next = (long)actual->next;
     while (actual != NULL)
     {
-        fprintf(stdout, "[PID: %d | Memoria Solicitada: %d | Next: %d]->\n", actual->pid, actual->memoria_solicitada, actual->next);
+        fprintf(stdout, "[PID: %d | Memoria Solicitada: %d | Next: %ld]->\n", actual->pid, actual->memoria_solicitada, actual_next);
         actual = actual->next;
     }
 }
