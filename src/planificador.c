@@ -11,9 +11,27 @@ void enqueue(Cola *cola, Proceso *proceso)
     {
         cola->rear->next = proceso;
     }
-    cola->rear = proceso;                                   // Se actualiza el FINAL de la COLA.
-    proceso->next = NULL;                                   // Se actualiza el SIGUIENTE PROCESO.
-    fprintf(stdout, "Proceso %d encolado\n", proceso->pid); // MENSAJE TEMPORAL.
+    cola->rear = proceso;                                  // Se actualiza el FINAL de la COLA.
+    proceso->next = NULL;                                  // Se actualiza el SIGUIENTE PROCESO.
+    fprintf(stdout, "Proceso %d en COLA\n", proceso->pid); // MENSAJE TEMPORAL.
+}
+
+Proceso *dequeue(Cola *cola)
+{
+    // Sacar de la COLA un PROCESO.
+    if (cola->front == NULL)
+    {
+        return NULL;
+    }
+    Proceso *proceso = cola->front;  // Se obtiene el PROCESO del FRENTE de la COLA.
+    cola->front = cola->front->next; // Se actualiza el FRENTE de la COLA.
+    // Si la COLA está VACÍA, se actualiza el FINAL de la COLA.
+    if (cola->front == NULL)
+    {
+        cola->rear = NULL;
+    }
+    fprintf(stdout, "Proceso %d fuera de COLA\n", proceso->pid); // MENSAJE TEMPORAL.
+    return proceso;
 }
 
 void planificador_fifo(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad_bloques, int tamano_bloque)
