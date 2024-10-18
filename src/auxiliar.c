@@ -11,9 +11,18 @@ void leer_entrada(const char *nombre_archivo, int *tamano_memoria, int *tamano_b
     }
 
     // LEER la cabecera del archivo de entrada (2048 128 ff).
-    fscanf(archivo_entrada, "%d %d %s", tamano_memoria, tamano_bloque, algoritmo_memoria);
+    if (fscanf(archivo_entrada, "%d %d %s", tamano_memoria, tamano_bloque, algoritmo_memoria) != 3)
+    {
+        fprintf(stderr, "Error al leer los valores de la memoria o bloque\n");
+        exit(EXIT_FAILURE);
+    }
     // LEER el algoritmo de planificación (FIFO).
-    fscanf(archivo_entrada, "%s", algoritmo_planificacion);
+    if (fscanf(archivo_entrada, "%s", algoritmo_planificacion) != 1)
+    {
+        fprintf(stderr, "Error al leer el algoritmo de planificación\n");
+        exit(EXIT_FAILURE);
+    }
+
     fprintf(stdout, "Configuración leída correctamente.\n"); // MENSAJE TEMPORAL.
 
     // VARIABLES del PROCESO (vienen del entrada.txt).
