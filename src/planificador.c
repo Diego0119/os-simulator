@@ -1,5 +1,17 @@
 #include "header.h"
 
+// aca se deberia implementar la funcuon que ejecuta los proceso
+void ejecutar_proceso(BloqueMemoria *memoria, Proceso *proceso, int posicion)
+{
+
+    fprintf(stdout, "Proceso %d en ejecución\n", proceso->pid);
+    sleep(proceso->tiempo_rafaga);
+    fprintf(stdout, "Proceso %d ejecutado\n", proceso->pid);
+    // aca se debe liberar la memoria
+    memoria[posicion].estado = 1;
+    memoria[posicion].tamano = 128;
+}
+
 void enqueue(Cola *cola, Proceso *proceso)
 {
     // Poner a la COLA un PROCESO.
@@ -35,26 +47,3 @@ Proceso *dequeue(Cola *cola)
 
     return proceso_extraido;
 }
-
-void imprimir_cola_procesos(Cola *cola)
-{
-    Proceso *actual = cola->front;
-    fprintf(stdout, "Cola de procesos:\n");
-    long actual_next = (long)actual->next;
-    while (actual != NULL)
-    {
-        fprintf(stdout, "[PID: %d | Memoria Solicitada: %d | Next: %ld]->\n", actual->pid, actual->memoria_solicitada, actual_next);
-        actual = actual->next;
-    }
-}
-
-// void planificador_fifo(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad_bloques, int tamano_bloque)
-// {
-//     // Cola cola_espera = {NULL, NULL}; // COLA de procesos en ESPERA.
-//     Proceso *proceso_actual = NULL; // PROCESO actual a evaluar.
-// }
-
-// aca se debe implementar el planificador de short job first
-// void planificador_sjf(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad_bloques)
-// {
-// }

@@ -1,7 +1,8 @@
+// Librerías.
 #include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
+#include <stdio.h>
 
 // Estructura de un proceso. (PASA A SER UNA LISTA PORQUE LA MEMORIA SERÁ VISTA COMO ARREGLO).
 typedef struct Proceso
@@ -27,9 +28,18 @@ typedef struct
     Proceso *rear;  // Final de la cola.
 } Cola;
 
+// Estructura de la CARTA GANTT.
+typedef struct
+{
+    int id;
+    int tiempo_llegada;
+    int tiempo_termino;
+} Gantt;
+
 // Funciones auxiliares.
 void leer_entrada(const char *, int *, int *, char *, char *, Cola *); // Leer la entrada del archivo.
 void asignar_valores_procesos(int, int, int, int, Cola *);             // Asignar valores a los procesos.
+void imprimir_memoria(BloqueMemoria *memoria, int cantidad_bloques);   // Imprimir la memoria.
 
 // Funciones memoria.
 void inicializar_bloques_memoria(BloqueMemoria *, int, int); // Inicializar bloques de memoria.
@@ -38,17 +48,8 @@ void inicializar_bloques_memoria(BloqueMemoria *, int, int); // Inicializar bloq
 void enqueue(Cola *cola, Proceso *proceso);                                                                   // Poner a la COLA un PROCESO.
 void planificador_fifo(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad_bloques, int tamano_bloque); // Planificador FIFO.
 
-void imprimir_memoria(BloqueMemoria *memoria, int cantidad_bloques);
 void imprimir_cola_procesos(Cola *cola);
 void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_bloques);
 Proceso *dequeue(Cola *cola);
 void planificador_sjf(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad_bloques);
-void ejecutar_proceso( BloqueMemoria *, Proceso *, int);
-
-// EN PROCESO...
-// BloqueMemoria *inicializar_memoria(int, int); // Inicializar la memoria.
-// void liberar_memoria(BloqueMemoria *);        // Liberar memoria.
-// void asignar_memoria_ff(BloqueMemoria *, int, int, int);
-// int esta_vacia(Node *Front);
-// void insertar(Proceso proceso, Node *Front, Node *Rear);
-// Proceso extraer(Node *Front, Node *Rear);
+void ejecutar_proceso(BloqueMemoria *, Proceso *, int);

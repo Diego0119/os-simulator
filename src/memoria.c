@@ -11,15 +11,6 @@ void inicializar_bloques_memoria(BloqueMemoria *memoria, int cantidad_bloques, i
     fprintf(stdout, "Bloques inicializados CORRECTAMENTE.\n"); // MENSAJE TEMPORAL.
 }
 
-void imprimir_memoria(BloqueMemoria *memoria, int cantidad_bloques)
-{
-    printf("Memoria del sistema operativo:\n");
-    for (int i = 0; i < cantidad_bloques; i++)
-    {
-        fprintf(stdout, "Bloque %d - Tamaño %d - Estado %d\n", i, memoria[i].tamano, memoria[i].estado); // MENSAJE TEMPORAL.
-    }
-}
-
 // implementacion basica de un first fit
 void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_bloques)
 {
@@ -91,16 +82,4 @@ void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_b
         }
         free(proceso_extraido);
     }
-}
-
-// aca se deberia implementar la funcuon que ejecuta los proceso
-void ejecutar_proceso(BloqueMemoria *memoria, Proceso *proceso, int posicion)
-{
-
-    fprintf(stdout, "Proceso %d en ejecución\n", proceso->pid);
-    sleep(proceso->tiempo_rafaga);
-    fprintf(stdout, "Proceso %d ejecutado\n", proceso->pid);
-    // aca se debe liberar la memoria
-    memoria[posicion].estado = 1;
-    memoria[posicion].tamano = 128;
 }

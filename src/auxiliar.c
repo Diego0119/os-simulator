@@ -46,3 +46,24 @@ void asignar_valores_procesos(int id, int tiempo_llegada, int tiempo_rafaga, int
     enqueue(cola_procesos, nuevo_proceso);
     fprintf(stdout, "Proceso %d encolado CORRECTAMENTE.\n", id); // MENSAJE TEMPORAL.
 }
+
+void imprimir_memoria(BloqueMemoria *memoria, int cantidad_bloques)
+{
+    printf("Memoria del sistema operativo:\n");
+    for (int i = 0; i < cantidad_bloques; i++)
+    {
+        fprintf(stdout, "Bloque %d - Tamaño %d - Estado %d\n", i, memoria[i].tamano, memoria[i].estado); // MENSAJE TEMPORAL.
+    }
+}
+
+void imprimir_cola_procesos(Cola *cola)
+{
+    Proceso *actual = cola->front;
+    fprintf(stdout, "Cola de procesos:\n");
+    long actual_next = (long)actual->next;
+    while (actual != NULL)
+    {
+        fprintf(stdout, "[PID: %d | Memoria Solicitada: %d | Next: %ld]->\n", actual->pid, actual->memoria_solicitada, actual_next);
+        actual = actual->next;
+    }
+}

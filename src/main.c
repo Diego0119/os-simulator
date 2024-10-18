@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[])
 {
-    // Verificar argumentos para la ejecución del programa.
+    // VERIFICAR argumentos para la ejecución del programa.
     if (argc != 3 || strcmp(argv[1], "--file") != 0)
     {
         printf("Error!\nUso: ./simulador --file entrada.txt\n");
@@ -23,19 +23,9 @@ int main(int argc, char *argv[])
     BloqueMemoria memoria[cantidad_bloques];               // ARREGLO de BLOQUES de MEMORIA.
 
     inicializar_bloques_memoria(memoria, cantidad_bloques, tamano_bloque);
-    imprimir_memoria(memoria, cantidad_bloques);              // imprime
+    imprimir_memoria(memoria, cantidad_bloques);
     fprintf(stdout, "Memoria inicializada correctamente.\n"); // MENSAJE TEMPORAL.
     asignar_memoria_procesos(&cola_procesos, memoria, cantidad_bloques);
-
-    // imprimir_memoria(memoria, cantidad_bloques);
-    // EN PROCESO...
-    // BloqueMemoria *memoria;
-    // memoria = leer_entrada(argc, argv); // aca se asignara la memoria que necesita el programa
-    //  char algoritmo_memoria[10], algoritmo_planificacion[10];
-    //  Queue *cola_lista;
-    //  Llamada función lectura archivo.
-    //  Planificar y ejecutar procesos.
-    //  Llamada función output carta gantt (?).
 
     return EXIT_SUCCESS;
 }
