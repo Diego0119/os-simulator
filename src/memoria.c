@@ -14,53 +14,55 @@ void inicializar_bloques_memoria(BloqueMemoria *memoria, int cantidad_bloques, i
 // implementacion basica de un first fit
 void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_bloques)
 {
-    Proceso *proceso_extraido;
-    while ((proceso_extraido = dequeue(cola)) != NULL)
+    Cola *temp_cola = malloc(sizeof(Cola));
+    temp_cola = cola;
+    Proceso *proceso_extraido = malloc(sizeof(Proceso));
+    while (temp_cola->front != NULL)
     {
+        proceso_extraido = dequeue(temp_cola);
+        if (proceso_extraido == NULL)
+        {
+            fprintf(stdout, "No hay procesos en la cola para asignar memoria.\n");
+            return;
+        }
         int tamano_proceso = proceso_extraido->memoria_solicitada;
-        int asignado = 0;
-        int bloques_necesarios = 0; // Contador para los bloques adyacentes necesarios.
-        int inicio_bloques = -1;    // Índice del primer bloque disponible.
-
-        for (int i = 0; i < cantidad_bloques; i++)
+        if (tamano_proceso > 2048)
+        {
+            fprintf(stderr, "No hay suficiente memoria disponible para asignar al proceso %d \n", proceso_extraido->pid);
+            continue;
+        }
+        for (int i = 0; i < cantidad_bloques && tamano_proceso > 0; i++)
         {
             if (memoria[i].estado == 1)
             {
-                if (inicio_bloques == -1) // Primer BLOQUE LIBRE.
-                    inicio_bloques = i;
-
-                bloques_necesarios += memoria[i].tamano;
-
-                if (bloques_necesarios >= tamano_proceso) // Suficiente MEMORIA para el PROCESO.
+                if (memoria[i].tamano >= tamano_proceso)
                 {
-                    // Asignar los BLOQUES.
-                    for (int j = inicio_bloques; j <= i; j++)
-                    {
-                        memoria[j].estado = 0; // Bloque OCUPADO.
-                        tamano_proceso -= memoria[j].tamano;
-                        memoria[j].tamano = 0; // vaciar BLOQUE.
-                    }
+                    fprintf(stdout, "El proceso %d encontró un bloque de memoria libre con suficiente espacio, hasta el bloque %d\n", proceso_extraido->pid, i);
+                    memoria[i].tamano -= tamano_proceso;
+                    memoria[i].estado = 0;
 
-                    // Fragmentación interna en el último bloque asignado.
-                    int fragmentacion_interna = -tamano_proceso; // Fragmentación que SOBRÓ.
+                    tamano_proceso = 0;
+                    int fragmentacion_interna = memoria[i].tamano - tamano_proceso;
                     if (fragmentacion_interna > 0)
-                        fprintf(stdout, "Fragmentación interna: %d KB en bloque %d\n", fragmentacion_interna, i);
-
-                    ejecutar_proceso(memoria, proceso_extraido, inicio_bloques);
-                    asignado = 1;
+                        fprintf(stdout, "Fragmentacion interna: %d KB en el bloque %d\n", fragmentacion_interna, i);
+                    ejecutar_proceso(memoria, proceso_extraido, i);
                     break;
                 }
-            }
-            else // BLOQUE OCUPADO, se reinicia la BÚSQUEDA.
-            {
-                bloques_necesarios = 0;
-                inicio_bloques = -1;
+                else
+                {
+                    tamano_proceso -= memoria[i].tamano;
+                    memoria[i].tamano = 0;
+                    memoria[i].estado = 0;
+                    int fragmentacion_interna = memoria[i].tamano - tamano_proceso;
+                    fprintf(stdout, "Proceso %d en ejecución, bloque (%d)\n", proceso_extraido->pid, i);
+                    ejecutar_proceso(memoria, proceso_extraido, i);
+                    fprintf(stdout, "Proceso %d ejecutado\n", proceso_extraido->pid);
+                    if (fragmentacion_interna > 0)
+                        fprintf(stdout, "Fragmentacion interna: %d KB en el bloque %d\n", fragmentacion_interna, i);
+                }
             }
         }
-
-        if (!asignado)
-            fprintf(stderr, "No hay suficiente memoria adyacente para el proceso %d\n", proceso_extraido->pid);
-
-        free(proceso_extraido); // Liberar la MEMORIA.
+        fprintf(stdout, "Proceso %d asignado exitosamente\n", proceso_extraido->pid);
+        free(proceso_extraido);
     }
 }
