@@ -12,8 +12,8 @@ int main(int argc, char *argv[])
     const char *nombre_archivo = argv[2]; // VARIABLE que GUARDA el NOMBRE del ARCHIVO de ENTRADA.
     int tamano_memoria;                   // VARIABLE del tamaño de la memoria total (2048 KB).
     int tamano_bloque;                    // VARIABLE del tamaño del bloque de memoria (128 KB).
-    char algoritmo_memoria[3];            // VARIABLE que GUARDA el algoritmo de memoria first fit (3 en caso de que se hagan los 3).
-    char algoritmo_planificacion[3];      // VARIABLE que GUARDA el algoritmo de planificación FIFO (3 en caso de que se hagan los 3).
+    char algoritmo_memoria[10];           // VARIABLE que GUARDA el algoritmo de memoria first fit (3 en caso de que se hagan los 3).
+    char algoritmo_planificacion[10];     // VARIABLE que GUARDA el algoritmo de planificación FIFO (3 en caso de que se hagan los 3).
     Cola cola_procesos = {NULL, NULL};    // VARIABLE que GUARDA la COLA de PROCESOS.
 
     leer_entrada(nombre_archivo, &tamano_memoria, &tamano_bloque, algoritmo_memoria, algoritmo_planificacion, &cola_procesos);

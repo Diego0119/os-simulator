@@ -40,16 +40,13 @@ typedef struct
 void leer_entrada(const char *, int *, int *, char *, char *, Cola *); // Leer la entrada del archivo.
 void asignar_valores_procesos(int, int, int, int, Cola *);             // Asignar valores a los procesos.
 void imprimir_memoria(BloqueMemoria *memoria, int cantidad_bloques);   // Imprimir la memoria.
+void imprimir_cola_procesos(Cola *cola);                               // Imprimir la cola de procesos.
+void ejecutar_proceso(BloqueMemoria *, Proceso *, int);
 
 // Funciones memoria.
 void inicializar_bloques_memoria(BloqueMemoria *, int, int); // Inicializar bloques de memoria.
+void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_bloques);
 
 // Funciones planificador.
-void enqueue(Cola *cola, Proceso *proceso);                                                                   // Poner a la COLA un PROCESO.
-void planificador_fifo(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad_bloques, int tamano_bloque); // Planificador FIFO.
-
-void imprimir_cola_procesos(Cola *cola);
-void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_bloques);
-Proceso *dequeue(Cola *cola);
-void planificador_sjf(Cola *cola_procesos, BloqueMemoria *memoria, int cantidad_bloques);
-void ejecutar_proceso(BloqueMemoria *, Proceso *, int);
+void enqueue(Cola *cola, Proceso *proceso);
+Proceso *dequeue(Cola *cola); // Poner a la COLA un PROCESO.

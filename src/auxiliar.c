@@ -67,3 +67,15 @@ void imprimir_cola_procesos(Cola *cola)
         actual = actual->next;
     }
 }
+
+// aca se deberia implementar la funcuon que ejecuta los proceso
+void ejecutar_proceso(BloqueMemoria *memoria, Proceso *proceso, int posicion)
+{
+
+    fprintf(stdout, "Proceso %d en ejecución\n", proceso->pid);
+    sleep(proceso->tiempo_rafaga);
+    fprintf(stdout, "Proceso %d ejecutado\n", proceso->pid);
+    // aca se debe liberar la memoria
+    memoria[posicion].estado = 1;
+    memoria[posicion].tamano = 128;
+}
