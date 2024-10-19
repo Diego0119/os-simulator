@@ -8,45 +8,38 @@
 typedef struct Proceso
 {
     int pid;                // ID del proceso.
-    int tiempo_llegada;     // Tiempo de llegada en segundos.
-    int tiempo_rafaga;      // Tiempo de ejecución en segundos.
-    int memoria_solicitada; // Memoria solicitada en KB.
-    struct Proceso *next;   // Siguiente proceso.
+    int tiempo_llegada;     // Tiempo de LLEGADA en segundos.
+    int tiempo_rafaga;      // Tiempo de EJECUCIÓN en segundos.
+    int memoria_solicitada; // MEMORIA solicitada en KB.
+    struct Proceso *next;   // Siguiente PROCESO.
 } Proceso;
 
 // Estructura de un bloque de memoria. (PASA A SER VISTA COMO UNA MEMORIA DE ARREGLO, HECHA DE BLOQUES).
 typedef struct
 {
-    int tamano; // Tamaño bloque de memoria.
-    int estado; // 1 es bloque libre, 0 es bloque ocupado.
+    int tamano; // Tamaño BLOQUE de memoria.
+    int estado; // 1 es bloque LIBRE, 0 es bloque OCUPADO.
 } BloqueMemoria;
 
 // Estructura de una cola.
 typedef struct
 {
-    Proceso *front; // Frente de la cola.
-    Proceso *rear;  // Final de la cola.
+    Proceso *front; // FRENTE de la cola.
+    Proceso *rear;  // FINAL de la cola.
 } Cola;
 
-// Estructura de la CARTA GANTT.
-typedef struct
-{
-    int id;
-    int tiempo_llegada;
-    int tiempo_termino;
-} Gantt;
+// Funciones AUXILIARES para las funciones de MEMORIA y PLANIFICACIÓN.
+void leer_entrada(const char *, int *, int *, char *, char *, Cola *); // LEER la entrada del ARCHIVO.
+void asignar_valores_procesos(int, int, int, int, Cola *);             // Asignar VALORES a los PROCESOS.
+void imprimir_cola_procesos(Cola *);                                   // Imprimir la COLA de PROCESOS.
+void imprimir_memoria(BloqueMemoria *, int);                           // Imprimir los BLOQUES de MEMORIA INICIALIZADOS.
 
-// Funciones auxiliares.
-void leer_entrada(const char *, int *, int *, char *, char *, Cola *); // Leer la entrada del archivo.
-void asignar_valores_procesos(int, int, int, int, Cola *);             // Asignar valores a los procesos.
-void imprimir_memoria(BloqueMemoria *memoria, int cantidad_bloques);   // Imprimir la memoria.
-void imprimir_cola_procesos(Cola *cola);                               // Imprimir la cola de procesos.
-void ejecutar_proceso(BloqueMemoria *, Proceso *, int);
+// Funciones de MEMORIA FF (First Fit).
+void inicializar_bloques_memoria(BloqueMemoria *, int, int); // Inicializar los BLOQUES de MEMORIA.
+void asignar_memoria_procesos(Cola *, BloqueMemoria *, int); // Asignar MEMORIA a los PROCESOS para la EJECUCIÓN.
+void ejecutar_proceso(BloqueMemoria *, Proceso *, int);      // Simula la ejecución de un proceso de un BLOQUE de MEMORIA.
+void liberar_memoria(BloqueMemoria *, int);                  // Liberar la MEMORIA de un PROCESO.
 
-// Funciones memoria.
-void inicializar_bloques_memoria(BloqueMemoria *, int, int); // Inicializar bloques de memoria.
-void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_bloques);
-
-// Funciones planificador.
-void enqueue(Cola *cola, Proceso *proceso);
-Proceso *dequeue(Cola *cola); // Poner a la COLA un PROCESO.
+// Funciones del PLANIFICADOR FIFO.
+void enqueue(Cola *, Proceso *); // Poner a la COLA un PROCESO.
+Proceso *dequeue(Cola *);        // Sacar de la COLA un PROCESO.

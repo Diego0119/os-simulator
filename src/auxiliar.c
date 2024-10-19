@@ -6,37 +6,30 @@ void leer_entrada(const char *nombre_archivo, int *tamano_memoria, int *tamano_b
     FILE *archivo_entrada = fopen(nombre_archivo, "r");
     if (archivo_entrada == NULL)
     {
-        fprintf(stderr, "Error al abrir el archivo.\n");
+        fprintf(stderr, "ERROR al abrir el archivo, saliendo...\n");
         exit(EXIT_FAILURE);
     }
 
-    // LEER la cabecera del archivo de entrada (2048 128 ff).
+    // LEER la cabecera del archivo de entrada (2048 128 ff) y VERIFICA si los valores son 3.
     if (fscanf(archivo_entrada, "%d %d %s", tamano_memoria, tamano_bloque, algoritmo_memoria) != 3)
     {
-        fprintf(stderr, "Error al leer los valores de la memoria o bloque\n");
+        fprintf(stderr, "ERROR al leer los valores de la memoria o bloque, saliendo...\n");
         exit(EXIT_FAILURE);
     }
-    // LEER el algoritmo de planificación (FIFO).
+
+    // LEER el algoritmo de planificación (FIFO) y VERIFICA si el valor es 1.
     if (fscanf(archivo_entrada, "%s", algoritmo_planificacion) != 1)
     {
         fprintf(stderr, "Error al leer el algoritmo de planificación\n");
         exit(EXIT_FAILURE);
     }
 
-    fprintf(stdout, "Configuración leída correctamente.\n"); // MENSAJE TEMPORAL.
-
-    // VARIABLES del PROCESO (vienen del entrada.txt).
-    int id;
-    int tiempo_llegada;
-    int tiempo_rafaga;
-    int memoria_solicitada;
+    // VARIABLES del PROCESO (vienen de entrada.txt).
+    int id, tiempo_llegada, tiempo_rafaga, memoria_solicitada;
 
     // LEER los PROCESOS del archivo de entrada hasta que llegue al FINAL DEL ARCHIVO.
     while (fscanf(archivo_entrada, "%d %d %d %d", &id, &tiempo_llegada, &tiempo_rafaga, &memoria_solicitada) != EOF)
-    {
         asignar_valores_procesos(id, tiempo_llegada, tiempo_rafaga, memoria_solicitada, cola_procesos);
-        fprintf(stdout, "Procesos leídos CORRECTAMENTE.\n"); // MENSAJE TEMPORAL.
-    }
 
     fclose(archivo_entrada); // CERRAR el archivo de entrada.
 }
@@ -50,38 +43,31 @@ void asignar_valores_procesos(int id, int tiempo_llegada, int tiempo_rafaga, int
     nuevo_proceso->tiempo_rafaga = tiempo_rafaga;
     nuevo_proceso->memoria_solicitada = memoria_solicitada;
     nuevo_proceso->next = NULL;
-    fprintf(stdout, "Proceso %d - T. Llegada %d - T. Ráfaga %d - M. Solicitada %d\n", id, tiempo_llegada, tiempo_rafaga, memoria_solicitada); // MENSAJE TEMPORAL.
+    fprintf(stdout, "Proceso %d - T. Llegada %d - T. Ráfaga %d - M. Solicitada %d\n", id, tiempo_llegada, tiempo_rafaga, memoria_solicitada);
 
     enqueue(cola_procesos, nuevo_proceso);
-    fprintf(stdout, "Proceso %d encolado CORRECTAMENTE.\n", id); // MENSAJE TEMPORAL.
-}
-
-void imprimir_memoria(BloqueMemoria *memoria, int cantidad_bloques)
-{
-    printf("Memoria del sistema operativo:\n");
-    for (int i = 0; i < cantidad_bloques; i++)
-    {
-        fprintf(stdout, "Bloque %d - Tamaño %d - Estado %d\n", i, memoria[i].tamano, memoria[i].estado); // MENSAJE TEMPORAL.
-    }
 }
 
 void imprimir_cola_procesos(Cola *cola)
 {
+    // VARIABLES para la impresión de la COLA.
     Proceso *actual = cola->front;
-    fprintf(stdout, "Cola de procesos:\n");
+    fprintf(stdout, "\nCola de procesos:\n");
     long actual_next = (long)actual->next;
+
+    // Imprimir los PROCESOS que están en la COLA.
     while (actual != NULL)
     {
-        fprintf(stdout, "[PID: %d | Memoria Solicitada: %d | Next: %ld]->\n", actual->pid, actual->memoria_solicitada, actual_next);
+        fprintf(stdout, "[PID: %d]\t[Memoria Solicitada: %d]\t[Next: %ld]->\n", actual->pid, actual->memoria_solicitada, actual_next);
         actual = actual->next;
     }
 }
 
-// aca se deberia implementar la funcuon que ejecuta los proceso
-void ejecutar_proceso(BloqueMemoria *memoria, Proceso *proceso, int posicion)
+void imprimir_memoria(BloqueMemoria *memoria, int cantidad_bloques)
 {
-    sleep(proceso->tiempo_rafaga);
-    // aca se debe liberar la memoria
-    memoria[posicion].estado = 1;
-    memoria[posicion].tamano = 128;
+    // Imprimir los BLOQUES de MEMORIA INICIALIZADOS.
+    fprintf(stdout, "Bloques de memoria del SISTEMA OPERATIVO:\n\n");
+    for (int i = 0; i < cantidad_bloques; i++)
+        fprintf(stdout, "[Bloque %d]\t[Tamaño %d]\t[Estado %d][LIBRE]\n", i, memoria[i].tamano, memoria[i].estado);
+    fprintf(stdout, "\n");
 }
