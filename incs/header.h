@@ -4,7 +4,9 @@
 #include <unistd.h>
 #include <stdio.h>
 
-// Estructura de un proceso. (PASA A SER UNA LISTA PORQUE LA MEMORIA SERÁ VISTA COMO ARREGLO).
+#define MAX_PROCESOS 100 // Máximo de DIAGRAMAS de GANTT.
+
+// Estructura de un PROCESO. (PASA A SER UNA LISTA PORQUE LA MEMORIA SERÁ VISTA COMO ARREGLO).
 typedef struct Proceso
 {
     int pid;                // ID del proceso.
@@ -14,25 +16,35 @@ typedef struct Proceso
     struct Proceso *next;   // Siguiente PROCESO.
 } Proceso;
 
-// Estructura de un bloque de memoria. (PASA A SER VISTA COMO UNA MEMORIA DE ARREGLO, HECHA DE BLOQUES).
+// Estructura de un BLOQUE de MEMORIA. (PASA A SER VISTA COMO UNA MEMORIA DE ARREGLO, HECHA DE BLOQUES).
 typedef struct
 {
     int tamano; // Tamaño BLOQUE de memoria.
     int estado; // 1 es bloque LIBRE, 0 es bloque OCUPADO.
 } BloqueMemoria;
 
-// Estructura de una cola.
+// Estructura de una COLA.
 typedef struct
 {
     Proceso *front; // FRENTE de la cola.
     Proceso *rear;  // FINAL de la cola.
 } Cola;
 
+// Estructura de la carta GANTT
+typedef struct
+{
+    int pid;
+    int tiempo_inicio;
+    int tiempo_final;
+} Gantt;
+
 // Funciones AUXILIARES para las funciones de MEMORIA y PLANIFICACIÓN.
 void leer_entrada(const char *, int *, int *, char *, char *, Cola *); // LEER la entrada del ARCHIVO.
 void asignar_valores_procesos(int, int, int, int, Cola *);             // Asignar VALORES a los PROCESOS.
 void imprimir_cola_procesos(Cola *);                                   // Imprimir la COLA de PROCESOS.
 void imprimir_memoria(BloqueMemoria *, int);                           // Imprimir los BLOQUES de MEMORIA INICIALIZADOS.
+void registrar_tiempos(Gantt *, int, int, int, int *);                 // Registrar los TIEMPOS de los PROCESOS.
+void imprimir_gantt(Gantt *, int);                                     // Imprimir el DIAGRAMA de GANTT.
 
 // Funciones de MEMORIA FF (First Fit).
 void inicializar_bloques_memoria(BloqueMemoria *, int, int); // Inicializar los BLOQUES de MEMORIA.

@@ -17,6 +17,10 @@ void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_b
     temp_cola = cola;
     Proceso *proceso_extraido = malloc(sizeof(Proceso));
 
+    // INICIALIZA el DIAGRAMA de GANTT.
+    Gantt diagrama_gantt[MAX_PROCESOS];
+    int indice = 0, tiempo_global = 0;
+
     // MIENTRAS la COLA de PROCESOS NO esté VACÍA.
     while (temp_cola->front != NULL)
     {
@@ -30,6 +34,7 @@ void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_b
             return;
         }
 
+        int tiempo_inicio = tiempo_global;
         int tamano_proceso = proceso_extraido->memoria_solicitada;
 
         // SI el TAMAÑO del PROCESO es MAYOR a 2048 KB (total memoria).
@@ -48,7 +53,7 @@ void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_b
                 // Si el tamaño de memoria del PROCESO alcanza en un solo BLOQUE hace la signación COMPLETA del BLOQUE, si no, toma más de uno y lo asigna PARCIALMENTE.
                 if (memoria[i].tamano >= tamano_proceso)
                 {
-                    fprintf(stdout, "El proceso %d hizo usó MEMORIA hasta el BLOQUE %d\n", proceso_extraido->pid, i);
+                    fprintf(stdout, "El proceso %d usó MEMORIA hasta el BLOQUE %d\n", proceso_extraido->pid, i);
 
                     // Se le asigna la MEMORIA requerida por el PROCESO al bloque de memoria, la MEMORIA pasa a estar OCUPADA y el tamaño del PROCESO queda en 0.
                     memoria[i].tamano -= tamano_proceso;
@@ -86,10 +91,16 @@ void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_b
             }
         }
 
+        // REGISTRA el tiempo de finalización del PROCESO.
+        tiempo_global += proceso_extraido->tiempo_rafaga;
+        registrar_tiempos(diagrama_gantt, proceso_extraido->pid, tiempo_inicio, proceso_extraido->tiempo_rafaga, &indice);
+
         // El PROCESO terminó y se libera el PROCESO EXTRAÍDO.
         fprintf(stdout, "Proceso %d EJECUTADO EXITOSAMENTE.\n\n", proceso_extraido->pid);
         free(proceso_extraido);
     }
+
+    imprimir_gantt(diagrama_gantt, indice);
 }
 
 void ejecutar_proceso(BloqueMemoria *memoria, Proceso *proceso, int posicion)

@@ -71,3 +71,21 @@ void imprimir_memoria(BloqueMemoria *memoria, int cantidad_bloques)
         fprintf(stdout, "[Bloque %d]\t[Tamaño %d]\t[Estado %d][LIBRE]\n", i, memoria[i].tamano, memoria[i].estado);
     fprintf(stdout, "\n");
 }
+
+void registrar_tiempos(Gantt *diagrama_gantt, int pid, int tiempo_inicio, int tiempo_rafaga, int *indice)
+{
+    // REGISTRAR los TIEMPOS de los PROCESOS.
+    diagrama_gantt[*indice].pid = pid;
+    diagrama_gantt[*indice].tiempo_inicio = tiempo_inicio;
+    diagrama_gantt[*indice].tiempo_final = tiempo_inicio + tiempo_rafaga;
+    (*indice)++;
+}
+
+void imprimir_gantt(Gantt *diagrama_gantt, int num_procesos)
+{
+    // Imprimir el DIAGRAMA de GANTT.
+    fprintf(stdout, "\nDiagrama de Gantt:\n\n");
+    for (int i = 0; i < num_procesos; i++)
+        fprintf(stdout, "[PID: %d]\t[Tiempo Inicio: %d]\t[Tiempo Final: %d]\n", diagrama_gantt[i].pid, diagrama_gantt[i].tiempo_inicio, diagrama_gantt[i].tiempo_final);
+    fprintf(stdout, "\n");
+}
