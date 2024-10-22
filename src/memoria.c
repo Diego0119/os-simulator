@@ -40,7 +40,7 @@ void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_b
         // SI el TAMAÑO del PROCESO es MAYOR a 2048 KB (total memoria).
         if (tamano_proceso > 2048)
         {
-            fprintf(stderr, "No hay suficiente memoria disponible para asignar al proceso %d, pasando al siguiente PROCESO.\n\n", proceso_extraido->pid);
+            fprintf(stderr, "No hay suficiente memoria disponible para asignar al PROCESO %d, pasando al siguiente PROCESO.\n\n", proceso_extraido->pid);
             continue;
         }
 
@@ -101,6 +101,7 @@ void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_b
     }
 
     imprimir_gantt(diagrama_gantt, indice);
+    generar_archivo_gantt(diagrama_gantt, indice, "gantt.eps");
 }
 
 void ejecutar_proceso(BloqueMemoria *memoria, Proceso *proceso, int posicion)

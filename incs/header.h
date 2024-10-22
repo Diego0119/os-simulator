@@ -33,18 +33,20 @@ typedef struct
 // Estructura de la carta GANTT
 typedef struct
 {
-    int pid;
-    int tiempo_inicio;
-    int tiempo_final;
+    int pid;           // ID del PROCESO.
+    int tiempo_inicio; // Tiempo de INICIO.
+    int tiempo_final;  // Tiempo de FINALIZACIÓN.
 } Gantt;
 
 // Funciones AUXILIARES para las funciones de MEMORIA y PLANIFICACIÓN.
-void leer_entrada(const char *, int *, int *, char *, char *, Cola *); // LEER la entrada del ARCHIVO.
-void asignar_valores_procesos(int, int, int, int, Cola *);             // Asignar VALORES a los PROCESOS.
-void imprimir_cola_procesos(Cola *);                                   // Imprimir la COLA de PROCESOS.
-void imprimir_memoria(BloqueMemoria *, int);                           // Imprimir los BLOQUES de MEMORIA INICIALIZADOS.
-void registrar_tiempos(Gantt *, int, int, int, int *);                 // Registrar los TIEMPOS de los PROCESOS.
-void imprimir_gantt(Gantt *, int);                                     // Imprimir el DIAGRAMA de GANTT.
+void leer_entrada(const char *, int *, int *, char *, char *, Cola *);                        // LEER la entrada del ARCHIVO.
+void asignar_valores_procesos(int, int, int, int, Cola *);                                    // Asignar VALORES a los PROCESOS.
+void imprimir_cola_procesos(Cola *);                                                          // Imprimir la COLA de PROCESOS.
+void imprimir_memoria(BloqueMemoria *, int);                                                  // Imprimir los BLOQUES de MEMORIA INICIALIZADOS.
+void registrar_tiempos(Gantt *, int, int, int, int *);                                        // Registrar los TIEMPOS de los PROCESOS.
+void imprimir_gantt(Gantt *, int);                                                            // Imprimir el DIAGRAMA de GANTT.
+void generar_archivo_gantt(Gantt *, int, const char *);                                       // Generar el ARCHIVO EPS que muestra la CARTA GANTT.
+void generar_archivo_gantt(Gantt *diagrama_gantt, int num_procesos, const char *carta_gantt); // Generar el ARCHIVO EPS que muestra la CARTA GANTT.
 
 // Funciones de MEMORIA FF (First Fit).
 void inicializar_bloques_memoria(BloqueMemoria *, int, int); // Inicializar los BLOQUES de MEMORIA.

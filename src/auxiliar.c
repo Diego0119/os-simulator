@@ -84,8 +84,81 @@ void registrar_tiempos(Gantt *diagrama_gantt, int pid, int tiempo_inicio, int ti
 void imprimir_gantt(Gantt *diagrama_gantt, int num_procesos)
 {
     // Imprimir el DIAGRAMA de GANTT.
-    fprintf(stdout, "\nDiagrama de Gantt:\n\n");
+    fprintf(stdout, "Diagrama de Gantt:\n\n");
     for (int i = 0; i < num_procesos; i++)
         fprintf(stdout, "[PID: %d]\t[Tiempo Inicio: %d]\t[Tiempo Final: %d]\n", diagrama_gantt[i].pid, diagrama_gantt[i].tiempo_inicio, diagrama_gantt[i].tiempo_final);
-    fprintf(stdout, "\n");
+}
+
+void generar_archivo_gantt(Gantt *diagrama_gantt, int num_procesos, const char *carta_gantt)
+{
+    // CREA archivo EPS para la CARTA GANTT y VERIFICA si se creó correctamente.
+    FILE *archivo_gantt = fopen(carta_gantt, "w");
+    if (archivo_gantt == NULL)
+    {
+        fprintf(stderr, "ERROR al abrir el archivo de Gantt, saliendo...\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // TAMAÑO del GRÁFICO.
+    int altura_proceso = 50;
+    int margen_inferior = 100, margen_superior = 50, margen_lateral = 100;
+    int ancho_total = 800, altura_total = (num_procesos * altura_proceso) + margen_superior + margen_inferior;
+
+    // COMENZAR el archivo EPS.
+    fprintf(archivo_gantt, "%%!PS-Adobe-3.0 EPSF-3.0\n");
+    fprintf(archivo_gantt, "%%%%BoundingBox: 0 0 %d %d\n", ancho_total + margen_lateral * 2, altura_total);
+
+    for (int i = 0; i < num_procesos; i++)
+    {
+        int tiempo_inicio = diagrama_gantt[i].tiempo_inicio;
+        int tiempo_final = diagrama_gantt[i].tiempo_final;
+        int pid = diagrama_gantt[i].pid;
+
+        int x_inicio = margen_lateral + tiempo_inicio * 10;
+        int x_final = margen_lateral + tiempo_final * 10;
+        int y = margen_inferior + i * altura_proceso;
+
+        // DIBUJAR el RECTÁNGULO del PROCESO.
+        fprintf(archivo_gantt, "newpath\n");
+        fprintf(archivo_gantt, "%d %d moveto\n", x_inicio, y);
+        fprintf(archivo_gantt, "%d %d lineto\n", x_final, y);
+        fprintf(archivo_gantt, "%d %d lineto\n", x_final, y + altura_proceso - 10);
+        fprintf(archivo_gantt, "%d %d lineto\n", x_inicio, y + altura_proceso - 10);
+        fprintf(archivo_gantt, "closepath\n");
+
+        // COLOREAR el RECTÁNGULO del PROCESO.
+        fprintf(archivo_gantt, "0.8 0.8 0.8 setrgbcolor\n");
+        fprintf(archivo_gantt, "fill\n");
+
+        // PINTAR BORDE del RECTÁNGULO.
+        fprintf(archivo_gantt, "0 0 0 setrgbcolor\n");
+        fprintf(archivo_gantt, "stroke\n");
+
+        // ESCRIBIR el ID del PROCESO en el eje Y.
+        fprintf(archivo_gantt, "/Times-Roman findfont 12 scalefont setfont\n");
+        fprintf(archivo_gantt, "%d %d moveto\n", margen_lateral - 50, y + altura_proceso / 2);
+        fprintf(archivo_gantt, "(ID %d) show\n", pid);
+    }
+
+    // DIBUJAR eje X con los TIEMPOS.
+    fprintf(archivo_gantt, "/Times-Roman findfont 12 scalefont setfont\n");
+    for (int j = 0; j < MAX_PROCESOS; j += 5)
+    {
+        int x = margen_lateral + j * 10;
+
+        // DIBUJAR intervalos de 5 RÁFAGAS en el eje X.
+        fprintf(archivo_gantt, "newpath\n");
+        fprintf(archivo_gantt, "%d %d moveto\n", x, margen_inferior - 5);
+        fprintf(archivo_gantt, "%d %d lineto\n", x, margen_inferior + 5);
+        fprintf(archivo_gantt, "stroke\n");
+
+        // ESCRIBIR los TIEMPOS en el eje X.
+        fprintf(archivo_gantt, "%d %d moveto\n", x - 5, margen_inferior - 20);
+        fprintf(archivo_gantt, "(%d) show\n", j);
+    }
+
+    fprintf(archivo_gantt, "showpage\n");
+    fclose(archivo_gantt);
+
+    fprintf(stdout, "\nCARTA GANTT generada EXITOSAMENTE en el ARCHIVO %s\n\n", carta_gantt);
 }
