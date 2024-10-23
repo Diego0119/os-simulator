@@ -34,74 +34,77 @@ void asignar_memoria_procesos(Cola *cola, BloqueMemoria *memoria, int cantidad_b
             return;
         }
 
-        int tiempo_inicio = tiempo_global;
-        int tamano_proceso = proceso_extraido->memoria_solicitada;
-
-        // SI el TAMAÑO del PROCESO es MAYOR a 2048 KB (total memoria).
-        if (tamano_proceso > 2048)
-        {
-            fprintf(stderr, "No hay suficiente memoria disponible para asignar al PROCESO %d, pasando al siguiente PROCESO.\n\n", proceso_extraido->pid);
-            continue;
-        }
-
-        // Asignación de MEMORIA a los PROCESOS.
-        for (int i = 0; i < cantidad_bloques && tamano_proceso > 0; i++)
-        {
-            // Si el BLOQUE está LIBRE.
-            if (memoria[i].estado == 1)
-            {
-                // Si el tamaño de memoria del PROCESO alcanza en un solo BLOQUE hace la signación COMPLETA del BLOQUE, si no, toma más de uno y lo asigna PARCIALMENTE.
-                if (memoria[i].tamano >= tamano_proceso)
-                {
-                    fprintf(stdout, "El proceso %d usó MEMORIA hasta el BLOQUE %d\n", proceso_extraido->pid, i);
-
-                    // Se le asigna la MEMORIA requerida por el PROCESO al bloque de memoria, la MEMORIA pasa a estar OCUPADA y el tamaño del PROCESO queda en 0.
-                    memoria[i].tamano -= tamano_proceso;
-                    memoria[i].estado = 0;
-                    tamano_proceso = 0;
-
-                    // Se calcula la FRAGMENTACIÓN INTERNA.
-                    int fragmentacion_interna = memoria[i].tamano - tamano_proceso;
-
-                    // Si el tamaño de la memoria del PROCESO es mayor a 0, hay fragmentación interna.
-                    if (fragmentacion_interna > 0)
-                        fprintf(stdout, "FRAGMENTACIÓN INTERNA: %d KB en el BLOQUE %d\n", fragmentacion_interna, i);
-
-                    ejecutar_proceso(memoria, proceso_extraido, i);
-                    break;
-                }
-                else
-                {
-                    // Si el tamaño de la memoria del PROCESO es menor al tamaño del BLOQUE, se asigna la MEMORIA PARCIALMENTE, la MEMORIA pasa a estar OCUPADA y el tamaño del BLOQUE queda en 0.
-                    tamano_proceso -= memoria[i].tamano;
-                    memoria[i].tamano = 0;
-                    memoria[i].estado = 0;
-
-                    // Se calcula la FRAGMENTACIÓN INTERNA.
-                    int fragmentacion_interna = memoria[i].tamano - tamano_proceso;
-
-                    fprintf(stdout, "Proceso %d en EJECUCIÓN, bloque (%d)\n", proceso_extraido->pid, i);
-                    ejecutar_proceso(memoria, proceso_extraido, i);
-                    fprintf(stdout, "Proceso %d EJECUTADO.\n", proceso_extraido->pid);
-
-                    // Si el tamaño de la memoria del PROCESO es mayor a 0, hay fragmentación interna.
-                    if (fragmentacion_interna > 0)
-                        fprintf(stdout, "FRAGMENTACIÓN INTERNA: %d KB en el BLOQUE %d\n", fragmentacion_interna, i);
-                }
-            }
-        }
-
-        // REGISTRA el tiempo de finalización del PROCESO.
-        tiempo_global += proceso_extraido->tiempo_rafaga;
-        registrar_tiempos(diagrama_gantt, proceso_extraido->pid, tiempo_inicio, proceso_extraido->tiempo_rafaga, &indice);
-
-        // El PROCESO terminó y se libera el PROCESO EXTRAÍDO.
-        fprintf(stdout, "Proceso %d EJECUTADO EXITOSAMENTE.\n\n", proceso_extraido->pid);
+        manejar_proceso(memoria, proceso_extraido, cantidad_bloques, diagrama_gantt, &tiempo_global, &indice);
         free(proceso_extraido);
     }
 
     imprimir_gantt(diagrama_gantt, indice);
     generar_archivo_gantt(diagrama_gantt, indice, "gantt.eps");
+}
+
+void manejar_proceso(BloqueMemoria *memoria, Proceso *proceso_extraido, int cantidad_bloques, Gantt *diagrama_gantt, int *tiempo_global, int *indice)
+{
+    int tiempo_inicio = *tiempo_global;
+    int tamano_proceso = proceso_extraido->memoria_solicitada;
+
+    // SI el TAMAÑO del PROCESO es MAYOR a 2048 KB (total memoria).
+    if (tamano_proceso > 2048)
+    {
+        fprintf(stderr, "No hay suficiente memoria disponible para asignar al PROCESO %d, pasando al siguiente PROCESO.\n\n", proceso_extraido->pid);
+        return;
+    }
+
+    // Asignación de MEMORIA a los PROCESOS.
+    for (int i = 0; i < cantidad_bloques && tamano_proceso > 0; i++)
+    {
+        // Si el BLOQUE está LIBRE.
+        if (memoria[i].estado == 1)
+        {
+            asignar_bloque_proceso(memoria, proceso_extraido, &tamano_proceso, i);
+        }
+    }
+
+    *tiempo_global += proceso_extraido->tiempo_rafaga;
+    registrar_tiempos(diagrama_gantt, proceso_extraido->pid, tiempo_inicio, proceso_extraido->tiempo_rafaga, indice);
+    fprintf(stdout, "Proceso %d EJECUTADO EXITOSAMENTE.\n\n", proceso_extraido->pid);
+}
+
+void asignar_bloque_proceso(BloqueMemoria *memoria, Proceso *proceso, int *tamano_proceso, int i)
+{
+    // Si el tamaño de memoria del PROCESO alcanza en un solo BLOQUE hace la signación COMPLETA del BLOQUE, si no, toma más de uno y lo asigna PARCIALMENTE.
+    if (memoria[i].tamano >= *tamano_proceso)
+    {
+        fprintf(stdout, "El proceso %d usó MEMORIA hasta el BLOQUE %d\n", proceso->pid, i);
+
+        // Se le asigna la MEMORIA requerida por el PROCESO al bloque de memoria, la MEMORIA pasa a estar OCUPADA y el tamaño del PROCESO queda en 0.
+        memoria[i].tamano -= *tamano_proceso;
+        memoria[i].estado = 0;
+        *tamano_proceso = 0;
+
+        verificar_fragmentacion(memoria, i);
+        ejecutar_proceso(memoria, proceso, i);
+    }
+    else
+    {
+        // Si el tamaño de la memoria del PROCESO es menor al tamaño del BLOQUE, se asigna la MEMORIA PARCIALMENTE, la MEMORIA pasa a estar OCUPADA y el tamaño del BLOQUE queda en 0.
+        *tamano_proceso -= memoria[i].tamano;
+        memoria[i].tamano = 0;
+        memoria[i].estado = 0;
+
+        fprintf(stdout, "Proceso %d en EJECUCIÓN, bloque (%d)\n", proceso->pid, i);
+        ejecutar_proceso(memoria, proceso, i);
+        verificar_fragmentacion(memoria, i);
+    }
+}
+
+void verificar_fragmentacion(BloqueMemoria *memoria, int i)
+{
+    // Calcula la FRAGMENTACIÓN INTERNA.
+    int fragmentacion_interna = memoria[i].tamano;
+
+    // Si el tamaño de la memoria del PROCESO es mayor a 0, hay fragmentación interna.
+    if (fragmentacion_interna > 0)
+        fprintf(stdout, "FRAGMENTACIÓN INTERNA: %d KB en el BLOQUE %d\n", fragmentacion_interna, i);
 }
 
 void ejecutar_proceso(BloqueMemoria *memoria, Proceso *proceso, int posicion)
