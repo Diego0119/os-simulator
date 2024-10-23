@@ -108,6 +108,7 @@ void generar_archivo_gantt(Gantt *diagrama_gantt, int num_procesos, const char *
     fprintf(archivo_gantt, "%%!PS-Adobe-3.0 EPSF-3.0\n");
     fprintf(archivo_gantt, "%%%%BoundingBox: 0 0 %d %d\n", ancho_total + margen_lateral * 2, altura_total);
 
+    // Dibujar los RECTÁNGULOS de los PROCESOS.
     for (int i = 0; i < num_procesos; i++)
     {
         int tiempo_inicio = diagrama_gantt[i].tiempo_inicio;
@@ -127,7 +128,7 @@ void generar_archivo_gantt(Gantt *diagrama_gantt, int num_procesos, const char *
         fprintf(archivo_gantt, "closepath\n");
 
         // COLOREAR el RECTÁNGULO del PROCESO.
-        fprintf(archivo_gantt, "0.8 0.8 0.8 setrgbcolor\n");
+        fprintf(archivo_gantt, "0.207 0.706 0.941 setrgbcolor\n");
         fprintf(archivo_gantt, "fill\n");
 
         // PINTAR BORDE del RECTÁNGULO.
@@ -140,21 +141,30 @@ void generar_archivo_gantt(Gantt *diagrama_gantt, int num_procesos, const char *
         fprintf(archivo_gantt, "(ID %d) show\n", pid);
     }
 
-    // DIBUJAR eje X con los TIEMPOS.
+    // DIBUJAR eje X con los TIEMPOS REALES.
     fprintf(archivo_gantt, "/Times-Roman findfont 12 scalefont setfont\n");
-    for (int j = 0; j < MAX_PROCESOS; j += 5)
+    for (int i = 0; i < num_procesos; i++)
     {
-        int x = margen_lateral + j * 10;
+        int tiempo_inicio = diagrama_gantt[i].tiempo_inicio;
+        int tiempo_final = diagrama_gantt[i].tiempo_final;
 
-        // DIBUJAR intervalos de 5 RÁFAGAS en el eje X.
+        // DIBUJAR el tiempo de INICIO del proceso en el eje X.
+        int x_inicio = margen_lateral + tiempo_inicio * 10;
         fprintf(archivo_gantt, "newpath\n");
-        fprintf(archivo_gantt, "%d %d moveto\n", x, margen_inferior - 5);
-        fprintf(archivo_gantt, "%d %d lineto\n", x, margen_inferior + 5);
+        fprintf(archivo_gantt, "%d %d moveto\n", x_inicio, margen_inferior - 5);
+        fprintf(archivo_gantt, "%d %d lineto\n", x_inicio, margen_inferior + 5);
         fprintf(archivo_gantt, "stroke\n");
+        fprintf(archivo_gantt, "%d %d moveto\n", x_inicio - 5, margen_inferior - 20);
+        fprintf(archivo_gantt, "(%d) show\n", tiempo_inicio);
 
-        // ESCRIBIR los TIEMPOS en el eje X.
-        fprintf(archivo_gantt, "%d %d moveto\n", x - 5, margen_inferior - 20);
-        fprintf(archivo_gantt, "(%d) show\n", j);
+        // DIBUJAR el tiempo FINAL del proceso en el eje X.
+        int x_final = margen_lateral + tiempo_final * 10;
+        fprintf(archivo_gantt, "newpath\n");
+        fprintf(archivo_gantt, "%d %d moveto\n", x_final, margen_inferior - 5);
+        fprintf(archivo_gantt, "%d %d lineto\n", x_final, margen_inferior + 5);
+        fprintf(archivo_gantt, "stroke\n");
+        fprintf(archivo_gantt, "%d %d moveto\n", x_final - 5, margen_inferior - 20);
+        fprintf(archivo_gantt, "(%d) show\n", tiempo_final);
     }
 
     fprintf(archivo_gantt, "showpage\n");
