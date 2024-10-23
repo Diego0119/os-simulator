@@ -1,4 +1,4 @@
-#include "header.h"
+#include "auxiliar.h"
 
 void enqueue(Cola *cola, Proceso *proceso)
 {

@@ -1,4 +1,4 @@
-#include "header.h"
+#include "auxiliar.h"
 
 void leer_entrada(const char *nombre_archivo, int *tamano_memoria, int *tamano_bloque, char *algoritmo_memoria, char *algoritmo_planificacion, Cola *cola_procesos)
 {

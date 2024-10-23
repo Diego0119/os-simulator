@@ -1,4 +1,4 @@
-#include "header.h"
+#include "auxiliar.h"
 
 int main(int argc, char *argv[])
 {

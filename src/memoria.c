@@ -1,4 +1,4 @@
-#include "header.h"
+#include "auxiliar.h"
 
 void inicializar_bloques_memoria(BloqueMemoria *memoria, int cantidad_bloques, int tamano_bloque)
 {
