@@ -31,7 +31,7 @@ typedef struct
     int tiempo_final;  // Tiempo de FINALIZACIÓN.
 } Gantt;
 
-// Prototipos de funciones de planificación
+// Prototipos de funciones de PLANIFICACIÓN
 void enqueue(Cola *cola, Proceso *proceso);
 Proceso *dequeue(Cola *cola);
 

@@ -1,6 +1,8 @@
 #ifndef MEMORIA_H
 #define MEMORIA_H
+
 #define MAX_PROCESOS 100
+
 #include "planificador.h"
 
 // Estructura de un BLOQUE de MEMORIA.
