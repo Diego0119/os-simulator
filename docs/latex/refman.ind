@@ -1,0 +1,190 @@
+\begin{theindex}
+
+  \item {asignar\_bloque\_proceso}
+    \subitem {memoria.c}, \hyperpage{38}
+    \subitem {memoria.h}, \hyperpage{20}
+  \item {asignar\_memoria\_procesos}
+    \subitem {memoria.c}, \hyperpage{39}
+    \subitem {memoria.h}, \hyperpage{21}
+  \item {asignar\_valores\_procesos}
+    \subitem {auxiliar.c}, \hyperpage{29}
+    \subitem {auxiliar.h}, \hyperpage{14}
+  \item {auxiliar.c}
+    \subitem {asignar\_valores\_procesos}, \hyperpage{29}
+    \subitem {generar\_archivo\_gantt}, \hyperpage{29}
+    \subitem {imprimir\_cola\_procesos}, \hyperpage{30}
+    \subitem {imprimir\_gantt}, \hyperpage{31}
+    \subitem {imprimir\_memoria}, \hyperpage{31}
+    \subitem {leer\_entrada}, \hyperpage{32}
+    \subitem {registrar\_tiempos}, \hyperpage{33}
+  \item {auxiliar.h}
+    \subitem {asignar\_valores\_procesos}, \hyperpage{14}
+    \subitem {generar\_archivo\_gantt}, \hyperpage{14}
+    \subitem {imprimir\_cola\_procesos}, \hyperpage{16}
+    \subitem {imprimir\_gantt}, \hyperpage{16}
+    \subitem {imprimir\_memoria}, \hyperpage{16}
+    \subitem {leer\_entrada}, \hyperpage{17}
+    \subitem {registrar\_tiempos}, \hyperpage{18}
+
+  \indexspace
+
+  \item {BloqueMemoria}, \hyperpage{7}
+    \subitem {estado}, \hyperpage{7}
+    \subitem {tamano}, \hyperpage{7}
+
+  \indexspace
+
+  \item {Cola}, \hyperpage{8}
+    \subitem {front}, \hyperpage{8}
+    \subitem {rear}, \hyperpage{8}
+
+  \indexspace
+
+  \item {dequeue}
+    \subitem {planificador.c}, \hyperpage{44}
+    \subitem {planificador.h}, \hyperpage{26}
+
+  \indexspace
+
+  \item {ejecutar\_proceso}
+    \subitem {memoria.c}, \hyperpage{40}
+    \subitem {memoria.h}, \hyperpage{22}
+  \item {enqueue}
+    \subitem {planificador.c}, \hyperpage{44}
+    \subitem {planificador.h}, \hyperpage{26}
+  \item {estado}
+    \subitem {BloqueMemoria}, \hyperpage{7}
+  \item {Estructura de Datos: Simulador Sistema Operativo}, 
+		\hyperpage{1}
+
+  \indexspace
+
+  \item {front}
+    \subitem {Cola}, \hyperpage{8}
+
+  \indexspace
+
+  \item {Gantt}, \hyperpage{9}
+    \subitem {pid}, \hyperpage{9}
+    \subitem {tiempo\_final}, \hyperpage{9}
+    \subitem {tiempo\_inicio}, \hyperpage{9}
+  \item {generar\_archivo\_gantt}
+    \subitem {auxiliar.c}, \hyperpage{29}
+    \subitem {auxiliar.h}, \hyperpage{14}
+
+  \indexspace
+
+  \item {imprimir\_cola\_procesos}
+    \subitem {auxiliar.c}, \hyperpage{30}
+    \subitem {auxiliar.h}, \hyperpage{16}
+  \item {imprimir\_gantt}
+    \subitem {auxiliar.c}, \hyperpage{31}
+    \subitem {auxiliar.h}, \hyperpage{16}
+  \item {imprimir\_memoria}
+    \subitem {auxiliar.c}, \hyperpage{31}
+    \subitem {auxiliar.h}, \hyperpage{16}
+  \item {incs/auxiliar.h}, \hyperpage{13}, \hyperpage{19}
+  \item {incs/memoria.h}, \hyperpage{19}, \hyperpage{25}
+  \item {incs/planificador.h}, \hyperpage{25}, \hyperpage{27}
+  \item {inicializar\_bloques\_memoria}
+    \subitem {memoria.c}, \hyperpage{40}
+    \subitem {memoria.h}, \hyperpage{22}
+
+  \indexspace
+
+  \item {leer\_entrada}
+    \subitem {auxiliar.c}, \hyperpage{32}
+    \subitem {auxiliar.h}, \hyperpage{17}
+  \item {liberar\_memoria}
+    \subitem {memoria.c}, \hyperpage{40}
+    \subitem {memoria.h}, \hyperpage{23}
+
+  \indexspace
+
+  \item {main}
+    \subitem {main.c}, \hyperpage{36}
+  \item {main.c}
+    \subitem {main}, \hyperpage{36}
+  \item {manejar\_proceso}
+    \subitem {memoria.c}, \hyperpage{41}
+    \subitem {memoria.h}, \hyperpage{23}
+  \item {MAX\_PROCESOS}
+    \subitem {memoria.h}, \hyperpage{20}
+  \item {memoria.c}
+    \subitem {asignar\_bloque\_proceso}, \hyperpage{38}
+    \subitem {asignar\_memoria\_procesos}, \hyperpage{39}
+    \subitem {ejecutar\_proceso}, \hyperpage{40}
+    \subitem {inicializar\_bloques\_memoria}, \hyperpage{40}
+    \subitem {liberar\_memoria}, \hyperpage{40}
+    \subitem {manejar\_proceso}, \hyperpage{41}
+    \subitem {verificar\_fragmentacion}, \hyperpage{41}
+  \item {memoria.h}
+    \subitem {asignar\_bloque\_proceso}, \hyperpage{20}
+    \subitem {asignar\_memoria\_procesos}, \hyperpage{21}
+    \subitem {ejecutar\_proceso}, \hyperpage{22}
+    \subitem {inicializar\_bloques\_memoria}, \hyperpage{22}
+    \subitem {liberar\_memoria}, \hyperpage{23}
+    \subitem {manejar\_proceso}, \hyperpage{23}
+    \subitem {MAX\_PROCESOS}, \hyperpage{20}
+    \subitem {verificar\_fragmentacion}, \hyperpage{24}
+  \item {memoria\_solicitada}
+    \subitem {Proceso}, \hyperpage{10}
+
+  \indexspace
+
+  \item {next}
+    \subitem {Proceso}, \hyperpage{10}
+
+  \indexspace
+
+  \item {pid}
+    \subitem {Gantt}, \hyperpage{9}
+    \subitem {Proceso}, \hyperpage{10}
+  \item {planificador.c}
+    \subitem {dequeue}, \hyperpage{44}
+    \subitem {enqueue}, \hyperpage{44}
+  \item {planificador.h}
+    \subitem {dequeue}, \hyperpage{26}
+    \subitem {enqueue}, \hyperpage{26}
+  \item {Proceso}, \hyperpage{10}
+    \subitem {memoria\_solicitada}, \hyperpage{10}
+    \subitem {next}, \hyperpage{10}
+    \subitem {pid}, \hyperpage{10}
+    \subitem {tiempo\_llegada}, \hyperpage{10}
+    \subitem {tiempo\_rafaga}, \hyperpage{11}
+
+  \indexspace
+
+  \item {rear}
+    \subitem {Cola}, \hyperpage{8}
+  \item {registrar\_tiempos}
+    \subitem {auxiliar.c}, \hyperpage{33}
+    \subitem {auxiliar.h}, \hyperpage{18}
+
+  \indexspace
+
+  \item {src/auxiliar.c}, \hyperpage{28}, \hyperpage{33}
+  \item {src/main.c}, \hyperpage{35}, \hyperpage{37}
+  \item {src/memoria.c}, \hyperpage{37}, \hyperpage{42}
+  \item {src/planificador.c}, \hyperpage{43}, \hyperpage{45}
+
+  \indexspace
+
+  \item {tamano}
+    \subitem {BloqueMemoria}, \hyperpage{7}
+  \item {tiempo\_final}
+    \subitem {Gantt}, \hyperpage{9}
+  \item {tiempo\_inicio}
+    \subitem {Gantt}, \hyperpage{9}
+  \item {tiempo\_llegada}
+    \subitem {Proceso}, \hyperpage{10}
+  \item {tiempo\_rafaga}
+    \subitem {Proceso}, \hyperpage{11}
+
+  \indexspace
+
+  \item {verificar\_fragmentacion}
+    \subitem {memoria.c}, \hyperpage{41}
+    \subitem {memoria.h}, \hyperpage{24}
+
+\end{theindex}

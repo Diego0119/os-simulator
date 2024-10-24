@@ -1,0 +1,44 @@
+\doxysection{main.\+c}
+\hypertarget{main_8c_source}{}\label{main_8c_source}\index{src/main.c@{src/main.c}}
+\mbox{\hyperlink{main_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{auxiliar_8h}{auxiliar.h}}"{}}\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00018}\mbox{\hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{00018}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[])}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00019}00019\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00046}00046\ \ \ \ \ \textcolor{keywordtype}{int}\ opt;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00047}00047\ \ \ \ \ \textcolor{keywordtype}{char}\ *nombre\_archivo\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{while}\ ((opt\ =\ getopt(argc,\ argv,\ \textcolor{stringliteral}{"{}hf:"{}}))\ !=\ -\/1)}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00049}00049\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (opt)}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00051}00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'h'}:}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}\(\backslash\)nPara\ leer\ sus\ procesos,\ porfavor\ coloque\ el\ parametro\ <-\/f>\ <nombre\_archivo.txt>\(\backslash\)n\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'f'}:}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ nombre\_archivo\ =\ optarg;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nArchivo:\ \%s\(\backslash\)n\(\backslash\)n"{}},\ nombre\_archivo);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'?'}:}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Opción\ no\ reconocida:\ -\/\%c\(\backslash\)n"{}},\ optopt);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Uso:\ \%s\ [-\/h]\ [-\/f\ filename]\(\backslash\)n"{}},\ argv[0]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00065}00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00066}00066\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00083}00083\ \ \ \ \ \textcolor{keywordtype}{int}\ tamano\_memoria,\ tamano\_bloque;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00084}00084\ \ \ \ \ \textcolor{keywordtype}{char}\ algoritmo\_memoria[10],\ algoritmo\_planificacion[10];}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00085}00085\ \ \ \ \ \mbox{\hyperlink{structCola}{Cola}}\ cola\_procesos\ =\ \{NULL,\ NULL\};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00086}00086\ \ \ \ \ \mbox{\hyperlink{auxiliar_8c_a0ce4edd5ee3a1e5ad1c1686031102935}{leer\_entrada}}(nombre\_archivo,\ \&tamano\_memoria,\ \&tamano\_bloque,\ algoritmo\_memoria,\ algoritmo\_planificacion,\ \&cola\_procesos);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00087}00087\ \ \ \ \ \textcolor{keywordtype}{int}\ cantidad\_bloques\ =\ tamano\_memoria\ /\ tamano\_bloque;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00088}00088\ \ \ \ \ \mbox{\hyperlink{structBloqueMemoria}{BloqueMemoria}}\ memoria[cantidad\_bloques];}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00089}00089\ \ \ \ \ \mbox{\hyperlink{memoria_8c_a2f55ed34e9328798cb499cd78ca343c5}{inicializar\_bloques\_memoria}}(memoria,\ cantidad\_bloques,\ tamano\_bloque);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00090}00090\ \ \ \ \ \mbox{\hyperlink{auxiliar_8c_a84cf1bd786834d184e87454dc8c9be92}{imprimir\_memoria}}(memoria,\ cantidad\_bloques);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00091}00091\ \ \ \ \ \mbox{\hyperlink{memoria_8c_a4481f3adeab9c9d90bd8e14cfde4b2bc}{asignar\_memoria\_procesos}}(\&cola\_procesos,\ memoria,\ cantidad\_bloques);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00092}00092\ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00093}00093\ \}}
+
+\end{DoxyCode}

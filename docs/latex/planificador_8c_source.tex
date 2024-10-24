@@ -1,0 +1,35 @@
+\doxysection{planificador.\+c}
+\hypertarget{planificador_8c_source}{}\label{planificador_8c_source}\index{src/planificador.c@{src/planificador.c}}
+\mbox{\hyperlink{planificador_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{auxiliar_8h}{auxiliar.h}}"{}}\ }
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00020}\mbox{\hyperlink{planificador_8c_a80852b5b1c4482c393fbdbe0676ae2b0}{00020}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{planificador_8c_a80852b5b1c4482c393fbdbe0676ae2b0}{enqueue}}(\mbox{\hyperlink{structCola}{Cola}}\ *cola,\ \mbox{\hyperlink{structProceso}{Proceso}}\ *proceso)}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (cola-\/>rear\ ==\ NULL)}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00037}00037\ \ \ \ \ \ \ \ \ cola-\/>front\ =\ proceso;}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00039}00039\ \ \ \ \ \ \ \ \ cola-\/>rear-\/>next\ =\ proceso;}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00040}00040\ \ \ \ \ cola-\/>rear\ =\ proceso;}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00041}00041\ \ \ \ \ proceso-\/>next\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00042}00042\ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}Proceso\ \%d\ encolado\ CORRECTANENTE.\(\backslash\)n"{}},\ proceso-\/>pid);}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00043}00043\ \ \ \ \ \mbox{\hyperlink{auxiliar_8c_ac8280e8c3c9c374d88d867cf11c373d5}{imprimir\_cola\_procesos}}(cola);}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00044}00044\ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00052}\mbox{\hyperlink{planificador_8c_a23a124840d5dd17458489403c6e0fca8}{00052}}\ \mbox{\hyperlink{structProceso}{Proceso}}\ *\mbox{\hyperlink{planificador_8c_a23a124840d5dd17458489403c6e0fca8}{dequeue}}(\mbox{\hyperlink{structCola}{Cola}}\ *cola)}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00053}00053\ \{}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00064}00064\ \ \ \ \ \textcolor{keywordflow}{if}\ (cola-\/>front\ ==\ NULL)}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00065}00065\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00066}00066\ \ \ \ \ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}La\ cola\ está\ vacía.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00067}00067\ \ \ \ \ \ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00068}00068\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00069}00069\ \ \ \ \ \mbox{\hyperlink{structProceso}{Proceso}}\ *proceso\_extraido\ =\ cola-\/>front;}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00070}00070\ \ \ \ \ cola-\/>front\ =\ cola-\/>front-\/>next;}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00071}00071\ \ \ \ \ \textcolor{keywordflow}{if}\ (cola-\/>front\ ==\ NULL)}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00072}00072\ \ \ \ \ \ \ \ \ cola-\/>rear\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{return}\ proceso\_extraido;}
+\DoxyCodeLine{\Hypertarget{planificador_8c_source_l00074}00074\ \}}
+
+\end{DoxyCode}

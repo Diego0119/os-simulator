@@ -1,0 +1,99 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Estructura de Datos\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}: Simulador Sistema Operativo}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Descripción}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Funcionamiento}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Documentación}{2}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Class Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Class List}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}File Index}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}File List}{5}{section.3.1}%
+\contentsline {chapter}{\numberline {4}Class Documentation}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Bloque\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Memoria Struct Reference}{7}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{7}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Member Data Documentation}{7}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}estado}{7}{subsubsection.4.1.2.1}%
+\contentsline {subsubsection}{\numberline {4.1.2.2}tamano}{8}{subsubsection.4.1.2.2}%
+\contentsline {section}{\numberline {4.2}Cola Struct Reference}{8}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Detailed Description}{8}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Member Data Documentation}{8}{subsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.1}front}{8}{subsubsection.4.2.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2.2}rear}{8}{subsubsection.4.2.2.2}%
+\contentsline {section}{\numberline {4.3}Gantt Struct Reference}{9}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{9}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Member Data Documentation}{9}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}pid}{9}{subsubsection.4.3.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.2.2}tiempo\_final}{9}{subsubsection.4.3.2.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.3}tiempo\_inicio}{9}{subsubsection.4.3.2.3}%
+\contentsline {section}{\numberline {4.4}Proceso Struct Reference}{10}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Detailed Description}{10}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Member Data Documentation}{10}{subsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.2.1}memoria\_solicitada}{10}{subsubsection.4.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.4.2.2}next}{10}{subsubsection.4.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.4.2.3}pid}{10}{subsubsection.4.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.4.2.4}tiempo\_llegada}{11}{subsubsection.4.4.2.4}%
+\contentsline {subsubsection}{\numberline {4.4.2.5}tiempo\_rafaga}{11}{subsubsection.4.4.2.5}%
+\contentsline {chapter}{\numberline {5}File Documentation}{13}{chapter.5}%
+\contentsline {section}{\numberline {5.1}incs/auxiliar.h File Reference}{13}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Detailed Description}{13}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Function Documentation}{14}{subsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.1}asignar\_valores\_procesos()}{14}{subsubsection.5.1.2.1}%
+\contentsline {subsubsection}{\numberline {5.1.2.2}generar\_archivo\_gantt()}{14}{subsubsection.5.1.2.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.3}imprimir\_cola\_procesos()}{16}{subsubsection.5.1.2.3}%
+\contentsline {subsubsection}{\numberline {5.1.2.4}imprimir\_gantt()}{16}{subsubsection.5.1.2.4}%
+\contentsline {subsubsection}{\numberline {5.1.2.5}imprimir\_memoria()}{16}{subsubsection.5.1.2.5}%
+\contentsline {subsubsection}{\numberline {5.1.2.6}leer\_entrada()}{17}{subsubsection.5.1.2.6}%
+\contentsline {subsubsection}{\numberline {5.1.2.7}registrar\_tiempos()}{18}{subsubsection.5.1.2.7}%
+\contentsline {section}{\numberline {5.2}auxiliar.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{19}{section.5.2}%
+\contentsline {section}{\numberline {5.3}incs/memoria.h File Reference}{19}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Detailed Description}{20}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Macro Definition Documentation}{20}{subsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.2.1}MAX\_PROCESOS}{20}{subsubsection.5.3.2.1}%
+\contentsline {subsection}{\numberline {5.3.3}Function Documentation}{20}{subsection.5.3.3}%
+\contentsline {subsubsection}{\numberline {5.3.3.1}asignar\_bloque\_proceso()}{20}{subsubsection.5.3.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.3.2}asignar\_memoria\_procesos()}{21}{subsubsection.5.3.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3.3}ejecutar\_proceso()}{22}{subsubsection.5.3.3.3}%
+\contentsline {subsubsection}{\numberline {5.3.3.4}inicializar\_bloques\_memoria()}{22}{subsubsection.5.3.3.4}%
+\contentsline {subsubsection}{\numberline {5.3.3.5}liberar\_memoria()}{23}{subsubsection.5.3.3.5}%
+\contentsline {subsubsection}{\numberline {5.3.3.6}manejar\_proceso()}{23}{subsubsection.5.3.3.6}%
+\contentsline {subsubsection}{\numberline {5.3.3.7}verificar\_fragmentacion()}{24}{subsubsection.5.3.3.7}%
+\contentsline {section}{\numberline {5.4}memoria.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{25}{section.5.4}%
+\contentsline {section}{\numberline {5.5}incs/planificador.h File Reference}{25}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Detailed Description}{26}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Function Documentation}{26}{subsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.2.1}dequeue()}{26}{subsubsection.5.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.5.2.2}enqueue()}{27}{subsubsection.5.5.2.2}%
+\contentsline {section}{\numberline {5.6}planificador.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{27}{section.5.6}%
+\contentsline {section}{\numberline {5.7}src/auxiliar.c File Reference}{28}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}Detailed Description}{28}{subsection.5.7.1}%
+\contentsline {subsection}{\numberline {5.7.2}Function Documentation}{29}{subsection.5.7.2}%
+\contentsline {subsubsection}{\numberline {5.7.2.1}asignar\_valores\_procesos()}{29}{subsubsection.5.7.2.1}%
+\contentsline {subsubsection}{\numberline {5.7.2.2}generar\_archivo\_gantt()}{29}{subsubsection.5.7.2.2}%
+\contentsline {subsubsection}{\numberline {5.7.2.3}imprimir\_cola\_procesos()}{31}{subsubsection.5.7.2.3}%
+\contentsline {subsubsection}{\numberline {5.7.2.4}imprimir\_gantt()}{31}{subsubsection.5.7.2.4}%
+\contentsline {subsubsection}{\numberline {5.7.2.5}imprimir\_memoria()}{31}{subsubsection.5.7.2.5}%
+\contentsline {subsubsection}{\numberline {5.7.2.6}leer\_entrada()}{32}{subsubsection.5.7.2.6}%
+\contentsline {subsubsection}{\numberline {5.7.2.7}registrar\_tiempos()}{33}{subsubsection.5.7.2.7}%
+\contentsline {section}{\numberline {5.8}auxiliar.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{33}{section.5.8}%
+\contentsline {section}{\numberline {5.9}src/main.c File Reference}{35}{section.5.9}%
+\contentsline {subsection}{\numberline {5.9.1}Detailed Description}{36}{subsection.5.9.1}%
+\contentsline {subsection}{\numberline {5.9.2}Function Documentation}{36}{subsection.5.9.2}%
+\contentsline {subsubsection}{\numberline {5.9.2.1}main()}{36}{subsubsection.5.9.2.1}%
+\contentsline {section}{\numberline {5.10}main.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{37}{section.5.10}%
+\contentsline {section}{\numberline {5.11}src/memoria.c File Reference}{37}{section.5.11}%
+\contentsline {subsection}{\numberline {5.11.1}Detailed Description}{38}{subsection.5.11.1}%
+\contentsline {subsection}{\numberline {5.11.2}Function Documentation}{38}{subsection.5.11.2}%
+\contentsline {subsubsection}{\numberline {5.11.2.1}asignar\_bloque\_proceso()}{38}{subsubsection.5.11.2.1}%
+\contentsline {subsubsection}{\numberline {5.11.2.2}asignar\_memoria\_procesos()}{39}{subsubsection.5.11.2.2}%
+\contentsline {subsubsection}{\numberline {5.11.2.3}ejecutar\_proceso()}{40}{subsubsection.5.11.2.3}%
+\contentsline {subsubsection}{\numberline {5.11.2.4}inicializar\_bloques\_memoria()}{40}{subsubsection.5.11.2.4}%
+\contentsline {subsubsection}{\numberline {5.11.2.5}liberar\_memoria()}{41}{subsubsection.5.11.2.5}%
+\contentsline {subsubsection}{\numberline {5.11.2.6}manejar\_proceso()}{41}{subsubsection.5.11.2.6}%
+\contentsline {subsubsection}{\numberline {5.11.2.7}verificar\_fragmentacion()}{42}{subsubsection.5.11.2.7}%
+\contentsline {section}{\numberline {5.12}memoria.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{42}{section.5.12}%
+\contentsline {section}{\numberline {5.13}src/planificador.c File Reference}{43}{section.5.13}%
+\contentsline {subsection}{\numberline {5.13.1}Detailed Description}{44}{subsection.5.13.1}%
+\contentsline {subsection}{\numberline {5.13.2}Function Documentation}{44}{subsection.5.13.2}%
+\contentsline {subsubsection}{\numberline {5.13.2.1}dequeue()}{44}{subsubsection.5.13.2.1}%
+\contentsline {subsubsection}{\numberline {5.13.2.2}enqueue()}{44}{subsubsection.5.13.2.2}%
+\contentsline {section}{\numberline {5.14}planificador.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{45}{section.5.14}%
+\contentsline {chapter}{Index}{47}{section*.16}%

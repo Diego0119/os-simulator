@@ -1,0 +1,105 @@
+\doxysection{Proceso Struct Reference}
+\hypertarget{structProceso}{}\label{structProceso}\index{Proceso@{Proceso}}
+
+
+Estructura de un PROCESO.  
+
+
+
+
+{\ttfamily \#include $<$planificador.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structProceso_a49cf2fdd75f27a82a7b013acc91f8baf}{pid}}
+\item 
+int \mbox{\hyperlink{structProceso_a9d3091034c6d30d0cf571466252cd6ef}{tiempo\+\_\+llegada}}
+\item 
+int \mbox{\hyperlink{structProceso_a0b39a71fc23b28725ecf1f4cea29ea21}{tiempo\+\_\+rafaga}}
+\item 
+int \mbox{\hyperlink{structProceso_af3a0b6bcc5f9836a8a7006a983b56a8c}{memoria\+\_\+solicitada}}
+\item 
+struct \mbox{\hyperlink{structProceso}{Proceso}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structProceso_a58e73fc2d5b151d8ec57a9c46a5cf82c}{next}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Estructura de un PROCESO. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structProceso}{Proceso}}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ pid;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ tiempo\_llegada;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ tiempo\_rafaga;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ memoria\_solicitada;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structProceso}{Proceso}}\ *next;}
+\DoxyCodeLine{\}\ \mbox{\hyperlink{structProceso}{Proceso}};}
+
+\end{DoxyCode}
+
+
+En esta estructura se define un PROCESO con un ID, tiempo de llegada, tiempo de ráfaga, memoria solicitada y un puntero al siguiente PROCESO. 
+
+Definition at line \mbox{\hyperlink{planificador_8h_source_l00034}{34}} of file \mbox{\hyperlink{planificador_8h_source}{planificador.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structProceso_af3a0b6bcc5f9836a8a7006a983b56a8c}\index{Proceso@{Proceso}!memoria\_solicitada@{memoria\_solicitada}}
+\index{memoria\_solicitada@{memoria\_solicitada}!Proceso@{Proceso}}
+\doxysubsubsection{\texorpdfstring{memoria\_solicitada}{memoria\_solicitada}}
+{\footnotesize\ttfamily \label{structProceso_af3a0b6bcc5f9836a8a7006a983b56a8c} 
+int Proceso\+::memoria\+\_\+solicitada}
+
+
+
+Definition at line \mbox{\hyperlink{planificador_8h_source_l00039}{39}} of file \mbox{\hyperlink{planificador_8h_source}{planificador.\+h}}.
+
+\Hypertarget{structProceso_a58e73fc2d5b151d8ec57a9c46a5cf82c}\index{Proceso@{Proceso}!next@{next}}
+\index{next@{next}!Proceso@{Proceso}}
+\doxysubsubsection{\texorpdfstring{next}{next}}
+{\footnotesize\ttfamily \label{structProceso_a58e73fc2d5b151d8ec57a9c46a5cf82c} 
+struct \mbox{\hyperlink{structProceso}{Proceso}}\texorpdfstring{$\ast$}{*} Proceso\+::next}
+
+
+
+Definition at line \mbox{\hyperlink{planificador_8h_source_l00040}{40}} of file \mbox{\hyperlink{planificador_8h_source}{planificador.\+h}}.
+
+\Hypertarget{structProceso_a49cf2fdd75f27a82a7b013acc91f8baf}\index{Proceso@{Proceso}!pid@{pid}}
+\index{pid@{pid}!Proceso@{Proceso}}
+\doxysubsubsection{\texorpdfstring{pid}{pid}}
+{\footnotesize\ttfamily \label{structProceso_a49cf2fdd75f27a82a7b013acc91f8baf} 
+int Proceso\+::pid}
+
+
+
+Definition at line \mbox{\hyperlink{planificador_8h_source_l00036}{36}} of file \mbox{\hyperlink{planificador_8h_source}{planificador.\+h}}.
+
+\Hypertarget{structProceso_a9d3091034c6d30d0cf571466252cd6ef}\index{Proceso@{Proceso}!tiempo\_llegada@{tiempo\_llegada}}
+\index{tiempo\_llegada@{tiempo\_llegada}!Proceso@{Proceso}}
+\doxysubsubsection{\texorpdfstring{tiempo\_llegada}{tiempo\_llegada}}
+{\footnotesize\ttfamily \label{structProceso_a9d3091034c6d30d0cf571466252cd6ef} 
+int Proceso\+::tiempo\+\_\+llegada}
+
+
+
+Definition at line \mbox{\hyperlink{planificador_8h_source_l00037}{37}} of file \mbox{\hyperlink{planificador_8h_source}{planificador.\+h}}.
+
+\Hypertarget{structProceso_a0b39a71fc23b28725ecf1f4cea29ea21}\index{Proceso@{Proceso}!tiempo\_rafaga@{tiempo\_rafaga}}
+\index{tiempo\_rafaga@{tiempo\_rafaga}!Proceso@{Proceso}}
+\doxysubsubsection{\texorpdfstring{tiempo\_rafaga}{tiempo\_rafaga}}
+{\footnotesize\ttfamily \label{structProceso_a0b39a71fc23b28725ecf1f4cea29ea21} 
+int Proceso\+::tiempo\+\_\+rafaga}
+
+
+
+Definition at line \mbox{\hyperlink{planificador_8h_source_l00038}{38}} of file \mbox{\hyperlink{planificador_8h_source}{planificador.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+incs/\mbox{\hyperlink{planificador_8h}{planificador.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,387 @@
+\doxysection{src/auxiliar.c File Reference}
+\hypertarget{auxiliar_8c}{}\label{auxiliar_8c}\index{src/auxiliar.c@{src/auxiliar.c}}
+
+
+Funciones auxiliares.  
+
+
+{\ttfamily \#include "{}auxiliar.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{auxiliar_8c_a0ce4edd5ee3a1e5ad1c1686031102935}{leer\+\_\+entrada}} (const char \texorpdfstring{$\ast$}{*}nombre\+\_\+archivo, int \texorpdfstring{$\ast$}{*}tamano\+\_\+memoria, int \texorpdfstring{$\ast$}{*}tamano\+\_\+bloque, char \texorpdfstring{$\ast$}{*}algoritmo\+\_\+memoria, char \texorpdfstring{$\ast$}{*}algoritmo\+\_\+planificacion, \mbox{\hyperlink{structCola}{Cola}} \texorpdfstring{$\ast$}{*}cola\+\_\+procesos)
+\begin{DoxyCompactList}\small\item\em \texorpdfstring{$<$}{<} Librería que contiene las funciones auxiliares. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{auxiliar_8c_a3860ca319d78fce82d7096aad7c01b98}{asignar\+\_\+valores\+\_\+procesos}} (int id, int tiempo\+\_\+llegada, int tiempo\+\_\+rafaga, int memoria\+\_\+solicitada, \mbox{\hyperlink{structCola}{Cola}} \texorpdfstring{$\ast$}{*}cola\+\_\+procesos)
+\begin{DoxyCompactList}\small\item\em Crea un nuevo PROCESO y le asigna los VALORES. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{auxiliar_8c_ac8280e8c3c9c374d88d867cf11c373d5}{imprimir\+\_\+cola\+\_\+procesos}} (\mbox{\hyperlink{structCola}{Cola}} \texorpdfstring{$\ast$}{*}cola)
+\begin{DoxyCompactList}\small\item\em Imprime la COLA de PROCESOS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{auxiliar_8c_a84cf1bd786834d184e87454dc8c9be92}{imprimir\+\_\+memoria}} (\mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}memoria, int cantidad\+\_\+bloques)
+\begin{DoxyCompactList}\small\item\em Imprime los BLOQUES de MEMORIA INICIALIZADOS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{auxiliar_8c_af860b43b9483727416483393e9927a37}{registrar\+\_\+tiempos}} (\mbox{\hyperlink{structGantt}{Gantt}} \texorpdfstring{$\ast$}{*}diagrama\+\_\+gantt, int pid, int tiempo\+\_\+inicio, int tiempo\+\_\+rafaga, int \texorpdfstring{$\ast$}{*}indice)
+\begin{DoxyCompactList}\small\item\em Registra los TIEMPOS de los PROCESOS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{auxiliar_8c_a538bd84a9975c728e696aa3586475c8d}{imprimir\+\_\+gantt}} (\mbox{\hyperlink{structGantt}{Gantt}} \texorpdfstring{$\ast$}{*}diagrama\+\_\+gantt, int num\+\_\+procesos)
+\begin{DoxyCompactList}\small\item\em Imprime el DIAGRAMA de GANTT. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{auxiliar_8c_ad55ebb88b181a48fad7400a82e6f9d90}{generar\+\_\+archivo\+\_\+gantt}} (\mbox{\hyperlink{structGantt}{Gantt}} \texorpdfstring{$\ast$}{*}diagrama\+\_\+gantt, int num\+\_\+procesos, const char \texorpdfstring{$\ast$}{*}carta\+\_\+gantt)
+\begin{DoxyCompactList}\small\item\em Genera el ARCHIVO EPS que muestra la CARTA GANTT. Al final se convierte el archivo EPS a PNG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Funciones auxiliares. 
+
+\begin{DoxyDate}{Date}
+24-\/10-\/2024 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Authors}
+Miguel Loaiza, Diego Sanhueza y Oscar Cifuentes 
+\end{DoxyAuthor}
+Contiene las funciones auxiliares que son utilizadas para el correcto funcionamiento de los archivos de MEMORIA y PLANIFICACIÓN. 
+
+Definition in file \mbox{\hyperlink{auxiliar_8c_source}{auxiliar.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{auxiliar_8c_a3860ca319d78fce82d7096aad7c01b98}\index{auxiliar.c@{auxiliar.c}!asignar\_valores\_procesos@{asignar\_valores\_procesos}}
+\index{asignar\_valores\_procesos@{asignar\_valores\_procesos}!auxiliar.c@{auxiliar.c}}
+\doxysubsubsection{\texorpdfstring{asignar\_valores\_procesos()}{asignar\_valores\_procesos()}}
+{\footnotesize\ttfamily \label{auxiliar_8c_a3860ca319d78fce82d7096aad7c01b98} 
+void asignar\+\_\+valores\+\_\+procesos (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{int}]{tiempo\+\_\+llegada}{, }\item[{int}]{tiempo\+\_\+rafaga}{, }\item[{int}]{memoria\+\_\+solicitada}{, }\item[{\mbox{\hyperlink{structCola}{Cola}} \texorpdfstring{$\ast$}{*}}]{cola\+\_\+procesos}{}\end{DoxyParamCaption})}
+
+
+
+Crea un nuevo PROCESO y le asigna los VALORES. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & ID del proceso. \\
+\hline
+{\em tiempo\+\_\+llegada} & Tiempo de llegada del proceso. \\
+\hline
+{\em tiempo\+\_\+rafaga} & Tiempo de ráfaga del proceso. \\
+\hline
+{\em memoria\+\_\+solicitada} & Memoria solicitada por el proceso. \\
+\hline
+{\em cola\+\_\+procesos} & \doxylink{structCola}{Cola} de PROCESOS. \\
+\hline
+\end{DoxyParams}
+Se CREA un NUEVO PROCESO y se ASIGNAN los VALORES necesarios, luego se llama a la función "{}enqueue"{} para colocar en la COLA el PROCESO. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{structProceso}{Proceso}}\ *nuevo\_proceso\ =\ (\mbox{\hyperlink{structProceso}{Proceso}}\ *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structProceso}{Proceso}}));}
+\DoxyCodeLine{nuevo\_proceso-\/>pid\ =\ id;}
+\DoxyCodeLine{nuevo\_proceso-\/>tiempo\_llegada\ =\ tiempo\_llegada;}
+\DoxyCodeLine{nuevo\_proceso-\/>tiempo\_rafaga\ =\ tiempo\_rafaga;}
+\DoxyCodeLine{nuevo\_proceso-\/>memoria\_solicitada\ =\ memoria\_solicitada;}
+\DoxyCodeLine{nuevo\_proceso-\/>next\ =\ NULL;}
+\DoxyCodeLine{fprintf(stdout,\ \textcolor{stringliteral}{"{}Proceso\ \%d\ -\/\ T.\ Llegada\ \%d\ -\/\ T.\ Ráfaga\ \%d\ -\/\ M.\ Solicitada\ \%d\(\backslash\)n"{}},\ \textcolor{keywordtype}{id},\ tiempo\_llegada,\ tiempo\_rafaga,\ memoria\_solicitada);}
+\DoxyCodeLine{\mbox{\hyperlink{planificador_8c_a80852b5b1c4482c393fbdbe0676ae2b0}{enqueue}}(cola\_procesos,\ nuevo\_proceso);}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{auxiliar_8c_source_l00091}{91}} of file \mbox{\hyperlink{auxiliar_8c_source}{auxiliar.\+c}}.
+
+\Hypertarget{auxiliar_8c_ad55ebb88b181a48fad7400a82e6f9d90}\index{auxiliar.c@{auxiliar.c}!generar\_archivo\_gantt@{generar\_archivo\_gantt}}
+\index{generar\_archivo\_gantt@{generar\_archivo\_gantt}!auxiliar.c@{auxiliar.c}}
+\doxysubsubsection{\texorpdfstring{generar\_archivo\_gantt()}{generar\_archivo\_gantt()}}
+{\footnotesize\ttfamily \label{auxiliar_8c_ad55ebb88b181a48fad7400a82e6f9d90} 
+void generar\+\_\+archivo\+\_\+gantt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGantt}{Gantt}} \texorpdfstring{$\ast$}{*}}]{diagrama\+\_\+gantt}{, }\item[{int}]{num\+\_\+procesos}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{carta\+\_\+gantt}{}\end{DoxyParamCaption})}
+
+
+
+Genera el ARCHIVO EPS que muestra la CARTA GANTT. Al final se convierte el archivo EPS a PNG. 
+
+Genera el ARCHIVO EPS que muestra la CARTA GANTT.
+
+Genera un ARCHIVO que muestra la CARTA GANTT.
+
+
+\begin{DoxyParams}{Parameters}
+{\em diagrama\+\_\+gantt} & Diagrama de \doxylink{structGantt}{Gantt}. \\
+\hline
+{\em num\+\_\+procesos} & Número de procesos. \\
+\hline
+{\em carta\+\_\+gantt} & Nombre del archivo de la carta \doxylink{structGantt}{Gantt}. \\
+\hline
+\end{DoxyParams}
+Se abre el archivo de GANTT en modo ESCRITURA y se VERIFICA si se abrió correctamente. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{FILE\ *archivo\_gantt\ =\ fopen(carta\_gantt,\ \textcolor{stringliteral}{"{}w"{}});}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (archivo\_gantt\ ==\ NULL)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}ERROR\ al\ abrir\ el\ archivo\ de\ Gantt,\ saliendo...\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+VARIABLES para DIBUJAR la CARTA GANTT. Se DIBUJAN los RECTÁ\+NGULOS de los PROCESOS y se COLOREAN, se PINTA el BORDE del RECTÁ\+NGULO y se ESCRIBE el ID del PROCESO en el eje Y. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ altura\_proceso\ =\ 50;}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ margen\_inferior\ =\ 100,\ margen\_superior\ =\ 50,\ margen\_lateral\ =\ 100;}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ ancho\_total\ =\ 800,\ altura\_total\ =\ (num\_procesos\ *\ altura\_proceso)\ +\ margen\_superior\ +\ margen\_inferior;}
+\DoxyCodeLine{fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%\%!PS-\/Adobe-\/3.0\ EPSF-\/3.0\(\backslash\)n"{}});}
+\DoxyCodeLine{fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%\%\%\%BoundingBox:\ 0\ 0\ \%d\ \%d\(\backslash\)n"{}},\ ancho\_total\ +\ margen\_lateral\ *\ 2,\ altura\_total);}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_procesos;\ i++)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ tiempo\_inicio\ =\ diagrama\_gantt[i].tiempo\_inicio;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ tiempo\_final\ =\ diagrama\_gantt[i].tiempo\_final;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ pid\ =\ diagrama\_gantt[i].pid;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ x\_inicio\ =\ margen\_lateral\ +\ tiempo\_inicio\ *\ 10;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ x\_final\ =\ margen\_lateral\ +\ tiempo\_final\ *\ 10;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ y\ =\ margen\_inferior\ +\ i\ *\ altura\_proceso;}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}newpath\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ moveto\(\backslash\)n"{}},\ x\_inicio,\ y);}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ lineto\(\backslash\)n"{}},\ x\_final,\ y);}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ lineto\(\backslash\)n"{}},\ x\_final,\ y\ +\ altura\_proceso\ -\/\ 10);}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ lineto\(\backslash\)n"{}},\ x\_inicio,\ y\ +\ altura\_proceso\ -\/\ 10);}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}closepath\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}0.207\ 0.706\ 0.941\ setrgbcolor\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}fill\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}0\ 0\ 0\ setrgbcolor\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}stroke\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}/Times-\/Roman\ findfont\ 12\ scalefont\ setfont\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ moveto\(\backslash\)n"{}},\ margen\_lateral\ -\/\ 50,\ y\ +\ altura\_proceso\ /\ 2);}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}(ID\ \%d)\ show\(\backslash\)n"{}},\ pid);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+DIBUJA el eje X con los TIEMPOS REALES, se recorre el DIAGRAMA de GANTT y se imprime el TIEMPO de INICIO y FINAL del PROCESO en el eje X. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}/Times-\/Roman\ findfont\ 12\ scalefont\ setfont\(\backslash\)n"{}});}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_procesos;\ i++)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ tiempo\_inicio\ =\ diagrama\_gantt[i].tiempo\_inicio;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ tiempo\_final\ =\ diagrama\_gantt[i].tiempo\_final;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ x\_inicio\ =\ margen\_lateral\ +\ tiempo\_inicio\ *\ 10;}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}newpath\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ moveto\(\backslash\)n"{}},\ x\_inicio,\ margen\_inferior\ -\/\ 5);}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ lineto\(\backslash\)n"{}},\ x\_inicio,\ margen\_inferior\ +\ 5);}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}stroke\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ moveto\(\backslash\)n"{}},\ x\_inicio\ -\/\ 5,\ margen\_inferior\ -\/\ 20);}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}(\%d)\ show\(\backslash\)n"{}},\ tiempo\_inicio);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ x\_final\ =\ margen\_lateral\ +\ tiempo\_final\ *\ 10;}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}newpath\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ moveto\(\backslash\)n"{}},\ x\_final,\ margen\_inferior\ -\/\ 5);}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ lineto\(\backslash\)n"{}},\ x\_final,\ margen\_inferior\ +\ 5);}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}stroke\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ moveto\(\backslash\)n"{}},\ x\_final\ -\/\ 5,\ margen\_inferior\ -\/\ 20);}
+\DoxyCodeLine{\ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}(\%d)\ show\(\backslash\)n"{}},\ tiempo\_final);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}showpage\(\backslash\)n"{}});}
+\DoxyCodeLine{fclose(archivo\_gantt);}
+\DoxyCodeLine{fprintf(stdout,\ \textcolor{stringliteral}{"{}\(\backslash\)nCARTA\ GANTT\ generada\ EXITOSAMENTE\ en\ el\ ARCHIVO\ \%s\(\backslash\)n\(\backslash\)n"{}},\ carta\_gantt);}
+
+\end{DoxyCode}
+
+
+Se CONVIERTE el ARCHIVO EPS a PNG con GHOSTSCRIPT. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ comando[256];}
+\DoxyCodeLine{snprintf(comando,\ \textcolor{keyword}{sizeof}(comando),\ \textcolor{stringliteral}{"{}gs\ -\/dSAFER\ -\/dBATCH\ -\/dNOPAUSE\ -\/dEPSCrop\ -\/sDEVICE=png16m\ -\/r300\ -\/sOutputFile=\%s.png\ \%s"{}},\ carta\_gantt,\ carta\_gantt);}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ resultado\ =\ system(comando);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (resultado\ !=\ 0)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}ERROR\ al\ convertir\ la\ CARTA\ GANTT\ a\ PNG,\ saliendo...\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{fprintf(stdout,\ \textcolor{stringliteral}{"{}\(\backslash\)nCARTA\ GANTT\ convertida\ a\ PNG\ en\ el\ archivo\ \%s.png\(\backslash\)n\(\backslash\)n"{}},\ carta\_gantt);}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{auxiliar_8c_source_l00218}{218}} of file \mbox{\hyperlink{auxiliar_8c_source}{auxiliar.\+c}}.
+
+\Hypertarget{auxiliar_8c_ac8280e8c3c9c374d88d867cf11c373d5}\index{auxiliar.c@{auxiliar.c}!imprimir\_cola\_procesos@{imprimir\_cola\_procesos}}
+\index{imprimir\_cola\_procesos@{imprimir\_cola\_procesos}!auxiliar.c@{auxiliar.c}}
+\doxysubsubsection{\texorpdfstring{imprimir\_cola\_procesos()}{imprimir\_cola\_procesos()}}
+{\footnotesize\ttfamily \label{auxiliar_8c_ac8280e8c3c9c374d88d867cf11c373d5} 
+void imprimir\+\_\+cola\+\_\+procesos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCola}{Cola}} \texorpdfstring{$\ast$}{*}}]{cola}{}\end{DoxyParamCaption})}
+
+
+
+Imprime la COLA de PROCESOS. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cola} & \doxylink{structCola}{Cola} de PROCESOS. \\
+\hline
+\end{DoxyParams}
+Se IMPRIME la COLA de PROCESOS, se recorre la COLA y se imprime PROCESO actual, luego se actualiza el PROCESO actual. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{structProceso}{Proceso}}\ *actual\ =\ cola-\/>front;}
+\DoxyCodeLine{fprintf(stdout,\ \textcolor{stringliteral}{"{}\(\backslash\)nCola\ de\ procesos:\(\backslash\)n"{}});}
+\DoxyCodeLine{\textcolor{keywordtype}{long}\ actual\_next\ =\ (long)actual-\/>next;}
+\DoxyCodeLine{\textcolor{keywordflow}{while}\ (actual\ !=\ NULL)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}[Pid:\ \%d]\(\backslash\)t[Memoria\ Solicitada:\ \%d]\(\backslash\)t[Next:\ \%ld]-\/>\(\backslash\)n"{}},\ actual-\/>pid,\ actual-\/>memoria\_solicitada,\ actual\_next);}
+\DoxyCodeLine{\ \ \ \ actual\ =\ actual-\/>next;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{auxiliar_8c_source_l00120}{120}} of file \mbox{\hyperlink{auxiliar_8c_source}{auxiliar.\+c}}.
+
+\Hypertarget{auxiliar_8c_a538bd84a9975c728e696aa3586475c8d}\index{auxiliar.c@{auxiliar.c}!imprimir\_gantt@{imprimir\_gantt}}
+\index{imprimir\_gantt@{imprimir\_gantt}!auxiliar.c@{auxiliar.c}}
+\doxysubsubsection{\texorpdfstring{imprimir\_gantt()}{imprimir\_gantt()}}
+{\footnotesize\ttfamily \label{auxiliar_8c_a538bd84a9975c728e696aa3586475c8d} 
+void imprimir\+\_\+gantt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGantt}{Gantt}} \texorpdfstring{$\ast$}{*}}]{diagrama\+\_\+gantt}{, }\item[{int}]{num\+\_\+procesos}{}\end{DoxyParamCaption})}
+
+
+
+Imprime el DIAGRAMA de GANTT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em diagrama\+\_\+gantt} & Diagrama de \doxylink{structGantt}{Gantt}. \\
+\hline
+{\em num\+\_\+procesos} & Número de procesos. \\
+\hline
+\end{DoxyParams}
+Se IMPRIME el DIAGRAMA de GANTT, se recorre el DIAGRAMA de GANTT y se imprime el PROCESO actual. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fprintf(stdout,\ \textcolor{stringliteral}{"{}Diagrama\ de\ Gantt:\(\backslash\)n\(\backslash\)n"{}});}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_procesos;\ i++)}
+\DoxyCodeLine{\ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}[PID:\ \%d]\(\backslash\)t[Tiempo\ Inicio:\ \%d]\(\backslash\)t[Tiempo\ Final:\ \%d]\(\backslash\)n"{}},\ diagrama\_gantt[i].pid,\ diagrama\_gantt[i].tiempo\_inicio,\ diagrama\_gantt[i].tiempo\_final);}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{auxiliar_8c_source_l00197}{197}} of file \mbox{\hyperlink{auxiliar_8c_source}{auxiliar.\+c}}.
+
+\Hypertarget{auxiliar_8c_a84cf1bd786834d184e87454dc8c9be92}\index{auxiliar.c@{auxiliar.c}!imprimir\_memoria@{imprimir\_memoria}}
+\index{imprimir\_memoria@{imprimir\_memoria}!auxiliar.c@{auxiliar.c}}
+\doxysubsubsection{\texorpdfstring{imprimir\_memoria()}{imprimir\_memoria()}}
+{\footnotesize\ttfamily \label{auxiliar_8c_a84cf1bd786834d184e87454dc8c9be92} 
+void imprimir\+\_\+memoria (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}}]{memoria}{, }\item[{int}]{cantidad\+\_\+bloques}{}\end{DoxyParamCaption})}
+
+
+
+Imprime los BLOQUES de MEMORIA INICIALIZADOS. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em memoria} & Arreglo de BLOQUES de MEMORIA. \\
+\hline
+{\em cantidad\+\_\+bloques} & Cantidad de BLOQUES de MEMORIA. \\
+\hline
+\end{DoxyParams}
+Se IMPRIME los BLOQUES de MEMORIA INICIALIZADOS, se recorre el ARREGLO de MEMORIA y se imprime el BLOQUE actual. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fprintf(stdout,\ \textcolor{stringliteral}{"{}Bloques\ de\ memoria\ del\ SISTEMA\ OPERATIVO:\(\backslash\)n\(\backslash\)n"{}});}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ cantidad\_bloques;\ i++)}
+\DoxyCodeLine{\ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}[Bloque\ \%d]\(\backslash\)t[Tamaño\ \%d]\(\backslash\)t[Estado\ \%d][LIBRE]\(\backslash\)n"{}},\ i,\ memoria[i].tamano,\ memoria[i].estado);}
+\DoxyCodeLine{fprintf(stdout,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{auxiliar_8c_source_l00150}{150}} of file \mbox{\hyperlink{auxiliar_8c_source}{auxiliar.\+c}}.
+
+\Hypertarget{auxiliar_8c_a0ce4edd5ee3a1e5ad1c1686031102935}\index{auxiliar.c@{auxiliar.c}!leer\_entrada@{leer\_entrada}}
+\index{leer\_entrada@{leer\_entrada}!auxiliar.c@{auxiliar.c}}
+\doxysubsubsection{\texorpdfstring{leer\_entrada()}{leer\_entrada()}}
+{\footnotesize\ttfamily \label{auxiliar_8c_a0ce4edd5ee3a1e5ad1c1686031102935} 
+void leer\+\_\+entrada (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{nombre\+\_\+archivo}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{tamano\+\_\+memoria}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{tamano\+\_\+bloque}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{algoritmo\+\_\+memoria}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{algoritmo\+\_\+planificacion}{, }\item[{\mbox{\hyperlink{structCola}{Cola}} \texorpdfstring{$\ast$}{*}}]{cola\+\_\+procesos}{}\end{DoxyParamCaption})}
+
+
+
+\texorpdfstring{$<$}{<} Librería que contiene las funciones auxiliares. 
+
+\texorpdfstring{$<$}{<} Librería que contiene las funciones de MEMORIA y la estructra del BLOQUE de MEMORIA.
+
+Lee la entrada del archivo de texto (entrada.\+txt). 
+\begin{DoxyParams}{Parameters}
+{\em nombre\+\_\+archivo} & Nombre del archivo de texto. \\
+\hline
+{\em tamano\+\_\+memoria} & Tamaño de la memoria TOTAL (2048 KB). \\
+\hline
+{\em tamano\+\_\+bloque} & Tamaño de los BLOQUES de MEMORIA (128 KB). \\
+\hline
+{\em algoritmo\+\_\+memoria} & Algoritmo de MEMORIA (FF). \\
+\hline
+{\em algoritmo\+\_\+planificacion} & Algoritmo de PLANIFICACIÓN (FIFO). \\
+\hline
+{\em cola\+\_\+procesos} & \doxylink{structCola}{Cola} de PROCESOS. \\
+\hline
+\end{DoxyParams}
+Se abre el archivo de entrada en modo LECTURA y se VERIFICA si se abrió correctamente. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{FILE\ *archivo\_entrada\ =\ fopen(nombre\_archivo,\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (archivo\_entrada\ ==\ NULL)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}ERROR\ al\ abrir\ el\ archivo,\ saliendo...\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Lee la cabecera del archivo de entrada (2048 128 ff) y VERIFICA si los valores son 3, también lee el algoritmo de planificación (FIFO) y verifica si el valor es 1. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (fscanf(archivo\_entrada,\ \textcolor{stringliteral}{"{}\%d\ \%d\ \%s"{}},\ tamano\_memoria,\ tamano\_bloque,\ algoritmo\_memoria)\ !=\ 3)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}ERROR\ al\ leer\ los\ valores\ de\ la\ memoria\ o\ bloque,\ saliendo...\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (fscanf(archivo\_entrada,\ \textcolor{stringliteral}{"{}\%s"{}},\ algoritmo\_planificacion)\ !=\ 1)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error\ al\ leer\ el\ algoritmo\ de\ planificación\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+VARIABLES del PROCESO (vienen de entrada.\+txt). Lee los VALORES de los PROCESOS del archivo de entrada y llama la función "{}asignar\+\_\+valores\+\_\+procesos"{}, luego cierra el archivo. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ id,\ tiempo\_llegada,\ tiempo\_rafaga,\ memoria\_solicitada;}
+\DoxyCodeLine{\textcolor{keywordflow}{while}\ (fscanf(archivo\_entrada,\ \textcolor{stringliteral}{"{}\%d\ \%d\ \%d\ \%d"{}},\ \&\textcolor{keywordtype}{id},\ \&tiempo\_llegada,\ \&tiempo\_rafaga,\ \&memoria\_solicitada)\ !=\ EOF)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{auxiliar_8c_a3860ca319d78fce82d7096aad7c01b98}{asignar\_valores\_procesos}}(\textcolor{keywordtype}{id},\ tiempo\_llegada,\ tiempo\_rafaga,\ memoria\_solicitada,\ cola\_procesos);}
+\DoxyCodeLine{fclose(archivo\_entrada);}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{auxiliar_8c_source_l00021}{21}} of file \mbox{\hyperlink{auxiliar_8c_source}{auxiliar.\+c}}.
+
+\Hypertarget{auxiliar_8c_af860b43b9483727416483393e9927a37}\index{auxiliar.c@{auxiliar.c}!registrar\_tiempos@{registrar\_tiempos}}
+\index{registrar\_tiempos@{registrar\_tiempos}!auxiliar.c@{auxiliar.c}}
+\doxysubsubsection{\texorpdfstring{registrar\_tiempos()}{registrar\_tiempos()}}
+{\footnotesize\ttfamily \label{auxiliar_8c_af860b43b9483727416483393e9927a37} 
+void registrar\+\_\+tiempos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGantt}{Gantt}} \texorpdfstring{$\ast$}{*}}]{diagrama\+\_\+gantt}{, }\item[{int}]{pid}{, }\item[{int}]{tiempo\+\_\+inicio}{, }\item[{int}]{tiempo\+\_\+rafaga}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{indice}{}\end{DoxyParamCaption})}
+
+
+
+Registra los TIEMPOS de los PROCESOS. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em diagrama\+\_\+gantt} & Diagrama de \doxylink{structGantt}{Gantt}. \\
+\hline
+{\em pid} & ID del proceso. \\
+\hline
+{\em tiempo\+\_\+inicio} & Tiempo de inicio del proceso. \\
+\hline
+{\em tiempo\+\_\+rafaga} & Tiempo de ráfaga del proceso. \\
+\hline
+{\em indice} & Índice del diagrama de \doxylink{structGantt}{Gantt}. \\
+\hline
+\end{DoxyParams}
+Se REGISTRAN los TIEMPOS de los PROCESOS, se asignan los valores al DIAGRAMA de GANTT y se actualiza el Í\+NDICE del diagrama de \doxylink{structGantt}{Gantt}. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{diagrama\_gantt[*indice].pid\ =\ pid;}
+\DoxyCodeLine{diagrama\_gantt[*indice].tiempo\_inicio\ =\ tiempo\_inicio;}
+\DoxyCodeLine{diagrama\_gantt[*indice].tiempo\_final\ =\ tiempo\_inicio\ +\ tiempo\_rafaga;}
+\DoxyCodeLine{(*indice)++;}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{auxiliar_8c_source_l00175}{175}} of file \mbox{\hyperlink{auxiliar_8c_source}{auxiliar.\+c}}.
+

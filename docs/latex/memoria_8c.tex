@@ -1,0 +1,317 @@
+\doxysection{src/memoria.c File Reference}
+\hypertarget{memoria_8c}{}\label{memoria_8c}\index{src/memoria.c@{src/memoria.c}}
+
+
+Funciones de memoria.  
+
+
+{\ttfamily \#include "{}auxiliar.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{memoria_8c_a2f55ed34e9328798cb499cd78ca343c5}{inicializar\+\_\+bloques\+\_\+memoria}} (\mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}memoria, int cantidad\+\_\+bloques, int tamano\+\_\+bloque)
+\begin{DoxyCompactList}\small\item\em \texorpdfstring{$<$}{<} Librería que contiene las funciones auxiliares. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memoria_8c_a4481f3adeab9c9d90bd8e14cfde4b2bc}{asignar\+\_\+memoria\+\_\+procesos}} (\mbox{\hyperlink{structCola}{Cola}} \texorpdfstring{$\ast$}{*}cola, \mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}memoria, int cantidad\+\_\+bloques)
+\begin{DoxyCompactList}\small\item\em Asigna la MEMORIA a los PROCESOS para la EJECUCIÓN. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memoria_8c_a7ce9e739e0384ca3be154758376ccfad}{manejar\+\_\+proceso}} (\mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}memoria, \mbox{\hyperlink{structProceso}{Proceso}} \texorpdfstring{$\ast$}{*}proceso\+\_\+extraido, int cantidad\+\_\+bloques, \mbox{\hyperlink{structGantt}{Gantt}} \texorpdfstring{$\ast$}{*}diagrama\+\_\+gantt, int \texorpdfstring{$\ast$}{*}tiempo\+\_\+global, int \texorpdfstring{$\ast$}{*}indice)
+\begin{DoxyCompactList}\small\item\em Maneja el PROCESO, asigna MEMORIA y REGISTRA los tiempos de los procesos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memoria_8c_a73975f258bb6de8edd1bead26902db2c}{asignar\+\_\+bloque\+\_\+proceso}} (\mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}memoria, \mbox{\hyperlink{structProceso}{Proceso}} \texorpdfstring{$\ast$}{*}proceso, int \texorpdfstring{$\ast$}{*}tamano\+\_\+proceso, int i)
+\begin{DoxyCompactList}\small\item\em Asigna el BLOQUE de MEMORIA al PROCESO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memoria_8c_a92cf0b92cd8f5a979d4674eb24e76826}{verificar\+\_\+fragmentacion}} (\mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}memoria, int i)
+\begin{DoxyCompactList}\small\item\em Verifica la FRAGMENTACIÓN INTERNA. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memoria_8c_af4ac314829b646f3a82e421ebfb7f3ce}{ejecutar\+\_\+proceso}} (\mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}memoria, \mbox{\hyperlink{structProceso}{Proceso}} \texorpdfstring{$\ast$}{*}proceso, int posicion)
+\begin{DoxyCompactList}\small\item\em Ejecuta el PROCESO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memoria_8c_ae479e3e0b8af7a21fb85def133295379}{liberar\+\_\+memoria}} (\mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}memoria, int posicion)
+\begin{DoxyCompactList}\small\item\em Libera la MEMORIA de un PROCESO. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Funciones de memoria. 
+
+\begin{DoxyDate}{Date}
+24-\/10-\/2024 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Authors}
+Miguel Loaiza, Diego Sanhueza y Oscar Cifuentes 
+\end{DoxyAuthor}
+Contiene las funciones qe son utilizadas para la CORRECTA asignación de MEMORIA a los PROCESOS. 
+
+Definition in file \mbox{\hyperlink{memoria_8c_source}{memoria.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{memoria_8c_a73975f258bb6de8edd1bead26902db2c}\index{memoria.c@{memoria.c}!asignar\_bloque\_proceso@{asignar\_bloque\_proceso}}
+\index{asignar\_bloque\_proceso@{asignar\_bloque\_proceso}!memoria.c@{memoria.c}}
+\doxysubsubsection{\texorpdfstring{asignar\_bloque\_proceso()}{asignar\_bloque\_proceso()}}
+{\footnotesize\ttfamily \label{memoria_8c_a73975f258bb6de8edd1bead26902db2c} 
+void asignar\+\_\+bloque\+\_\+proceso (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}}]{memoria}{, }\item[{\mbox{\hyperlink{structProceso}{Proceso}} \texorpdfstring{$\ast$}{*}}]{proceso}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{tamano\+\_\+proceso}{, }\item[{int}]{i}{}\end{DoxyParamCaption})}
+
+
+
+Asigna el BLOQUE de MEMORIA al PROCESO. 
+
+Asigna un BLOQUE de MEMORIA a un PROCESO.
+
+
+\begin{DoxyParams}{Parameters}
+{\em memoria} & Arreglo de BLOQUES de MEMORIA. \\
+\hline
+{\em proceso} & \doxylink{structProceso}{Proceso}. \\
+\hline
+{\em tamano\+\_\+proceso} & Tamaño del proceso. \\
+\hline
+{\em i} & Índice. \\
+\hline
+\end{DoxyParams}
+Si el TAMAÑO de MEMORIA del PROCESO alcanza en un solo BLOQUE hace la signación COMPLETA del BLOQUE, si no, toma más de uno y lo asigna PARCIALMENTE. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (memoria[i].tamano\ >=\ *tamano\_proceso)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}El\ proceso\ \%d\ usó\ MEMORIA\ hasta\ el\ BLOQUE\ \%d\(\backslash\)n"{}},\ proceso-\/>pid,\ i);}
+\DoxyCodeLine{\ \ \ \ memoria[i].tamano\ -\/=\ *tamano\_proceso;}
+\DoxyCodeLine{\ \ \ \ memoria[i].estado\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ *tamano\_proceso\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{memoria_8c_a92cf0b92cd8f5a979d4674eb24e76826}{verificar\_fragmentacion}}(memoria,\ i);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{memoria_8c_af4ac314829b646f3a82e421ebfb7f3ce}{ejecutar\_proceso}}(memoria,\ proceso,\ i);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{else}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ *tamano\_proceso\ -\/=\ memoria[i].tamano;}
+\DoxyCodeLine{\ \ \ \ memoria[i].tamano\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ memoria[i].estado\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}Proceso\ \%d\ en\ EJECUCIÓN,\ bloque\ (\%d)\(\backslash\)n"{}},\ proceso-\/>pid,\ i);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{memoria_8c_af4ac314829b646f3a82e421ebfb7f3ce}{ejecutar\_proceso}}(memoria,\ proceso,\ i);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{memoria_8c_a92cf0b92cd8f5a979d4674eb24e76826}{verificar\_fragmentacion}}(memoria,\ i);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{memoria_8c_source_l00153}{153}} of file \mbox{\hyperlink{memoria_8c_source}{memoria.\+c}}.
+
+\Hypertarget{memoria_8c_a4481f3adeab9c9d90bd8e14cfde4b2bc}\index{memoria.c@{memoria.c}!asignar\_memoria\_procesos@{asignar\_memoria\_procesos}}
+\index{asignar\_memoria\_procesos@{asignar\_memoria\_procesos}!memoria.c@{memoria.c}}
+\doxysubsubsection{\texorpdfstring{asignar\_memoria\_procesos()}{asignar\_memoria\_procesos()}}
+{\footnotesize\ttfamily \label{memoria_8c_a4481f3adeab9c9d90bd8e14cfde4b2bc} 
+void asignar\+\_\+memoria\+\_\+procesos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCola}{Cola}} \texorpdfstring{$\ast$}{*}}]{cola}{, }\item[{\mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}}]{memoria}{, }\item[{int}]{cantidad\+\_\+bloques}{}\end{DoxyParamCaption})}
+
+
+
+Asigna la MEMORIA a los PROCESOS para la EJECUCIÓN. 
+
+Asigna MEMORIA a los PROCESOS para la EJECUCIÓN.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cola} & \doxylink{structCola}{Cola} de PROCESOS. \\
+\hline
+{\em memoria} & Arreglo de BLOQUES de MEMORIA. \\
+\hline
+{\em cantidad\+\_\+bloques} & Cantidad de BLOQUES de MEMORIA. \\
+\hline
+\end{DoxyParams}
+Se CREA una COPIA de la COLA de PROCESOS y se EXTRAE el PROCESO de la COLA. Se CREA un DIAGRAMA de GANTT y se INICIALIZAN las VARIABLES. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{structCola}{Cola}}\ *temp\_cola\ =\ malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structCola}{Cola}}));}
+\DoxyCodeLine{temp\_cola\ =\ cola;}
+\DoxyCodeLine{\mbox{\hyperlink{structProceso}{Proceso}}\ *proceso\_extraido\ =\ malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structProceso}{Proceso}}));}
+\DoxyCodeLine{\mbox{\hyperlink{structGantt}{Gantt}}\ diagrama\_gantt[\mbox{\hyperlink{memoria_8h_ab0f17287f3a9af76ef9109ec1dfce7a9}{MAX\_PROCESOS}}];}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ indice\ =\ 0,\ tiempo\_global\ =\ 0;}
+
+\end{DoxyCode}
+
+
+MIENTRAS la COLA de PROCESOS NO esté VACÍA, se EXTRAE el PROCESO de la COLA y se MANEJA el PROCESO. Depués de manejar el proceso, se libera el PROCESO EXTRAIDO. Posteriormente se IMPRIME el DIAGRAMA de GANTT. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{while}\ (temp\_cola-\/>front\ !=\ NULL)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ proceso\_extraido\ =\ \mbox{\hyperlink{planificador_8c_a23a124840d5dd17458489403c6e0fca8}{dequeue}}(temp\_cola);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (proceso\_extraido\ ==\ NULL)}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}No\ hay\ procesos\ en\ la\ cola\ para\ asignar\ memoria.\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{memoria_8c_a7ce9e739e0384ca3be154758376ccfad}{manejar\_proceso}}(memoria,\ proceso\_extraido,\ cantidad\_bloques,\ diagrama\_gantt,\ \&tiempo\_global,\ \&indice);}
+\DoxyCodeLine{\ \ \ \ free(proceso\_extraido);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{auxiliar_8c_a538bd84a9975c728e696aa3586475c8d}{imprimir\_gantt}}(diagrama\_gantt,\ indice);}
+\DoxyCodeLine{\mbox{\hyperlink{auxiliar_8c_ad55ebb88b181a48fad7400a82e6f9d90}{generar\_archivo\_gantt}}(diagrama\_gantt,\ indice,\ \textcolor{stringliteral}{"{}gantt.eps"{}});}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{memoria_8c_source_l00043}{43}} of file \mbox{\hyperlink{memoria_8c_source}{memoria.\+c}}.
+
+\Hypertarget{memoria_8c_af4ac314829b646f3a82e421ebfb7f3ce}\index{memoria.c@{memoria.c}!ejecutar\_proceso@{ejecutar\_proceso}}
+\index{ejecutar\_proceso@{ejecutar\_proceso}!memoria.c@{memoria.c}}
+\doxysubsubsection{\texorpdfstring{ejecutar\_proceso()}{ejecutar\_proceso()}}
+{\footnotesize\ttfamily \label{memoria_8c_af4ac314829b646f3a82e421ebfb7f3ce} 
+void ejecutar\+\_\+proceso (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}}]{memoria}{, }\item[{\mbox{\hyperlink{structProceso}{Proceso}} \texorpdfstring{$\ast$}{*}}]{proceso}{, }\item[{int}]{posicion}{}\end{DoxyParamCaption})}
+
+
+
+Ejecuta el PROCESO. 
+
+Simula la ejecución de un PROCESO.
+
+
+\begin{DoxyParams}{Parameters}
+{\em memoria} & Arreglo de BLOQUES de MEMORIA. \\
+\hline
+{\em proceso} & \doxylink{structProceso}{Proceso}. \\
+\hline
+{\em posicion} & Posición. \\
+\hline
+\end{DoxyParams}
+SIMULA la ejecución del PROCESO y luego LIBERA la MEMORIA del PROCESO. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sleep(proceso-\/>tiempo\_rafaga);}
+\DoxyCodeLine{\mbox{\hyperlink{memoria_8c_ae479e3e0b8af7a21fb85def133295379}{liberar\_memoria}}(memoria,\ posicion);}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{memoria_8c_source_l00224}{224}} of file \mbox{\hyperlink{memoria_8c_source}{memoria.\+c}}.
+
+\Hypertarget{memoria_8c_a2f55ed34e9328798cb499cd78ca343c5}\index{memoria.c@{memoria.c}!inicializar\_bloques\_memoria@{inicializar\_bloques\_memoria}}
+\index{inicializar\_bloques\_memoria@{inicializar\_bloques\_memoria}!memoria.c@{memoria.c}}
+\doxysubsubsection{\texorpdfstring{inicializar\_bloques\_memoria()}{inicializar\_bloques\_memoria()}}
+{\footnotesize\ttfamily \label{memoria_8c_a2f55ed34e9328798cb499cd78ca343c5} 
+void inicializar\+\_\+bloques\+\_\+memoria (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}}]{memoria}{, }\item[{int}]{cantidad\+\_\+bloques}{, }\item[{int}]{tamano\+\_\+bloque}{}\end{DoxyParamCaption})}
+
+
+
+\texorpdfstring{$<$}{<} Librería que contiene las funciones auxiliares. 
+
+Inicializa los BLOQUES de MEMORIA.
+
+Inicializa los BLOQUES de MEMORIA. 
+\begin{DoxyParams}{Parameters}
+{\em memoria} & Arreglo de BLOQUES de MEMORIA. \\
+\hline
+{\em cantidad\+\_\+bloques} & Cantidad de BLOQUES de MEMORIA. \\
+\hline
+{\em tamano\+\_\+bloque} & Tamaño de los BLOQUES de MEMORIA. \\
+\hline
+\end{DoxyParams}
+Recorre el ARREGLO de MEMORIA y asigna el TAMAÑO del BLOQUE y el ESTADO del BLOQUE. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ cantidad\_bloques;\ i++)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ memoria[i].tamano\ =\ tamano\_bloque;}
+\DoxyCodeLine{\ \ \ \ memoria[i].estado\ =\ 1;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{memoria_8c_source_l00018}{18}} of file \mbox{\hyperlink{memoria_8c_source}{memoria.\+c}}.
+
+\Hypertarget{memoria_8c_ae479e3e0b8af7a21fb85def133295379}\index{memoria.c@{memoria.c}!liberar\_memoria@{liberar\_memoria}}
+\index{liberar\_memoria@{liberar\_memoria}!memoria.c@{memoria.c}}
+\doxysubsubsection{\texorpdfstring{liberar\_memoria()}{liberar\_memoria()}}
+{\footnotesize\ttfamily \label{memoria_8c_ae479e3e0b8af7a21fb85def133295379} 
+void liberar\+\_\+memoria (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}}]{memoria}{, }\item[{int}]{posicion}{}\end{DoxyParamCaption})}
+
+
+
+Libera la MEMORIA de un PROCESO. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em memoria} & Arreglo de BLOQUES de MEMORIA. \\
+\hline
+{\em posicion} & Posición. \\
+\hline
+\end{DoxyParams}
+LIBERA la MEMORIA de un PROCESO y la MARCA como LIBRE (1). 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{memoria[posicion].estado\ =\ 1;}
+\DoxyCodeLine{memoria[posicion].tamano\ =\ 128;}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{memoria_8c_source_l00242}{242}} of file \mbox{\hyperlink{memoria_8c_source}{memoria.\+c}}.
+
+\Hypertarget{memoria_8c_a7ce9e739e0384ca3be154758376ccfad}\index{memoria.c@{memoria.c}!manejar\_proceso@{manejar\_proceso}}
+\index{manejar\_proceso@{manejar\_proceso}!memoria.c@{memoria.c}}
+\doxysubsubsection{\texorpdfstring{manejar\_proceso()}{manejar\_proceso()}}
+{\footnotesize\ttfamily \label{memoria_8c_a7ce9e739e0384ca3be154758376ccfad} 
+void manejar\+\_\+proceso (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}}]{memoria}{, }\item[{\mbox{\hyperlink{structProceso}{Proceso}} \texorpdfstring{$\ast$}{*}}]{proceso\+\_\+extraido}{, }\item[{int}]{cantidad\+\_\+bloques}{, }\item[{\mbox{\hyperlink{structGantt}{Gantt}} \texorpdfstring{$\ast$}{*}}]{diagrama\+\_\+gantt}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{tiempo\+\_\+global}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{indice}{}\end{DoxyParamCaption})}
+
+
+
+Maneja el PROCESO, asigna MEMORIA y REGISTRA los tiempos de los procesos. 
+
+Maneja el PROCESO.
+
+
+\begin{DoxyParams}{Parameters}
+{\em memoria} & Arreglo de BLOQUES de MEMORIA. \\
+\hline
+{\em proceso\+\_\+extraido} & \doxylink{structProceso}{Proceso} extraído de la COLA. \\
+\hline
+{\em cantidad\+\_\+bloques} & Cantidad de BLOQUES de MEMORIA. \\
+\hline
+{\em diagrama\+\_\+gantt} & Diagrama de \doxylink{structGantt}{Gantt}. \\
+\hline
+{\em tiempo\+\_\+global} & Tiempo global. \\
+\hline
+{\em indice} & Índice del diagrama de \doxylink{structGantt}{Gantt}. \\
+\hline
+\end{DoxyParams}
+Se GUARDA el TIEMPO de INICIO del PROCESO y el TAMAÑO del PROCESO. Si el TAMAÑO del PROCESO es mayor a 2048, se imprime un MENSAJE de ERROR. Se RECORRE los BLOQUES de MEMORIA y se ASIGNA la MEMORIA al PROCESO. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ tiempo\_inicio\ =\ *tiempo\_global;}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ tamano\_proceso\ =\ proceso\_extraido-\/>memoria\_solicitada;}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (tamano\_proceso\ >\ 2048)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}No\ hay\ suficiente\ memoria\ disponible\ para\ asignar\ al\ PROCESO\ \%d,\ pasando\ al\ siguiente\ PROCESO.\(\backslash\)n\(\backslash\)n"{}},\ proceso\_extraido-\/>pid);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ cantidad\_bloques\ \&\&\ tamano\_proceso\ >\ 0;\ i++)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (memoria[i].estado\ ==\ 1)}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{memoria_8c_a73975f258bb6de8edd1bead26902db2c}{asignar\_bloque\_proceso}}(memoria,\ proceso\_extraido,\ \&tamano\_proceso,\ i);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{*tiempo\_global\ +=\ proceso\_extraido-\/>tiempo\_rafaga;}
+\DoxyCodeLine{\mbox{\hyperlink{auxiliar_8c_af860b43b9483727416483393e9927a37}{registrar\_tiempos}}(diagrama\_gantt,\ proceso\_extraido-\/>pid,\ tiempo\_inicio,\ proceso\_extraido-\/>tiempo\_rafaga,\ indice);}
+\DoxyCodeLine{fprintf(stdout,\ \textcolor{stringliteral}{"{}Proceso\ \%d\ EJECUTADO\ EXITOSAMENTE.\(\backslash\)n\(\backslash\)n"{}},\ proceso\_extraido-\/>pid);}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{memoria_8c_source_l00103}{103}} of file \mbox{\hyperlink{memoria_8c_source}{memoria.\+c}}.
+
+\Hypertarget{memoria_8c_a92cf0b92cd8f5a979d4674eb24e76826}\index{memoria.c@{memoria.c}!verificar\_fragmentacion@{verificar\_fragmentacion}}
+\index{verificar\_fragmentacion@{verificar\_fragmentacion}!memoria.c@{memoria.c}}
+\doxysubsubsection{\texorpdfstring{verificar\_fragmentacion()}{verificar\_fragmentacion()}}
+{\footnotesize\ttfamily \label{memoria_8c_a92cf0b92cd8f5a979d4674eb24e76826} 
+void verificar\+\_\+fragmentacion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBloqueMemoria}{Bloque\+Memoria}} \texorpdfstring{$\ast$}{*}}]{memoria}{, }\item[{int}]{i}{}\end{DoxyParamCaption})}
+
+
+
+Verifica la FRAGMENTACIÓN INTERNA. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em memoria} & Arreglo de BLOQUES de MEMORIA. \\
+\hline
+{\em i} & Índice. \\
+\hline
+\end{DoxyParams}
+Calcula la FRAGMENTACIÓN INTERNA. Si el tamaño de la memoria del PROCESO es mayor a 0, hay fragmentación interna. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ fragmentacion\_interna\ =\ memoria[i].tamano;}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (fragmentacion\_interna\ >\ 0)}
+\DoxyCodeLine{\ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}FRAGMENTACIÓN\ INTERNA:\ \%d\ KB\ en\ el\ BLOQUE\ \%d\(\backslash\)n"{}},\ fragmentacion\_interna,\ i);}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{memoria_8c_source_l00203}{203}} of file \mbox{\hyperlink{memoria_8c_source}{memoria.\+c}}.
+

@@ -1,0 +1,35 @@
+\doxysection{memoria.\+h}
+\hypertarget{memoria_8h_source}{}\label{memoria_8h_source}\index{incs/memoria.h@{incs/memoria.h}}
+\mbox{\hyperlink{memoria_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00010}00010\ \textcolor{preprocessor}{\#ifndef\ MEMORIA\_H}}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00011}00011\ \textcolor{preprocessor}{\#define\ MEMORIA\_H}}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00013}\mbox{\hyperlink{memoria_8h_ab0f17287f3a9af76ef9109ec1dfce7a9}{00013}}\ \textcolor{preprocessor}{\#define\ MAX\_PROCESOS\ 100\ }}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00015}00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{planificador_8h}{planificador.h}}"{}}\ }
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00030}\mbox{\hyperlink{structBloqueMemoria}{00030}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00031}00031\ \{}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00032}00032\ \ \ \ \ \textcolor{keywordtype}{int}\ tamano;}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00033}00033\ \ \ \ \ \textcolor{keywordtype}{int}\ estado;}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00034}00034\ \}\ \mbox{\hyperlink{structBloqueMemoria}{BloqueMemoria}};}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00042}00042\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{memoria_8h_ab33730a2c057bed32808e5c260cd43a7}{inicializar\_bloques\_memoria}}(\mbox{\hyperlink{structBloqueMemoria}{BloqueMemoria}}\ *,\ \textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int});}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00050}00050\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{memoria_8h_a29cc9c1e6349c89c87f27d6a28487c38}{asignar\_memoria\_procesos}}(\mbox{\hyperlink{structCola}{Cola}}\ *,\ \mbox{\hyperlink{structBloqueMemoria}{BloqueMemoria}}\ *,\ \textcolor{keywordtype}{int});}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00059}00059\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{memoria_8h_af4d5bdc477bc8d1b5ba09b3b6a9554e8}{asignar\_bloque\_proceso}}(\mbox{\hyperlink{structBloqueMemoria}{BloqueMemoria}}\ *,\ \mbox{\hyperlink{structProceso}{Proceso}}\ *,\ \textcolor{keywordtype}{int}\ *,\ \textcolor{keywordtype}{int});}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00066}00066\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{memoria_8h_a9112a6002c062d4e1043b647dee770e3}{verificar\_fragmentacion}}(\mbox{\hyperlink{structBloqueMemoria}{BloqueMemoria}}\ *,\ \textcolor{keywordtype}{int});}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00077}00077\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{memoria_8h_af1f4e56011b3a2fed55e658d7ead2b94}{manejar\_proceso}}(\mbox{\hyperlink{structBloqueMemoria}{BloqueMemoria}}\ *,\ \mbox{\hyperlink{structProceso}{Proceso}}\ *,\ \textcolor{keywordtype}{int},\ \mbox{\hyperlink{structGantt}{Gantt}}\ *,\ \textcolor{keywordtype}{int}\ *,\ \textcolor{keywordtype}{int}\ *);}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00085}00085\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{memoria_8h_a36f89fdaf1376a84808dc3ef9c21929b}{ejecutar\_proceso}}(\mbox{\hyperlink{structBloqueMemoria}{BloqueMemoria}}\ *,\ \mbox{\hyperlink{structProceso}{Proceso}}\ *,\ \textcolor{keywordtype}{int});}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00092}00092\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{memoria_8h_a4174dab9852c5d1ec84a5119014a3a1a}{liberar\_memoria}}(\mbox{\hyperlink{structBloqueMemoria}{BloqueMemoria}}\ *,\ \textcolor{keywordtype}{int});}
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{memoria_8h_source_l00094}00094\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,106 @@
+\doxysection{src/planificador.c File Reference}
+\hypertarget{planificador_8c}{}\label{planificador_8c}\index{src/planificador.c@{src/planificador.c}}
+
+
+Funciones de planificación.  
+
+
+{\ttfamily \#include "{}auxiliar.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{planificador_8c_a80852b5b1c4482c393fbdbe0676ae2b0}{enqueue}} (\mbox{\hyperlink{structCola}{Cola}} \texorpdfstring{$\ast$}{*}cola, \mbox{\hyperlink{structProceso}{Proceso}} \texorpdfstring{$\ast$}{*}proceso)
+\begin{DoxyCompactList}\small\item\em \texorpdfstring{$<$}{<} Librería que contiene las funciones auxiliares. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structProceso}{Proceso}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{planificador_8c_a23a124840d5dd17458489403c6e0fca8}{dequeue}} (\mbox{\hyperlink{structCola}{Cola}} \texorpdfstring{$\ast$}{*}cola)
+\begin{DoxyCompactList}\small\item\em Extrae un PROCESO de la COLA. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Funciones de planificación. 
+
+\begin{DoxyDate}{Date}
+24-\/10-\/2024 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Authors}
+Miguel Loaiza, Diego Sanhueza y Oscar Cifuentes 
+\end{DoxyAuthor}
+Contiene las funciones que son utilizadas para la correcta PLANIFICACIÓN de los PROCESOS. 
+
+Definition in file \mbox{\hyperlink{planificador_8c_source}{planificador.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{planificador_8c_a23a124840d5dd17458489403c6e0fca8}\index{planificador.c@{planificador.c}!dequeue@{dequeue}}
+\index{dequeue@{dequeue}!planificador.c@{planificador.c}}
+\doxysubsubsection{\texorpdfstring{dequeue()}{dequeue()}}
+{\footnotesize\ttfamily \label{planificador_8c_a23a124840d5dd17458489403c6e0fca8} 
+\mbox{\hyperlink{structProceso}{Proceso}} \texorpdfstring{$\ast$}{*} dequeue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCola}{Cola}} \texorpdfstring{$\ast$}{*}}]{cola}{}\end{DoxyParamCaption})}
+
+
+
+Extrae un PROCESO de la COLA. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cola} & \doxylink{structCola}{Cola} de PROCESOS. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Proceso\texorpdfstring{$\ast$}{*} \doxylink{structProceso}{Proceso} extraído. 
+\end{DoxyReturn}
+Si el FRENTE de la COLA es NULL, la COLA está VACÍA. Se imprime un MENSAJE de ERROR y se SALE del programa. Se EXTRAE el PROCESO del FRENTE de la COLA y se actualiza el FRENTE de la COLA. Si el FRENTE de la COLA es NULL, el FINAL de la COLA también es NULL (COLA VACÍA). 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (cola-\/>front\ ==\ NULL)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}La\ cola\ está\ vacía.\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{planificador_8c_source_l00052}{52}} of file \mbox{\hyperlink{planificador_8c_source}{planificador.\+c}}.
+
+\Hypertarget{planificador_8c_a80852b5b1c4482c393fbdbe0676ae2b0}\index{planificador.c@{planificador.c}!enqueue@{enqueue}}
+\index{enqueue@{enqueue}!planificador.c@{planificador.c}}
+\doxysubsubsection{\texorpdfstring{enqueue()}{enqueue()}}
+{\footnotesize\ttfamily \label{planificador_8c_a80852b5b1c4482c393fbdbe0676ae2b0} 
+void enqueue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCola}{Cola}} \texorpdfstring{$\ast$}{*}}]{cola}{, }\item[{\mbox{\hyperlink{structProceso}{Proceso}} \texorpdfstring{$\ast$}{*}}]{proceso}{}\end{DoxyParamCaption})}
+
+
+
+\texorpdfstring{$<$}{<} Librería que contiene las funciones auxiliares. 
+
+Coloca un PROCESO a la COLA.
+
+Coloca un PROCESO en la COLA. 
+\begin{DoxyParams}{Parameters}
+{\em id} & ID del proceso. \\
+\hline
+{\em tiempo\+\_\+llegada} & Tiempo de llegada del proceso. \\
+\hline
+{\em tiempo\+\_\+rafaga} & Tiempo de ráfaga del proceso. \\
+\hline
+{\em memoria\+\_\+solicitada} & Memoria solicitada por el proceso. \\
+\hline
+{\em cola\+\_\+procesos} & \doxylink{structCola}{Cola} de PROCESOS. \\
+\hline
+\end{DoxyParams}
+Si la COLA está VACÍA, el FRENTE y el FINAL de la COLA es el PROCESO. Se actualiza el SIGUIENTE PROCESO con NULL porque NO hay otro proceso DETRÁS. Imprime la cola de procesos. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (cola-\/>rear\ ==\ NULL)}
+\DoxyCodeLine{\ \ \ \ cola-\/>front\ =\ proceso;}
+\DoxyCodeLine{\textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ cola-\/>rear-\/>next\ =\ proceso;}
+\DoxyCodeLine{cola-\/>rear\ =\ proceso;}
+\DoxyCodeLine{proceso-\/>next\ =\ NULL;}
+\DoxyCodeLine{fprintf(stdout,\ \textcolor{stringliteral}{"{}Proceso\ \%d\ encolado\ CORRECTANENTE.\(\backslash\)n"{}},\ proceso-\/>pid);}
+\DoxyCodeLine{\mbox{\hyperlink{auxiliar_8c_ac8280e8c3c9c374d88d867cf11c373d5}{imprimir\_cola\_procesos}}(cola);}
+\DoxyCodeLine{fprintf(stdout,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{planificador_8c_source_l00020}{20}} of file \mbox{\hyperlink{planificador_8c_source}{planificador.\+c}}.
+

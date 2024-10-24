@@ -1,0 +1,96 @@
+\doxysection{src/main.c File Reference}
+\hypertarget{main_8c}{}\label{main_8c}\index{src/main.c@{src/main.c}}
+
+
+Función principal.  
+
+
+{\ttfamily \#include "{}auxiliar.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em \texorpdfstring{$<$}{<} Librería que contiene las funciones auxiliares. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Función principal. 
+
+\begin{DoxyDate}{Date}
+24-\/10-\/2024 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Authors}
+Miguel Loaiza, Diego Sanhueza y Oscar Cifuentes 
+\end{DoxyAuthor}
+Contiene la función principal del programa, donde se leen los argumentos de la terminal y se ejecutan las funciones de MEMORIA y PLANIFICACIÓN. 
+
+Definition in file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8c_a0ddf1224851353fc92bfbff6f499fa97}\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+\texorpdfstring{$<$}{<} Librería que contiene las funciones auxiliares. 
+
+Función principal del programa. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & Cantidad de argumentos. \\
+\hline
+{\em argv} & Argumentos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+EXIT\+\_\+\+SUCCESS si el programa termina correctamente. 
+\end{DoxyReturn}
+Se LEEN los ARGUMENTOS de la TERMINAL y se GUARDAN en VARIABLES. Mientras se LEEN los ARGUMENTOS, se VALIDAN y se IMPRIMEN MENSAJES de AYUDA o ERROR. En caso de que sea correcto, se GUARDA el NOMBRE del ARCHIVO de ENTRADA. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ opt;}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ *nombre\_archivo\ =\ NULL;}
+\DoxyCodeLine{\textcolor{keywordflow}{while}\ ((opt\ =\ getopt(argc,\ argv,\ \textcolor{stringliteral}{"{}hf:"{}}))\ !=\ -\/1)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{switch}\ (opt)}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'h'}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}\(\backslash\)nPara\ leer\ sus\ procesos,\ porfavor\ coloque\ el\ parametro\ <-\/f>\ <nombre\_archivo.txt>\(\backslash\)n\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'f'}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ nombre\_archivo\ =\ optarg;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nArchivo:\ \%s\(\backslash\)n\(\backslash\)n"{}},\ nombre\_archivo);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'?'}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Opción\ no\ reconocida:\ -\/\%c\(\backslash\)n"{}},\ optopt);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Uso:\ \%s\ [-\/h]\ [-\/f\ filename]\(\backslash\)n"{}},\ argv[0]);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Se LEEN los VALORES de los PROCESOS del ARCHIVO de ENTRADA y se GUARDAN en VARIABLES. Se CALCULA la CANTIDAD de BLOQUES de MEMORIA y se INICIALIZAN los BLOQUES de MEMORIA. Se IMPRIME la MEMORIA y se ASIGNA la MEMORIA a los PROCESOS. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ tamano\_memoria,\ tamano\_bloque;}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ algoritmo\_memoria[10],\ algoritmo\_planificacion[10];}
+\DoxyCodeLine{\mbox{\hyperlink{structCola}{Cola}}\ cola\_procesos\ =\ \{NULL,\ NULL\};}
+\DoxyCodeLine{\mbox{\hyperlink{auxiliar_8c_a0ce4edd5ee3a1e5ad1c1686031102935}{leer\_entrada}}(nombre\_archivo,\ \&tamano\_memoria,\ \&tamano\_bloque,\ algoritmo\_memoria,\ algoritmo\_planificacion,\ \&cola\_procesos);}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ cantidad\_bloques\ =\ tamano\_memoria\ /\ tamano\_bloque;}
+\DoxyCodeLine{\mbox{\hyperlink{structBloqueMemoria}{BloqueMemoria}}\ memoria[cantidad\_bloques];}
+\DoxyCodeLine{\mbox{\hyperlink{memoria_8c_a2f55ed34e9328798cb499cd78ca343c5}{inicializar\_bloques\_memoria}}(memoria,\ cantidad\_bloques,\ tamano\_bloque);}
+\DoxyCodeLine{\mbox{\hyperlink{auxiliar_8c_a84cf1bd786834d184e87454dc8c9be92}{imprimir\_memoria}}(memoria,\ cantidad\_bloques);}
+\DoxyCodeLine{\mbox{\hyperlink{memoria_8c_a4481f3adeab9c9d90bd8e14cfde4b2bc}{asignar\_memoria\_procesos}}(\&cola\_procesos,\ memoria,\ cantidad\_bloques);}
+\DoxyCodeLine{\textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00018}{18}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+

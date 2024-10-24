@@ -1,0 +1,155 @@
+\doxysection{auxiliar.\+c}
+\hypertarget{auxiliar_8c_source}{}\label{auxiliar_8c_source}\index{src/auxiliar.c@{src/auxiliar.c}}
+\mbox{\hyperlink{auxiliar_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{auxiliar_8h}{auxiliar.h}}"{}}\ }
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00021}\mbox{\hyperlink{auxiliar_8c_a0ce4edd5ee3a1e5ad1c1686031102935}{00021}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{auxiliar_8c_a0ce4edd5ee3a1e5ad1c1686031102935}{leer\_entrada}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *nombre\_archivo,\ \textcolor{keywordtype}{int}\ *tamano\_memoria,\ \textcolor{keywordtype}{int}\ *tamano\_bloque,\ \textcolor{keywordtype}{char}\ *algoritmo\_memoria,\ \textcolor{keywordtype}{char}\ *algoritmo\_planificacion,\ \mbox{\hyperlink{structCola}{Cola}}\ *cola\_procesos)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00022}00022\ \{}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00034}00034\ \ \ \ \ FILE\ *archivo\_entrada\ =\ fopen(nombre\_archivo,\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (archivo\_entrada\ ==\ NULL)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00036}00036\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00037}00037\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}ERROR\ al\ abrir\ el\ archivo,\ saliendo...\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00038}00038\ \ \ \ \ \ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00057}00057\ \ \ \ \ \textcolor{keywordflow}{if}\ (fscanf(archivo\_entrada,\ \textcolor{stringliteral}{"{}\%d\ \%d\ \%s"{}},\ tamano\_memoria,\ tamano\_bloque,\ algoritmo\_memoria)\ !=\ 3)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00058}00058\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00059}00059\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}ERROR\ al\ leer\ los\ valores\ de\ la\ memoria\ o\ bloque,\ saliendo...\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00060}00060\ \ \ \ \ \ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00062}00062\ \ \ \ \ \textcolor{keywordflow}{if}\ (fscanf(archivo\_entrada,\ \textcolor{stringliteral}{"{}\%s"{}},\ algoritmo\_planificacion)\ !=\ 1)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00063}00063\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00064}00064\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error\ al\ leer\ el\ algoritmo\ de\ planificación\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00065}00065\ \ \ \ \ \ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00066}00066\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00077}00077\ \ \ \ \ \textcolor{keywordtype}{int}\ id,\ tiempo\_llegada,\ tiempo\_rafaga,\ memoria\_solicitada;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00078}00078\ \ \ \ \ \textcolor{keywordflow}{while}\ (fscanf(archivo\_entrada,\ \textcolor{stringliteral}{"{}\%d\ \%d\ \%d\ \%d"{}},\ \&\textcolor{keywordtype}{id},\ \&tiempo\_llegada,\ \&tiempo\_rafaga,\ \&memoria\_solicitada)\ !=\ EOF)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00079}00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{auxiliar_8c_a3860ca319d78fce82d7096aad7c01b98}{asignar\_valores\_procesos}}(\textcolor{keywordtype}{id},\ tiempo\_llegada,\ tiempo\_rafaga,\ memoria\_solicitada,\ cola\_procesos);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00080}00080\ \ \ \ \ fclose(archivo\_entrada);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00081}00081\ \}}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00091}\mbox{\hyperlink{auxiliar_8c_a3860ca319d78fce82d7096aad7c01b98}{00091}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{auxiliar_8c_a3860ca319d78fce82d7096aad7c01b98}{asignar\_valores\_procesos}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{int}\ tiempo\_llegada,\ \textcolor{keywordtype}{int}\ tiempo\_rafaga,\ \textcolor{keywordtype}{int}\ memoria\_solicitada,\ \mbox{\hyperlink{structCola}{Cola}}\ *cola\_procesos)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00092}00092\ \{}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00106}00106\ \ \ \ \ \mbox{\hyperlink{structProceso}{Proceso}}\ *nuevo\_proceso\ =\ (\mbox{\hyperlink{structProceso}{Proceso}}\ *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structProceso}{Proceso}}));}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00107}00107\ \ \ \ \ nuevo\_proceso-\/>pid\ =\ id;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00108}00108\ \ \ \ \ nuevo\_proceso-\/>tiempo\_llegada\ =\ tiempo\_llegada;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00109}00109\ \ \ \ \ nuevo\_proceso-\/>tiempo\_rafaga\ =\ tiempo\_rafaga;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00110}00110\ \ \ \ \ nuevo\_proceso-\/>memoria\_solicitada\ =\ memoria\_solicitada;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00111}00111\ \ \ \ \ nuevo\_proceso-\/>next\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00112}00112\ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}Proceso\ \%d\ -\/\ T.\ Llegada\ \%d\ -\/\ T.\ Ráfaga\ \%d\ -\/\ M.\ Solicitada\ \%d\(\backslash\)n"{}},\ \textcolor{keywordtype}{id},\ tiempo\_llegada,\ tiempo\_rafaga,\ memoria\_solicitada);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00113}00113\ \ \ \ \ \mbox{\hyperlink{planificador_8c_a80852b5b1c4482c393fbdbe0676ae2b0}{enqueue}}(cola\_procesos,\ nuevo\_proceso);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00114}00114\ \}}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00120}\mbox{\hyperlink{auxiliar_8c_ac8280e8c3c9c374d88d867cf11c373d5}{00120}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{auxiliar_8c_ac8280e8c3c9c374d88d867cf11c373d5}{imprimir\_cola\_procesos}}(\mbox{\hyperlink{structCola}{Cola}}\ *cola)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00121}00121\ \{}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00135}00135\ \ \ \ \ \mbox{\hyperlink{structProceso}{Proceso}}\ *actual\ =\ cola-\/>front;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00136}00136\ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}\(\backslash\)nCola\ de\ procesos:\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00137}00137\ \ \ \ \ \textcolor{keywordtype}{long}\ actual\_next\ =\ (long)actual-\/>next;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00138}00138\ \ \ \ \ \textcolor{keywordflow}{while}\ (actual\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00139}00139\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00140}00140\ \ \ \ \ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}[PID:\ \%d]\(\backslash\)t[Memoria\ Solicitada:\ \%d]\(\backslash\)t[Next:\ \%ld]-\/>\(\backslash\)n"{}},\ actual-\/>pid,\ actual-\/>memoria\_solicitada,\ actual\_next);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00141}00141\ \ \ \ \ \ \ \ \ actual\ =\ actual-\/>next;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00142}00142\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00143}00143\ \}}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00150}\mbox{\hyperlink{auxiliar_8c_a84cf1bd786834d184e87454dc8c9be92}{00150}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{auxiliar_8c_a84cf1bd786834d184e87454dc8c9be92}{imprimir\_memoria}}(\mbox{\hyperlink{structBloqueMemoria}{BloqueMemoria}}\ *memoria,\ \textcolor{keywordtype}{int}\ cantidad\_bloques)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00151}00151\ \{}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00161}00161\ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}Bloques\ de\ memoria\ del\ SISTEMA\ OPERATIVO:\(\backslash\)n\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00162}00162\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ cantidad\_bloques;\ i++)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00163}00163\ \ \ \ \ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}[Bloque\ \%d]\(\backslash\)t[Tamaño\ \%d]\(\backslash\)t[Estado\ \%d][LIBRE]\(\backslash\)n"{}},\ i,\ memoria[i].tamano,\ memoria[i].estado);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00164}00164\ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00165}00165\ \}}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00175}\mbox{\hyperlink{auxiliar_8c_af860b43b9483727416483393e9927a37}{00175}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{auxiliar_8c_af860b43b9483727416483393e9927a37}{registrar\_tiempos}}(\mbox{\hyperlink{structGantt}{Gantt}}\ *diagrama\_gantt,\ \textcolor{keywordtype}{int}\ pid,\ \textcolor{keywordtype}{int}\ tiempo\_inicio,\ \textcolor{keywordtype}{int}\ tiempo\_rafaga,\ \textcolor{keywordtype}{int}\ *indice)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00176}00176\ \{}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00186}00186\ \ \ \ \ diagrama\_gantt[*indice].pid\ =\ pid;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00187}00187\ \ \ \ \ diagrama\_gantt[*indice].tiempo\_inicio\ =\ tiempo\_inicio;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00188}00188\ \ \ \ \ diagrama\_gantt[*indice].tiempo\_final\ =\ tiempo\_inicio\ +\ tiempo\_rafaga;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00189}00189\ \ \ \ \ (*indice)++;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00190}00190\ \}}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00197}\mbox{\hyperlink{auxiliar_8c_a538bd84a9975c728e696aa3586475c8d}{00197}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{auxiliar_8c_a538bd84a9975c728e696aa3586475c8d}{imprimir\_gantt}}(\mbox{\hyperlink{structGantt}{Gantt}}\ *diagrama\_gantt,\ \textcolor{keywordtype}{int}\ num\_procesos)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00198}00198\ \{}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00207}00207\ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}Diagrama\ de\ Gantt:\(\backslash\)n\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00208}00208\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_procesos;\ i++)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00209}00209\ \ \ \ \ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}[PID:\ \%d]\(\backslash\)t[Tiempo\ Inicio:\ \%d]\(\backslash\)t[Tiempo\ Final:\ \%d]\(\backslash\)n"{}},\ diagrama\_gantt[i].pid,\ diagrama\_gantt[i].tiempo\_inicio,\ diagrama\_gantt[i].tiempo\_final);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00210}00210\ \}}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00218}\mbox{\hyperlink{auxiliar_8c_ad55ebb88b181a48fad7400a82e6f9d90}{00218}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{auxiliar_8c_ad55ebb88b181a48fad7400a82e6f9d90}{generar\_archivo\_gantt}}(\mbox{\hyperlink{structGantt}{Gantt}}\ *diagrama\_gantt,\ \textcolor{keywordtype}{int}\ num\_procesos,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *carta\_gantt)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00219}00219\ \{}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00231}00231\ \ \ \ \ FILE\ *archivo\_gantt\ =\ fopen(carta\_gantt,\ \textcolor{stringliteral}{"{}w"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00232}00232\ \ \ \ \ \textcolor{keywordflow}{if}\ (archivo\_gantt\ ==\ NULL)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00233}00233\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00234}00234\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}ERROR\ al\ abrir\ el\ archivo\ de\ Gantt,\ saliendo...\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00235}00235\ \ \ \ \ \ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00236}00236\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00237}00237\ }
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00270}00270\ \ \ \ \ \textcolor{keywordtype}{int}\ altura\_proceso\ =\ 50;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00271}00271\ \ \ \ \ \textcolor{keywordtype}{int}\ margen\_inferior\ =\ 100,\ margen\_superior\ =\ 50,\ margen\_lateral\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00272}00272\ \ \ \ \ \textcolor{keywordtype}{int}\ ancho\_total\ =\ 800,\ altura\_total\ =\ (num\_procesos\ *\ altura\_proceso)\ +\ margen\_superior\ +\ margen\_inferior;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00273}00273\ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%\%!PS-\/Adobe-\/3.0\ EPSF-\/3.0\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00274}00274\ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%\%\%\%BoundingBox:\ 0\ 0\ \%d\ \%d\(\backslash\)n"{}},\ ancho\_total\ +\ margen\_lateral\ *\ 2,\ altura\_total);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00275}00275\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_procesos;\ i++)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00276}00276\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00277}00277\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tiempo\_inicio\ =\ diagrama\_gantt[i].tiempo\_inicio;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00278}00278\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tiempo\_final\ =\ diagrama\_gantt[i].tiempo\_final;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00279}00279\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ pid\ =\ diagrama\_gantt[i].pid;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00280}00280\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\_inicio\ =\ margen\_lateral\ +\ tiempo\_inicio\ *\ 10;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00281}00281\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\_final\ =\ margen\_lateral\ +\ tiempo\_final\ *\ 10;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ y\ =\ margen\_inferior\ +\ i\ *\ altura\_proceso;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00283}00283\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}newpath\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00284}00284\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ moveto\(\backslash\)n"{}},\ x\_inicio,\ y);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00285}00285\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ lineto\(\backslash\)n"{}},\ x\_final,\ y);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00286}00286\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ lineto\(\backslash\)n"{}},\ x\_final,\ y\ +\ altura\_proceso\ -\/\ 10);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00287}00287\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ lineto\(\backslash\)n"{}},\ x\_inicio,\ y\ +\ altura\_proceso\ -\/\ 10);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00288}00288\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}closepath\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00289}00289\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}0.207\ 0.706\ 0.941\ setrgbcolor\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00290}00290\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}fill\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00291}00291\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}0\ 0\ 0\ setrgbcolor\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00292}00292\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}stroke\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00293}00293\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}/Times-\/Roman\ findfont\ 12\ scalefont\ setfont\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00294}00294\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ moveto\(\backslash\)n"{}},\ margen\_lateral\ -\/\ 50,\ y\ +\ altura\_proceso\ /\ 2);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00295}00295\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}(ID\ \%d)\ show\(\backslash\)n"{}},\ pid);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00296}00296\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00297}00297\ }
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00326}00326\ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}/Times-\/Roman\ findfont\ 12\ scalefont\ setfont\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00327}00327\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_procesos;\ i++)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00328}00328\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00329}00329\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tiempo\_inicio\ =\ diagrama\_gantt[i].tiempo\_inicio;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00330}00330\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tiempo\_final\ =\ diagrama\_gantt[i].tiempo\_final;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00331}00331\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\_inicio\ =\ margen\_lateral\ +\ tiempo\_inicio\ *\ 10;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00332}00332\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}newpath\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00333}00333\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ moveto\(\backslash\)n"{}},\ x\_inicio,\ margen\_inferior\ -\/\ 5);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00334}00334\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ lineto\(\backslash\)n"{}},\ x\_inicio,\ margen\_inferior\ +\ 5);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00335}00335\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}stroke\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00336}00336\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ moveto\(\backslash\)n"{}},\ x\_inicio\ -\/\ 5,\ margen\_inferior\ -\/\ 20);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00337}00337\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}(\%d)\ show\(\backslash\)n"{}},\ tiempo\_inicio);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00338}00338\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\_final\ =\ margen\_lateral\ +\ tiempo\_final\ *\ 10;}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00339}00339\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}newpath\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00340}00340\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ moveto\(\backslash\)n"{}},\ x\_final,\ margen\_inferior\ -\/\ 5);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00341}00341\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ lineto\(\backslash\)n"{}},\ x\_final,\ margen\_inferior\ +\ 5);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00342}00342\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}stroke\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00343}00343\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}\%d\ \%d\ moveto\(\backslash\)n"{}},\ x\_final\ -\/\ 5,\ margen\_inferior\ -\/\ 20);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00344}00344\ \ \ \ \ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}(\%d)\ show\(\backslash\)n"{}},\ tiempo\_final);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00345}00345\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00346}00346\ \ \ \ \ fprintf(archivo\_gantt,\ \textcolor{stringliteral}{"{}showpage\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00347}00347\ \ \ \ \ fclose(archivo\_gantt);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00348}00348\ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}\(\backslash\)nCARTA\ GANTT\ generada\ EXITOSAMENTE\ en\ el\ ARCHIVO\ \%s\(\backslash\)n\(\backslash\)n"{}},\ carta\_gantt);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00349}00349\ }
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00350}00350\ \ \ \ \ \textcolor{comment}{//\ CONVERTIR\ archivo\ EPS\ a\ PNG\ con\ GHOSTSCRIPT.}}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00351}00351\ }
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00366}00366\ \ \ \ \ \textcolor{keywordtype}{char}\ comando[256];}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00367}00367\ \ \ \ \ snprintf(comando,\ \textcolor{keyword}{sizeof}(comando),\ \textcolor{stringliteral}{"{}gs\ -\/dSAFER\ -\/dBATCH\ -\/dNOPAUSE\ -\/dEPSCrop\ -\/sDEVICE=png16m\ -\/r300\ -\/sOutputFile=\%s.png\ \%s"{}},\ carta\_gantt,\ carta\_gantt);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00368}00368\ \ \ \ \ \textcolor{keywordtype}{int}\ resultado\ =\ system(comando);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00369}00369\ \ \ \ \ \textcolor{keywordflow}{if}\ (resultado\ !=\ 0)}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00370}00370\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00371}00371\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}ERROR\ al\ convertir\ la\ CARTA\ GANTT\ a\ PNG,\ saliendo...\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00372}00372\ \ \ \ \ \ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00373}00373\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00374}00374\ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}\(\backslash\)nCARTA\ GANTT\ convertida\ a\ PNG\ en\ el\ archivo\ \%s.png\(\backslash\)n\(\backslash\)n"{}},\ carta\_gantt);}
+\DoxyCodeLine{\Hypertarget{auxiliar_8c_source_l00375}00375\ \}}
+
+\end{DoxyCode}
