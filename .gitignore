@@ -6,3 +6,5 @@ test/
 .DS_Store
 obj/
 test
+.txt
+.eps
