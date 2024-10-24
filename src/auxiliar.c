@@ -171,4 +171,15 @@ void generar_archivo_gantt(Gantt *diagrama_gantt, int num_procesos, const char *
     fclose(archivo_gantt);
 
     fprintf(stdout, "\nCARTA GANTT generada EXITOSAMENTE en el ARCHIVO %s\n\n", carta_gantt);
+
+    // CONVERTIR archivo EPS a PNG con GHOSTSCRIPT.
+    char comando[256];
+    snprintf(comando, sizeof(comando), "gs -dSAFER -dBATCH -dNOPAUSE -dEPSCrop -sDEVICE=png16m -r300 -sOutputFile=%s.png %s", carta_gantt, carta_gantt);
+    int resultado = system(comando);
+    if (resultado != 0)
+    {
+        fprintf(stderr, "ERROR al convertir la CARTA GANTT a PNG, saliendo...\n");
+        exit(EXIT_FAILURE);
+    }
+    fprintf(stdout, "\nCARTA GANTT convertida a PNG en el archivo %s.png\n\n", carta_gantt);
 }
