@@ -29,3 +29,7 @@ Antes de generar la documentación, por favor vaya a la carpeta docs para verifi
   1. Asegurece de que esté el archivo 'config' en la carpeta 'os-simulator'.
   2. Ejecute el comando 'doxygen config' en su terminal para poder ejecutar el archivo config y generar la documentación.
   3. En la carpeta docs, se encuentra la documentación en html y pdf.
+
+# Carta Gantt
+
+En la carpeta principal 'os-simulator' se encuentra la carta gantt en formato '.eps' y '.png' para poder visualizar de mejor manera el funcionamiento de la ejecución de los procesos.
